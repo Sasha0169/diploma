@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МорТур</title>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/styles.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="header page__head">
+        <div class="header__upper-head page_black upper-head">
+            <div class="upper-head__wrap">
+                <div class="upper-head__wrap-for-emblem">
+                    <a href="./Главная страница.html" class="emblem__link">
+                        <img class="emblem" src="/emblem.png" alt="emblem__emblem">
+                    </a>
+                </div>
+                <div class="information-and-entrance">
+                    <a class="information-and-entrance__number" href="">
+                        8 800 755 - 75-25
+                    </a>
+                    <a class="information-and-entrance__entrance entrance" href="">
+                        <img class="entrance__sign" src="/entrance.png" alt="e"> 
+                        <p class="entrance__text">
+                            Войти
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header__lower-head lower-head">
+            <div class="lower-head__wrap">
+                <!-- <div class="lower-head__wrap-for-left-element">
+                    <button class="lower-head__button-for-navigation-menu" onclick="viewMenuNavigation()">
+                        <img src="image/button-for-nav.png" alt="b">
+                    </button>
+                </div> -->
+                <div class="lower-head__wrap-for-center-element">
+                </div>
+                <div class="lower-head__categories-navigation categories-navigation">
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Круизы</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Лайнеры</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Скидки и акции</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">О компании</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Контакты</p></div>
+                </div> 
+                <div class="lower-head__wrap-for-right-element">
+                    Мои заказы
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body page__body">
+        <div class="section-for-cruise-search">
+            <form class="section-for-cruise-search__form-for-search form-for-search">
+                <div class="form-for-search__wrap-for-button">
+                    <span class="form-for-search__label-for-button">Место отправления</span>
+                    <button class="form-for-search__button-for-selecting">
+                        <span class="form-for-button__placeholder-for-button">Откуда</span>
+                        <div class="form-for-button__arrow-for-button"></div>
+                    </button>
+                    <div class="form-for-button__the-selection-panel">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
+                              <label class="form-check-label stretched-link" for="1">Все</label>
+                            </li>
+                            <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
+                              <label class="form-check-label stretched-link" for="2">Казань</label>
+                            </li>
+                            <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
+                              <label class="form-check-label stretched-link" for="3">Набережные челны</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="4" id="4">
+                                <label class="form-check-label stretched-link" for="4">Другой город</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="5" id="5">
+                                <label class="form-check-label stretched-link" for="5">Другой город</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="6" id="6">
+                                <label class="form-check-label stretched-link" for="6">Другой город</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-for-search__wrap-for-button">
+                    <span class="form-for-search__label-for-button">Место отправления</span>
+                    <button id="1" class="form-for-search__button-for-selecting">
+                        <span class="form-for-button__placeholder-for-button">Откуда</span>
+                        <div class="form-for-button__arrow-for-button"></div>
+                    </button>
+                    <div class="form-for-button__the-selection-panel">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                              <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="1f" id="1f" checked>
+                              <label class="form-check-label stretched-link" for="1f">First radio</label>
+                            </li>
+                            <li class="list-group-item">
+                              <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="2f" id="2f">
+                              <label class="form-check-label stretched-link" for="2f">Second radio</label>
+                            </li>
+                            <li class="list-group-item">
+                              <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="3f" id="3f">
+                              <label class="form-check-label stretched-link" for="3f">Third radio</label>
+                            </li>
+                          </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="cruise-card">
+            <div class="cruise-card__wrap-for-image">
+                <img class="cruise-card__image" src="/1645411086_WN22-DroneCadiz208R.jpg" alt="">
+            </div>
+            <div class="cruise-card__wrap-for-information">
+                <span class="cruise-card__name">
+                    Восточная сказка
+                </span>
+                <div class="cruise-card__wrap-for-date-and-name-of-liner">
+                    <div class="cruise-card__wrap-for-date-and-time">
+                        <div class="cruise-card__first-date-and-time">
+                            <span class="cruise-card__date">
+                                25 апр 2025
+                            </span>
+                            <span class="cruise-card__day-of-week-and-time">
+                                пт, 10:00
+                            </span>
+                        </div>
+                        <div class="cruise-card__wrap-for-number-of-days">
+                            <div class="cruise-card__arrow">
+
+                            </div>
+                            <span class="cruise-card__number-of-days">
+                                100 дней
+                            </span>
+                        </div>
+                        <div class="cruise-card__second-date-and-time">
+                            <span class="cruise-card__date">
+                                25 апр 2025
+                            </span>
+                            <span class="cruise-card__day-of-week-and-time">
+                                пт, 10:00
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cruise-card__wrap-for-name-of-liner">
+                        <img class="cruise-card__liner-icon" src="/443890.png">
+                        <span class="cruise-card__name-of-liner">Николай Чернышевский</span>
+                    </div>
+                </div>
+                <div class="cruise-card__direction">
+                    Казань &mdash; Москва &mdash; Санкт-Петербург
+                </div>
+            </div>
+            <div class="cruise-card__wrap-for-price-and-button">
+                <div class="cruise-card__prices">
+                    <span class="cruise-card__new-price">
+                        от 250 000 &#8381;/чел
+                    </span>
+                    <span class="cruise-card__old-price">
+                        300 000 &#8381;
+                    </span>
+                </div>
+                <div class="cruise-card__wrap-for-remains">
+                    <span class="cruise-card__remains">
+                        Осталось 40 мест!
+                    </span>
+                </div>
+                <button class="cruise-card__button">
+                    Выбрать
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="footer page__footer">
+       <div class="footer__wrap-for-content">
+            <div class="footer__column">
+                <a href="./Главная страница.html" class="emblem__link">
+                    <img class="footer__emblema" src="/emblem2.png" alt="emblem__emblem">
+                </a>
+                <ul class="footer__category-navigation navigation-list navigation-list1">
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Речные круизы</a></li>
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Морские круизы</a></li>
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Лайнеры</a></li>
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Скидки</a></li>
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Акции</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
+                <div class="footer__title-and-arrow" onclick="viewAndCloseListNavigationInFooter2()">
+                    <h2 class="footer__column-title">Поддержка</h2>
+                    <img class="footer__arrow" src="image/arrow-for-footer.png" alt="a">
+                </div>
+                <ul class="footer__support-navigation navigation-list navigation-list2">
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">О компании</a></li>
+                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Акции</a></li> -->
+                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Магазины</a></li> -->
+                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Доставка</a></li> -->
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Оплата</a></li>
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Кредит</a></li>
+                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Установка техники</a></li> -->
+                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Сервисное обслуживание</a></li> -->
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Отмена бронирования и возврат средств</a></li>
+                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Бонусная программа</a></li> -->
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Политика конфиденциальности</a></li>
+                    <li class="navigation-list__variant"><a href="" class="navigation-list__link">Условия продажи</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
+                <div class="footer__title-and-arrow" onclick="viewAndCloseContactListInFooter()">
+                    <h2 class="footer__column-title">Контакты</h2>
+                    <img class="footer__arrow" src="image/arrow-for-footer.png" alt="a">
+                </div>
+                <div class="footer__contacts">
+                    <div class="contact">
+                        <h3 class="contact__title">
+                            E-mail
+                        </h3>
+                        <a class="contact__email" href="">
+                            MorTur@gmail.ru
+                        </a>
+                    </div>
+                    <div class="contact">
+                        <h3 class="contact__title">
+                            Телефон
+                        </h3>
+                        <p class="contact__phone">
+                            8 800 000-0000
+                        </p>
+                        <p class="contact__working-time">
+                            Ежедневно с 9:00 до 22:00
+                        </p>
+                    </div>
+                    <div class="contact">
+                        <h3 class="contact__title">
+                            Адрес
+                        </h3>
+                        <div class="contact__wrap-for-address">
+                            <p class="contact__address">
+                                ООО "ГЭЛЭКСИМАРТ", г. Москва, Волоколамское шоссе, д.1, стр. 1
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>

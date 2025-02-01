@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МорТур</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+</head>
+<body>
+    <div class="header page__head">
+        <div class="header__upper-head page_black upper-head">
+            <div class="upper-head__wrap">
+                <div class="upper-head__wrap-for-emblem">
+                    <a href="./Главная страница.html" class="emblem__link">
+                        <img class="emblem" src="images/emblem.png" alt="emblem__emblem">
+                    </a>
+                </div>
+                <div class="information-and-entrance">
+                    <a class="information-and-entrance__number" href="">
+                        8 800 755 - 75-25
+                    </a>
+                    <a class="information-and-entrance__entrance entrance" href="">
+                        <img class="entrance__sign" src="images/entrance.png" alt="e"> 
+                        <p class="entrance__text">
+                            Войти
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header__lower-head lower-head">
+            <div class="lower-head__wrap">
+                <!-- <div class="lower-head__wrap-for-left-element">
+                    <button class="lower-head__button-for-navigation-menu" onclick="viewMenuNavigation()">
+                        <img src="image/button-for-nav.png" alt="b">
+                    </button>
+                </div> -->
+                <div class="lower-head__wrap-for-center-element">
+                </div>
+                <div class="lower-head__categories-navigation categories-navigation">
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Круизы</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Лайнеры</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Скидки и акции</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">О компании</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Контакты</p></div>
+                </div> 
+                <div class="lower-head__wrap-for-right-element">
+                    Мои заказы
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body page__body">
+        <div class="cruise-page">
+            <h1 class="cruise-page__cruise-name">Название круиза</h1>
+            <div class="cruise-page__content">
+                <div class="cruise-page__general-information">
+                    <div class="cruise-page__wrap-for-images block-of-images">
+                        <div class="block-of-images__main-image"></div>
+                        <div class="block-of-images__images">
+                            <img src="images/left-arrow-for-images.png" class="block-of-images__left-arrow"></img>
+                            <div class="block-of-images__image"></div>
+                            <div class="block-of-images__image"></div>
+                            <div class="block-of-images__image"></div>
+                            <div class="block-of-images__image"></div>
+                            <img src="images/right-arrow-for-images.png" class="block-of-images__right-arrow"></img>
+                        </div>
+                    </div>
+                    <div class="cruise-page__wrap-for-price-panel price-panel">
+                        <div class="price-panel__wrap-for-prices">
+                            <div class="price-panel__price">
+                                от 250 000 &#8381;/чел
+                            </div>
+                            <div class="price-panel__old-price">
+                                300 000 &#8381;
+                            </div>
+                        </div>
+                        <div class="price-panel__wrap-for-liner">
+                            <img class="price-panel__liner-icon" src="images/443890.png">
+                            <span class="price-panel__name-of-liner">Название лайнера</span>
+                        </div>
+                        <div class="price-panel__direction">
+                            Москва &mdash; Казань &mdash; Москва
+                        </div>
+                        <div class="price-panel__wrap-for-date-and-time">
+                            <div class="price-panel__first-date-and-time">
+                                <span class="price-panel__date">
+                                    25 апр 2025
+                                </span>
+                                <span class="price-panel__day-of-week-and-time">
+                                    пт, 10:00
+                                </span>
+                            </div>
+                            <div class="price-panel__wrap-for-number-of-days">
+                                <div class="price-panel__arrow">
+    
+                                </div>
+                                <span class="price-panel__number-of-days">
+                                    100 дней
+                                </span>
+                            </div>
+                            <div class="price-panel__second-date-and-time">
+                                <span class="price-panel__date">
+                                    25 апр 2025
+                                </span>
+                                <span class="price-panel__day-of-week-and-time">
+                                    пт, 10:00
+                                </span>
+                            </div>
+                        </div>
+                        <button class="price-panel__button-for-booking">
+                            Выбрать каюту
+                        </button>
+                    </div>
+                </div>
+                <div class="cruise-page__sections">
+                    <div class="navigation-panel">
+                        <div class="navigation-panel__section">
+                            <div class="navigation-panel__name-of-section">
+                                Описание круиза
+                            </div>
+                        </div>
+                        <div class="navigation-panel__section">
+                            <div class="navigation-panel__name-of-section">
+                                Маршрут
+                            </div>
+                        </div>
+                        <div class="navigation-panel__section">
+                            <div class="navigation-panel__name-of-section">
+                                О теплоходе
+                            </div>
+                        </div>
+                        <div class="navigation-panel__section">
+                            <div class="navigation-panel__name-of-section">
+                                Цены
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cruise-page__section cruise-page-section">
+                        <h2 class="cruise-page-section__name-of-section">
+                            Описание круиза
+                        </h2>
+                        <div class="cruise-page-section__content">
+                            <p class="cruise-page-section__text-of-section">
+                                Cupidatat voluptate do excepteur tempor excepteur cillum culpa ullamco. Consectetur nisi eiusmod deserunt aliquip ea in aliquip sit labore dolor mollit ad enim laboris. Duis do eiusmod sit elit duis ad fugiat. Ea ullamco eiusmod officia quis quis. Amet tempor veniam cillum mollit voluptate ipsum cupidatat Lorem quis culpa incididunt. Id laborum anim reprehenderit commodo ea.
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Aliquip labore proident irure aliquip. Officia est aute ex id esse sit. Culpa aliqua excepteur id eiusmod esse labore. Excepteur irure tempor velit ipsum in aute.
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Ut ipsum dolor est ad velit ex sint ad irure et deserunt officia nulla. Magna ipsum magna consectetur sit irure excepteur officia mollit nostrud. Fugiat cillum excepteur do consectetur laboris. Do ex ex cupidatat mollit cupidatat ad eiusmod. Consectetur dolore qui dolor labore ex excepteur esse. Consectetur deserunt tempor non sunt laboris reprehenderit mollit irure occaecat quis mollit sunt nisi ullamco. Commodo minim ipsum in adipisicing exercitation duis proident aliqua ut culpa aliqua fugiat sint cillum.
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Esse commodo do aliquip nisi laboris nisi aute voluptate veniam cillum dolore ex. Enim ea minim consequat magna cupidatat incididunt magna. Veniam proident dolor ad quis tempor commodo amet amet deserunt mollit magna officia aute.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="cruise-page__section cruise-page-section">
+                        <h2 class="cruise-page-section__name-of-section">
+                            Маршрут
+                        </h2>
+                        <div class="cruise-page-section__content">
+                            <div class="route-point">
+                                <div class="route-point__header">
+                                    <div class="route-point__wrap-for-date">
+                                        <div class="route-point__number-of-day">День 1</div>
+                                        <div class="route-point__date-and-day-of-week">
+                                            24.12.2024, суббота
+                                        </div>
+                                    </div>
+                                    <div class="route-point__places">
+                                        <div class="route-point__wrap-for-place">
+                                            <div class="route-point__place">
+                                                <div class="route-point__wrap-for-name-of-place">
+                                                    <img class="route-point__arrow" src="images/arrow-right-for-place.png">
+                                                    <div class="route-point__name-of-place">
+                                                        Москва
+                                                    </div>
+                                                </div>
+                                                <div class="route-point__wrapper-for-time">
+                                                    <div class="route-point__wrap-for-time">
+                                                        <div class="route-point__registration-start-time">
+                                                            <div class="route-point__name-of-time">Начало регистрации:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                        <div class="route-point__departure-time">
+                                                            <div class="route-point__name-of-time">Отправление:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                                <img class="route-point__place-image" src="images/a24b6fd8-5cb4-5bde-89ee-13f73b2d6c76.jpg" alt="">
+                                            </div>
+                                            <div class="route-point__description">
+                                                Cillum nostrud ea veniam fugiat quis. Fugiat ut aliquip dolor commodo enim exercitation. Excepteur et voluptate eu eiusmod aliquip id dolore adipisicing in irure. Tempor excepteur labore nulla adipisicing minim nulla cillum laboris laboris velit.
+                                                Est in tempor enim ad Lorem est anim laboris sit est consequat cillum est Lorem. Qui ipsum sunt magna cillum aliquip magna consectetur duis minim et laborum consequat anim. Magna minim exercitation sint nisi.
+                                            </div>
+                                        </div>     
+                                        <div class="route-point__wrap-for-place">
+                                            <div class="route-point__place">
+                                                <div class="route-point__wrap-for-name-of-place">
+                                                    <img class="route-point__arrow" src="images/arrow-right-for-place.png">
+                                                    <div class="route-point__name-of-place">
+                                                        Набережные-Челны
+                                                    </div>
+                                                </div>
+                                                <div class="route-point__wrapper-for-time">
+                                                    <div class="route-point__wrap-for-time">
+                                                        <div class="route-point__arrival-time">
+                                                            <div class="route-point__name-of-time">Прибытие:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                        <div class="route-point__parking-time">
+                                                            <div class="route-point__name-of-time">Стоянка:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                        <div class="route-point__departure-time">
+                                                            <div class="route-point__name-of-time">Отправление:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                                <img class="route-point__place-image" src="images/a24b6fd8-5cb4-5bde-89ee-13f73b2d6c76.jpg" alt="">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cruise-page__section cruise-page-section">
+                        <h2 class="cruise-page-section__name-of-section">
+                            О теплоходе
+                        </h2>
+                        <div class="cruise-page-section__content">
+                            <p class="cruise-page-section__text-of-section">
+                                Название: <a href="">"Название теплохода"</a> 
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Cupidatat officia voluptate velit sint eiusmod quis quis culpa nisi enim sit. Mollit consectetur et occaecat commodo consequat esse consectetur elit ut anim qui aliquip proident dolore. Reprehenderit non amet pariatur duis reprehenderit aute mollit. Fugiat dolore cupidatat aliquip in occaecat sit adipisicing.
+                                Ipsum fugiat reprehenderit mollit dolore duis consectetur adipisicing anim magna nostrud voluptate reprehenderit. Velit qui incididunt dolor aute ex. Aliquip consequat officia aliqua minim veniam exercitation exercitation dolore cupidatat dolor eiusmod anim magna dolor. Commodo consequat in eu magna aute in deserunt consectetur sint consectetur do consequat laboris. Nostrud minim magna tempor culpa. Sunt enim aliqua esse tempor quis. Laboris eiusmod incididunt laborum magna fugiat magna labore nulla voluptate officia deserunt excepteur mollit.
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Cupidatat officia voluptate velit sint eiusmod quis quis culpa nisi enim sit. Mollit consectetur et occaecat commodo consequat esse consectetur elit ut anim qui aliquip proident dolore. Reprehenderit non amet pariatur duis reprehenderit aute mollit. Fugiat dolore cupidatat aliquip in occaecat sit adipisicing.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="cruise-page__section cruise-page-section">
+                        <h2 class="cruise-page-section__name-of-section">
+                            Цены
+                        </h2>
+                        <div class="cruise-page-section__content">
+                            <div class="wrap-for-cabin-prices cabin-prices">
+                                <div class="cabin-prices__deсk">
+                                    <span class="cabin-prices__deck-name">Палуба 1</span>
+                                    <div class="cabin-prices__wrap">
+                                        <div class="cabin-prices__wrap-for-cabins">
+                                            <div class="cabin-prices__cabin cabin">
+                                                <div class="cabin__wrap-for-information">
+                                                    <span class="cabin__name">Название каюты</span>
+                                                    <span class="cabin__name-of-tariff">Тариф Взрослый:</span>
+                                                    <span class="cabin__price">18 000 &#8381;/чел</span>
+                                                    <span class="cabin__name-of-tariff">Тариф Десткий:</span>
+                                                    <span class="cabin__price">18 000 &#8381;/чел</span>
+                                                    <span class="cabin__quantity">Осталось 20 шт</span>
+                                                </div>
+                                                <img src="images/cabin.jpeg" alt="" class="cabin__image">
+                                            </div>
+                                            <div class="cabin-prices__cabin cabin">
+                                                <span class="cabin__name">Название каюты</span>
+                                                <span class="cabin__price">18 000 &#8381;/чел</span>
+                                                <span class="cabin__quantity">Осталось 20 шт</span>
+                                                <img src="images/cabin.jpeg" alt="" class="cabin__image">
+                                            </div>
+                                            <div class="cabin-prices__cabin cabin">
+                                                <span class="cabin__name">Название каюты</span>
+                                                <span class="cabin__price">18 000 &#8381;/чел</span>
+                                                <span class="cabin__quantity">Осталось 20 шт</span>
+                                                <img src="images/cabin.jpeg" alt="" class="cabin__image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cabin-prices__deсk">
+                                    
+                                </div>
+                                <div class="cabin-prices__deсk">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer page__footer">
+        <div class="footer__wrap-for-content">
+             <div class="footer__column">
+                 <a href="./Главная страница.html" class="emblem__link">
+                     <img class="footer__emblema" src="image/emblema.png" alt="emblem__emblem">
+                 </a>
+                 <ul class="footer__category-navigation navigation-list navigation-list1">
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Смартфоны</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Планшеты</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Бытовая техника</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Аксессуары</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Распродажа</a></li>
+                 </ul>
+             </div>
+             <div class="footer__column">
+                 <div class="footer__title-and-arrow" onclick="viewAndCloseListNavigationInFooter2()">
+                     <h2 class="footer__column-title">Поддержка</h2>
+                     <img class="footer__arrow" src="image/arrow-for-footer.png" alt="a">
+                 </div>
+                 <ul class="footer__support-navigation navigation-list navigation-list2">
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">О компании</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Акции</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Магазины</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Доставка</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Оплата</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Кредит</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Установка техники</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Сервисное обслуживание</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Обмен и возврат</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Бонусная программа</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Политика конфиденциальности</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Условия продажи</a></li>
+                 </ul>
+             </div>
+             <div class="footer__column">
+                 <div class="footer__title-and-arrow" onclick="viewAndCloseContactListInFooter()">
+                     <h2 class="footer__column-title">Контакты</h2>
+                     <img class="footer__arrow" src="image/arrow-for-footer.png" alt="a">
+                 </div>
+                 <div class="footer__contacts">
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             E-mail
+                         </h3>
+                         <a class="contact__email" href="">
+                             samsung@mail.ru
+                         </a>
+                     </div>
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             Телефон
+                         </h3>
+                         <p class="contact__phone">
+                             8 800 000-0000
+                         </p>
+                         <p class="contact__working-time">
+                             Ежедневно с 9:00 до 22:00
+                         </p>
+                     </div>
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             Адрес
+                         </h3>
+                         <div class="contact__wrap-for-address">
+                             <p class="contact__address">
+                                 ООО "ГЭЛЭКСИМАРТ", г. Москва, Волоколамское шоссе, д.1, стр. 1
+                             </p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+     </div>
+</body>
+</html>
