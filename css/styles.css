@@ -59,6 +59,8 @@ body {
     width: 100%;
     color:#F1F1F1;
     background-color: #74c1fc;
+    /* background-color: #0c7ca4; */
+
     justify-content:center;
     display:inline-flex;
     flex-direction: row;
@@ -303,7 +305,7 @@ body {
 
 .form-for-button__arrow-for-button{
     content: ' ';
-    background: url("C:\\Users\\Alexandr\\OneDrive\\Рабочий стол\\Дипломная работа\\images\\arrow-bottom.svg");
+    background: url("\\arrow-bottom.svg");
     display: inline-flex;
     background-size:cover;
     width: 20px;
@@ -478,7 +480,9 @@ body {
     line-height: 24px;
 }
 
-
+.cruise-card__remains{
+    font-size: 16px;
+}
 
 
 
