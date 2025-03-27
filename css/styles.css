@@ -236,6 +236,9 @@ body {
     justify-content: center;
     display: flex;
     border-bottom: 3px solid #fff;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .categories-navigation__option:hover {
@@ -243,7 +246,7 @@ body {
     border-bottom: 3px solid #0094DA;
 }
 
-.categories-navigation__link {
+.categories-navigation__wrap-for-link {
     text-align: center;
     text-indent: 0px;
 }
@@ -254,6 +257,9 @@ body {
     align-items: center;
 }
 
+.lower-head__wrap-for-right-element:hover{
+    color:#0094DA;
+}
 
 
 
@@ -269,6 +275,16 @@ body {
     justify-content:center;
 }
 
+.main-page{
+    display: flex;
+    flex-direction: column;
+    width: 1250px;
+    gap: 40px;
+}
+.main-page__page-name{
+    align-self:flex-start;
+}
+
 .form-for-search{
     display: flex
 }
@@ -278,25 +294,39 @@ body {
 }
 
 .form-for-search{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     width: 100%;
+    flex-direction: column;
+    gap: 30px;
+    justify-items: center;
+    grid-template-areas:
+    "A A A A A"
+    "B B B B C";
+}
+
+.form-for-search__string-of-search-parameters{
+    display: flex;
+    justify-content: space-around;
 }
 
 .form-for-search__wrap-for-button{
     display: flex;
     flex-direction: column;
-    gap: 2px
+    gap: 2px;
 }
 
 .form-for-search__label-for-button{
-    font-size: small;
+    font-size: 16px;
 }
 
 .form-for-search__button-for-selecting{
     display: flex;
-    width: 150px;
+    width: 200px;
     justify-content: space-between;
     align-items: center;
+    height: 30px;
+    
 }
 
 .form-for-button__placeholder-for-button{
@@ -319,16 +349,26 @@ body {
     height: 0px;
 }
 
-.list-group{
-    font-size: 14px;
-    position: absolute;
-    width:max-content;
+.form-for-search__datepicker{
+    width: 200px;
 }
 
+.form-for-search__wrap-for-button-and-panel{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-for-search__wrap-for-search-button{
+    grid-area: C;
+}
+
+.form-for-button__button{
+    width: 200px;
+}
 .cruise-card{
     font-family: 'Bookerly';
     font-weight: bold;
-    width: 1200px;
+    width: 100%;
     height: 250px;
     display: flex;
     flex-direction: row;
@@ -337,13 +377,14 @@ body {
 }
 
 .cruise-card__wrap-for-image{
-    width: 30%;
+    /* width: 30%; */
     height: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    min-width: 30%;
-    max-width: 30%;
+    /* min-width: 30%;
+    max-width: 30%; */
+    padding: 15px 0px 15px 15px;
 }
 
 .cruise-card__image{
@@ -523,9 +564,9 @@ body {
 .block-of-images__main-image{
     width: 800px;
     height: 500px;
-    background-image: url("../images/1645411086_WN22-DroneCadiz208R.jpg");
+    background-image: url("/1645411086_WN22-DroneCadiz208R.jpg");
     background-size: cover;
-    border-radius: 14px;
+    border-radius: 20px;
 }
 
 .block-of-images__images{
@@ -544,9 +585,9 @@ body {
 .block-of-images__image{
     width: 150px;
     height: 100px;
-    background-image: url("../images/1645411086_WN22-DroneCadiz208R.jpg");
+    background-image: url("/1645411086_WN22-DroneCadiz208R.jpg");
     background-size: cover;
-    border-radius: 7px;
+    border-radius: 4px;
 }
 
 .price-panel{
@@ -555,7 +596,7 @@ body {
     gap: 20px;
     width: 400px;
     padding: 20px;
-    border-radius: 14px;
+    border-radius: 20px;
     background-color: #74c1fc;
     height: fit-content;
 }
@@ -570,8 +611,9 @@ body {
 }
 
 .price-panel__button-for-booking{
-    width: 50%;
+    width: 100%;
     align-self: center;
+    border-radius: 5px;
 }
 
 .price-panel__wrap-for-liner{
@@ -618,13 +660,14 @@ body {
     gap: 20px;
 }
 
-.navigation-panel{
+.page-navigation{
     display: flex;
     width: 800px;
     justify-content: space-between;
+    
 }
 
-.navigation-panel__section{
+.page-navigation__section{
     display: flex;
     padding: 20px 20px;
     width: 25%;
@@ -632,13 +675,16 @@ body {
     justify-content: center;
     border-top: solid 2px #000;
     border-bottom: solid 2px #fff;
+    color: black;
+    text-decoration: none;
 }
 
-.navigation-panel__section:hover{
+.page-navigation__section:hover{
     font-weight: bold;
+    color:#0094DA;
 }
 
-.navigation-panel__section_selected{
+.page-navigation__section_selected{
     border-top: solid 2px #000;
     border-bottom: solid 2px #000;
 }
@@ -808,19 +854,27 @@ body {
 }
 
 .cabin-prices__wrap-for-cabins{
-    display: grid;
-    grid-template-columns: 47% 47%;
+    display: flex;
+    flex-direction: column;
     column-gap: 20px;
     width: 100%;
     justify-content: space-between;
+
 }
 
 .cabin{
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    border-radius: 14px;
+    padding: 15px;
+    border-radius: 20px;
     border: solid 1px #000;
+    flex-direction: column;
+}
+
+.cabin__upper-part{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
 }
 
 .cabin__wrap-for-information{
@@ -829,10 +883,11 @@ body {
     display: flex;
     grid-gap: 20px;
     width:auto;
+    height: 250px;
 }
 
 .cabin__name{
-    font-size: 15px;
+    font-size: 23px;
     font-weight: bold;
 }
 
@@ -840,14 +895,288 @@ body {
     align-self: flex-end;
 }
 
-.cabin__name-of-tariff{
+.cabin__name-of-rate{
     
 }
 
 .cabin__image{
     /* width:450px; */
     height: 250px;
+    border-radius: 5px;
 }
+
+.cabin__wrap-for-rates{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.cabin__wrap-for-rate{
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rate{
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+
+/* .rate:not(:first-child) {
+    border-left: #000 solid 1px;
+} */
+
+.cabin__separator-for-rates{
+    height: 100%;
+    width: 0%;
+    border-right:#000 solid 0.1px;
+}
+
+.cabin__wrap-for-quantity-and-button{
+    display: flex;
+    justify-content: space-between;
+    height: inherit;
+}
+
+.cabin__button{
+    border-radius: 5px;
+}
+
+.cabin__lower-part{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.cabin__wrap-for-available-places{
+    display:flex;
+    gap: 15px;
+}
+
+.cabin__available-place{
+    border-radius:5px;
+    height: 40px;
+    width: 80px;
+    /* background-color: #74c1fc; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:#000 solid 1px;
+    cursor: pointer;
+}
+
+.cabin__available-place:hover{
+
+    background-color: #74c1fc;
+}
+
+.cabin__label-under-available-places{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.close-button{
+    width: 20px;
+    height: 20px;
+    justify-self: flex-end;
+}
+
+.close-button:hover{
+    fill: #74c1fc;
+}
+
+.wrap-for-panel-for-booking{
+    position: fixed;  /* Фиксируем на экране */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);  /* Полупрозрачный фон */
+    display: none;  /* Панель по умолчанию скрыта */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;  /* Чтобы она была поверх других элементов */
+}
+
+@keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+.panel-for-booking{
+    width: 1000px;
+    position: fixed;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    animation: slideIn 0.5s ease-out;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.panel-for-booking__wrap-for-description{
+    width: 50%;
+}
+
+.panel-for-booking__upper-part{
+    display: flex;
+}
+
+.panel-for-booking__lower-part{
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-for-booking__wrap-for-checkbox{
+    display: flex;
+}
+
+.panel-for-booking__wrap-for-rate-selection{
+    display: grid;
+    grid-template-columns: 40% 40%;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel-for-booking__wrap-for-button-and-total{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.basket{
+    /* display: flex; */
+    display: none;
+    flex-direction: column;
+    width: 500px;
+    background-color: #DBCE81;
+    position: fixed;
+    top:0px;
+    /* right: 0px; */
+    bottom: 0px;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.basket__header{
+    display:flex;
+    justify-content: space-between;
+}
+
+.basket__title{
+    font-size: 23px;
+
+}
+
+.basket__wrap-for-close-button{
+    align-self: flex-start;
+    height: fit-content;
+    position:relative;
+    right:4px;
+}
+
+.basket__body{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-self: flex-start;
+    height: 100%;
+}
+
+.basket__information-about-cruise{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.basket__cruise-name{
+    
+}
+
+.basket__wrap-for-date-and-time{
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.basket__first-date-and-time, .basket__second-date-and-time{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.basket__date{
+    font-size: 16px;
+}
+
+.basket__day-of-week-and-time{
+    font-size: 14px;
+}
+
+
+.basket__cabin{
+
+}
+
+.basket__wrap-for-cabin-name{
+    display:flex;
+    flex-direction: column;
+}
+
+.basket__wrap-for-tourist{
+    display:flex;
+    justify-content: space-between;
+}
+
+.basket__wrap-for-total-for-cabin{
+    display:flex;
+    justify-content: space-between;
+}
+
+.basket__delete-button{
+    width: 20px;
+    height: 20px;
+}
+
+.basket__wrap-for-buttons{
+    display:flex;
+    gap: 20px;
+    justify-self: end;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -870,6 +1199,17 @@ body {
     padding: 40px 0px 40px 0px;
 }
 
+.booking-page__content{
+    width: 100%;
+}
+
+.booking-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .about-us{
     width: 1250px;
     display: flex;
@@ -877,6 +1217,89 @@ body {
     gap: 40px;
     /* align-items: center; */
     padding: 40px 0px 40px 0px;
+}
+
+.booking-section__name-of-section{
+
+}
+
+.booking-section__content{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.booking-section__content{
+    grid-template-areas:
+   "A A A A "
+   "B B B B "
+   "C D E F"
+   "G H I j";
+}
+
+.booking-section_first-section .booking-section__content{
+     grid-template-areas:
+    "A A A A "
+    "B B B B "
+    "C D E F"
+    "G G H I"
+    "J K L M";
+}
+
+
+
+.booking-section_first-section .mb-3:nth-child(6){
+    grid-area: C;
+}
+
+.booking-section_first-section .mb-3:nth-child(7){
+    grid-area: D;
+}
+
+.booking-section_first-section .mb-3:nth-child(8){
+    grid-area: E;
+}
+
+.booking-section_first-section .mb-3:nth-child(9){
+    grid-area: F;
+}
+
+.booking-section_first-section .mb-3:nth-child(10){
+    grid-area: G;
+}
+
+.booking-section_first-section .mb-3:nth-child(11){
+    grid-area: J;
+}
+
+.booking-section_first-section .mb-3:nth-child(12){
+    grid-area: K;
+}
+
+.mb-3:nth-child(6){
+    grid-area: C;
+}
+
+.mb-3:nth-child(7){
+    grid-area: D;
+}
+
+.mb-3:nth-child(8){
+    grid-area: E;
+}
+
+.mb-3:nth-child(9){
+    grid-area: F;
+}
+
+.mb-3:nth-child(10){
+    grid-area: G;
+}
+
+.mb-3:nth-child(11){
+    grid-area: H;
 }
 
 .about-us__header{
@@ -1931,6 +2354,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    padding-left: 0px;
 }
 
 .navigation-list__variant {
@@ -2019,6 +2443,49 @@ body {
     width: 332px;
 }
 
+.navigation-panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 35px 0px;
+    position: relative;
+    /* top: 144px; */
+    background-color: #fff;
+    display: none;
+}
+
+.navigation-panel__column {
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+}
+
+.navigation-panel__title {
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration-line: underline;
+}
+
+.navigation-panel__option {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    color: #9C9C9C;
+    text-decoration: none;
+}
+
+.navigation-panel__option:hover {
+    color: #000;
+}
+
+.navigation-panel__wrap-for-content {
+    display: flex;
+    width: 1250px;
+    gap: 50px;
+    row-gap: 40px;
+    flex-wrap: wrap;
+}
 
 /* .product {
     width: 100%;

@@ -1,0 +1,23 @@
+.list-group{
+    width: 200px;
+    font-size: 14px;
+    position: absolute;
+    /* width:max-content; */
+}
+
+.list-group-item{
+    display: flex;
+    align-items: center;
+    width: 200px;
+    gap: 5px;
+}
+
+p {
+    margin-bottom: 0px;   
+}
+
+.carousel{
+    width: 400px;
+    height: 250px;
+    overflow: hidden;
+}

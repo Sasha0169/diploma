@@ -1,6 +1,8 @@
 .datepicker {
-  display: inline-block;
+  display: flex;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  justify-items: center;
+  width: 200px;
 }
 
 .datepicker table {
@@ -35,6 +37,7 @@
   background: white;
   border: 1px solid #2196F3;
   width: 16rem;
+  width: 200px;
 }
 
 .datepicker__wrapper::after {

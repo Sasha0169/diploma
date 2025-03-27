@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МорТур</title>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/icon.png" type="image/png">
+    <link rel="stylesheet" href="/datepicker.material.css">
+    <script src="/datepicker.rus.js"></script>
+    <link rel="stylesheet" href="/custom.css">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="header page__head">
+        <div class="header__upper-head page_black upper-head">
+            <div class="upper-head__wrap">
+                <div class="upper-head__wrap-for-emblem">
+                    <a href="./Главная страница.html" class="emblem__link">
+                        <img class="emblem" src="/emblem.png" alt="emblem__emblem">
+                    </a>
+                </div>
+                <div class="information-and-entrance">
+                    <a class="information-and-entrance__number" href="">
+                        8 800 755 - 75-25
+                    </a>
+                    <a class="information-and-entrance__entrance entrance" href="">
+                        <img class="entrance__sign" src="/entrance.png" alt="e"> 
+                        <p class="entrance__text">
+                            Войти
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header__lower-head lower-head">
+            <div class="lower-head__wrap">
+                <!-- <div class="lower-head__wrap-for-left-element">
+                    <button class="lower-head__button-for-navigation-menu" onclick="viewMenuNavigation()">
+                        <img src="image/button-for-nav.png" alt="b">
+                    </button>
+                </div> -->
+                <div class="lower-head__wrap-for-center-element">
+                </div>
+                <div class="lower-head__categories-navigation categories-navigation">
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Круизы</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Лайнеры</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Скидки и акции</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">О компании</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Контакты</p></div>
+                </div> 
+                <div class="lower-head__wrap-for-right-element">
+                    Мои заказы
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body page__body">
+        <div class="cruise-page">
+            <h1 class="cruise-page__cruise-name">Название круиза</h1>
+            <div class="cruise-page__content">
+                <div class="cruise-page__general-information">
+                    <div class="cruise-page__wrap-for-images block-of-images">
+                        <div class="block-of-images__main-image"></div>
+                        <div class="block-of-images__images">
+                            <img src="/left-arrow-for-images.png" class="block-of-images__left-arrow"></img>
+                            <div class="block-of-images__image"></div>
+                            <div class="block-of-images__image"></div>
+                            <div class="block-of-images__image"></div>
+                            <div class="block-of-images__image"></div>
+                            <img src="/right-arrow-for-images.png" class="block-of-images__right-arrow"></img>
+                        </div>
+                    </div>
+                    <div class="cruise-page__wrap-for-price-panel price-panel">
+                        <div class="price-panel__wrap-for-prices">
+                            <div class="price-panel__price">
+                                от 250 000 &#8381;/чел
+                            </div>
+                            <div class="price-panel__old-price">
+                                300 000 &#8381;
+                            </div>
+                        </div>
+                        <div class="price-panel__wrap-for-liner">
+                            <img class="price-panel__liner-icon" src="/443890.png">
+                            <span class="price-panel__name-of-liner">Название лайнера</span>
+                        </div>
+                        <div class="price-panel__direction">
+                            Москва &mdash; Казань &mdash; Москва
+                        </div>
+                        <div class="price-panel__wrap-for-date-and-time">
+                            <div class="price-panel__first-date-and-time">
+                                <span class="price-panel__date">
+                                    25 апр 2025
+                                </span>
+                                <span class="price-panel__day-of-week-and-time">
+                                    пт, 10:00
+                                </span>
+                            </div>
+                            <div class="price-panel__wrap-for-number-of-days">
+                                <div class="price-panel__arrow">
+    
+                                </div>
+                                <span class="price-panel__number-of-days">
+                                    100 дней
+                                </span>
+                            </div>
+                            <div class="price-panel__second-date-and-time">
+                                <span class="price-panel__date">
+                                    25 апр 2025
+                                </span>
+                                <span class="price-panel__day-of-week-and-time">
+                                    пт, 10:00
+                                </span>
+                            </div>
+                        </div>
+                        <button class="price-panel__button-for-booking">
+                            Выбрать каюту
+                        </button>
+                    </div>
+                </div>
+                <div class="cruise-page__sections">
+                    <div class="page-navigation">
+                        <a href="#section1" class="page-navigation__section">
+                            <div class="page-navigation__name-of-section">
+                                Описание круиза
+                            </div>
+                        </a>
+                        <a href="#section2" class="page-navigation__section">
+                            <div class="page-navigation__name-of-section">
+                                Маршрут
+                            </div>
+                        </a>
+                        <a href="#section3" class="page-navigation__section">
+                            <div class="page-navigation__name-of-section">
+                                О теплоходе
+                            </div>
+                        </a>
+                        <a href="#section4" class="page-navigation__section">
+                            <div class="page-navigation__name-of-section">
+                                Цены
+                            </div>
+                        </a>
+                    </div>
+                    <div id="section1" class="cruise-page__section cruise-page-section">
+                        <h2 class="cruise-page-section__name-of-section">
+                            Описание круиза
+                        </h2>
+                        <div class="cruise-page-section__content">
+                            <p class="cruise-page-section__text-of-section">
+                                Cupidatat voluptate do excepteur tempor excepteur cillum culpa ullamco. Consectetur nisi eiusmod deserunt aliquip ea in aliquip sit labore dolor mollit ad enim laboris. Duis do eiusmod sit elit duis ad fugiat. Ea ullamco eiusmod officia quis quis. Amet tempor veniam cillum mollit voluptate ipsum cupidatat Lorem quis culpa incididunt. Id laborum anim reprehenderit commodo ea.
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Aliquip labore proident irure aliquip. Officia est aute ex id esse sit. Culpa aliqua excepteur id eiusmod esse labore. Excepteur irure tempor velit ipsum in aute.
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Ut ipsum dolor est ad velit ex sint ad irure et deserunt officia nulla. Magna ipsum magna consectetur sit irure excepteur officia mollit nostrud. Fugiat cillum excepteur do consectetur laboris. Do ex ex cupidatat mollit cupidatat ad eiusmod. Consectetur dolore qui dolor labore ex excepteur esse. Consectetur deserunt tempor non sunt laboris reprehenderit mollit irure occaecat quis mollit sunt nisi ullamco. Commodo minim ipsum in adipisicing exercitation duis proident aliqua ut culpa aliqua fugiat sint cillum.
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Esse commodo do aliquip nisi laboris nisi aute voluptate veniam cillum dolore ex. Enim ea minim consequat magna cupidatat incididunt magna. Veniam proident dolor ad quis tempor commodo amet amet deserunt mollit magna officia aute.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="section2" class="cruise-page__section cruise-page-section">
+                        <h2 class="cruise-page-section__name-of-section">
+                            Маршрут
+                        </h2>
+                        <div class="cruise-page-section__content">
+                            <div class="route-point">
+                                <div class="route-point__header">
+                                    <div class="route-point__wrap-for-date">
+                                        <div class="route-point__number-of-day">День 1</div>
+                                        <div class="route-point__date-and-day-of-week">
+                                            24.12.2024, суббота
+                                        </div>
+                                    </div>
+                                    <div class="route-point__places">
+                                        <div class="route-point__wrap-for-place">
+                                            <div class="route-point__place">
+                                                <div class="route-point__wrap-for-name-of-place">
+                                                    <img class="route-point__arrow" src="/arrow-right-for-place.png">
+                                                    <div class="route-point__name-of-place">
+                                                        Москва
+                                                    </div>
+                                                </div>
+                                                <div class="route-point__wrapper-for-time">
+                                                    <div class="route-point__wrap-for-time">
+                                                        <div class="route-point__registration-start-time">
+                                                            <div class="route-point__name-of-time">Начало регистрации:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                        <div class="route-point__departure-time">
+                                                            <div class="route-point__name-of-time">Отправление:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                                <img class="route-point__place-image" src="/a24b6fd8-5cb4-5bde-89ee-13f73b2d6c76.jpg" alt="">
+                                            </div>
+                                            <div class="route-point__description">
+                                                Cillum nostrud ea veniam fugiat quis. Fugiat ut aliquip dolor commodo enim exercitation. Excepteur et voluptate eu eiusmod aliquip id dolore adipisicing in irure. Tempor excepteur labore nulla adipisicing minim nulla cillum laboris laboris velit.
+                                                Est in tempor enim ad Lorem est anim laboris sit est consequat cillum est Lorem. Qui ipsum sunt magna cillum aliquip magna consectetur duis minim et laborum consequat anim. Magna minim exercitation sint nisi.
+                                            </div>
+                                        </div>     
+                                        <div class="route-point__wrap-for-place">
+                                            <div class="route-point__place">
+                                                <div class="route-point__wrap-for-name-of-place">
+                                                    <img class="route-point__arrow" src="/arrow-right-for-place.png">
+                                                    <div class="route-point__name-of-place">
+                                                        Набережные-Челны
+                                                    </div>
+                                                </div>
+                                                <div class="route-point__wrapper-for-time">
+                                                    <div class="route-point__wrap-for-time">
+                                                        <div class="route-point__arrival-time">
+                                                            <div class="route-point__name-of-time">Прибытие:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                        <div class="route-point__parking-time">
+                                                            <div class="route-point__name-of-time">Стоянка:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                        <div class="route-point__departure-time">
+                                                            <div class="route-point__name-of-time">Отправление:</div>
+                                                            <div class="route-point__time">00:00</div>
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                                <img class="route-point__place-image" src="/a24b6fd8-5cb4-5bde-89ee-13f73b2d6c76.jpg" alt="">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="section3" class="cruise-page__section cruise-page-section">
+                        <h2 class="cruise-page-section__name-of-section">
+                            О теплоходе
+                        </h2>
+                        <div class="cruise-page-section__content">
+                            <p class="cruise-page-section__text-of-section">
+                                Название: <a href="">"Название теплохода"</a> 
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Cupidatat officia voluptate velit sint eiusmod quis quis culpa nisi enim sit. Mollit consectetur et occaecat commodo consequat esse consectetur elit ut anim qui aliquip proident dolore. Reprehenderit non amet pariatur duis reprehenderit aute mollit. Fugiat dolore cupidatat aliquip in occaecat sit adipisicing.
+                                Ipsum fugiat reprehenderit mollit dolore duis consectetur adipisicing anim magna nostrud voluptate reprehenderit. Velit qui incididunt dolor aute ex. Aliquip consequat officia aliqua minim veniam exercitation exercitation dolore cupidatat dolor eiusmod anim magna dolor. Commodo consequat in eu magna aute in deserunt consectetur sint consectetur do consequat laboris. Nostrud minim magna tempor culpa. Sunt enim aliqua esse tempor quis. Laboris eiusmod incididunt laborum magna fugiat magna labore nulla voluptate officia deserunt excepteur mollit.
+                            </p>
+                            <p class="cruise-page-section__text-of-section">
+                                Cupidatat officia voluptate velit sint eiusmod quis quis culpa nisi enim sit. Mollit consectetur et occaecat commodo consequat esse consectetur elit ut anim qui aliquip proident dolore. Reprehenderit non amet pariatur duis reprehenderit aute mollit. Fugiat dolore cupidatat aliquip in occaecat sit adipisicing.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="section4" class="cruise-page__section cruise-page-section">
+                        <h2 class="cruise-page-section__name-of-section">
+                            Цены
+                        </h2>
+                        <div class="cruise-page-section__content">
+                            <div class="wrap-for-cabin-prices cabin-prices">
+                                <div class="cabin-prices__deсk">
+                                    <span class="cabin-prices__deck-name">Палуба 1</span>
+                                    <div class="cabin-prices__wrap">
+                                        <div class="cabin-prices__wrap-for-cabins">
+                                            <div class="cabin-prices__cabin cabin">
+                                                <div class="cabin__upper-part">
+                                                    <img src="/cabin.jpeg" alt="" class="cabin__image">
+                                                    <div class="cabin__wrap-for-information">
+                                                        <span class="cabin__name">Название каюты</span>
+                                                        <span class="cabin__description">
+                                                             Veniam occaecat excepteur cillum amet sit et nostrud magna anim Lorem ad. Veniam occaecat excepteur cillum amet sit et nostrud magna anim Lorem ad.
+                                                        </span>
+                                                        <div class="cabin__wrap-for-rates">
+                                                            <div class="cabin__wrap-for-rate">
+                                                                <div class="rate">
+                                                                    <span class="rate__name-of-rate">Тариф Взрослый:</span>
+                                                                    <span class="rate__price">18 000 &#8381;/чел</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="cabin__wrap-for-rate">
+                                                                <div class="rate">
+                                                                    <span class="rate__name-of-rate">Тариф Детский:</span>
+                                                                    <span class="rate__price">18 000 &#8381;/чел</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="cabin__wrap-for-rate">
+                                                                <div class="rate">
+                                                                    <span class="rate__name-of-rate">Тариф Пенсионный:</span>
+                                                                    <span class="rate__price">18 000 &#8381;/чел</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabin__wrap-for-quantity-and-button">
+                                                            <span class="cabin__quantity">Свободных кают: 20</span>
+                                                            <button class="cabin__button">
+                                                                Забронировать
+                                                            </button>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="cabin__lower-part">
+                                                    <span class="cabin__label-under-available-places">
+                                                        Доступные каюты
+                                                    </span>
+                                                    <div class="cabin__wrap-for-available-places">
+                                                        <div class="cabin__available-place">
+                                                            234
+                                                        </div>
+                                                        <div class="cabin__available-place">
+                                                            234
+                                                        </div>
+                                                        <div class="cabin__available-place">
+                                                            234
+                                                        </div>
+                                                        <div class="cabin__available-place">
+                                                            234
+                                                        </div>
+                                                        <div class="cabin__available-place">
+                                                            234
+                                                        </div>
+                                                        <div class="cabin__available-place">
+                                                            234
+                                                        </div>
+                                                    </div>
+                                                    <svg width="986" height="116" viewBox="0 0 986 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="Deck-572">
+                                                        <g id="Ã‘ÂÃÂºÃÂµÃÂ»ÃÂµÃ‘Â‚_3">
+                                                        <g id="ÃÂžÃÂ±ÃÂ²ÃÂ¾ÃÂ´ÃÂºÃÂ°">
+                                                        <path id="vector_31" fill-rule="evenodd" clip-rule="evenodd" d="M300 9H242V43H300V9Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_32" fill-rule="evenodd" clip-rule="evenodd" d="M242 9H184V43H242V9Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_33" fill-rule="evenodd" clip-rule="evenodd" d="M300 74H242V108H300V74Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_34" fill-rule="evenodd" clip-rule="evenodd" d="M242 74H184V108H242V74Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_35" fill-rule="evenodd" clip-rule="evenodd" d="M683 73.597H714.16V67H730V101H683V73.597Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_36" fill-rule="evenodd" clip-rule="evenodd" d="M683 43.572H714.159V50H730V16H683V43.572Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_37" fill-rule="evenodd" clip-rule="evenodd" d="M367 16H383V50H367V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_38" fill-rule="evenodd" clip-rule="evenodd" d="M367 67H383V101H367V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_39" fill-rule="evenodd" clip-rule="evenodd" d="M431 16H447V50H431V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_40" fill-rule="evenodd" clip-rule="evenodd" d="M431 67H447V101H431V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_41" fill-rule="evenodd" clip-rule="evenodd" d="M495 16H511V50H495V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_42" fill-rule="evenodd" clip-rule="evenodd" d="M495 67H511V101H495V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_43" fill-rule="evenodd" clip-rule="evenodd" d="M383 16H399V50H383V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_44" fill-rule="evenodd" clip-rule="evenodd" d="M383 67H399V101H383V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_45" fill-rule="evenodd" clip-rule="evenodd" d="M447 16H463V50H447V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_46" fill-rule="evenodd" clip-rule="evenodd" d="M447 67H463V101H447V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_47" fill-rule="evenodd" clip-rule="evenodd" d="M511 16H527V50H511V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_48" fill-rule="evenodd" clip-rule="evenodd" d="M511 67H527V101H511V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_49" fill-rule="evenodd" clip-rule="evenodd" d="M399 16H415V50H399V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_50" fill-rule="evenodd" clip-rule="evenodd" d="M399 67H415V101H399V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_51" fill-rule="evenodd" clip-rule="evenodd" d="M463 16H479V50H463V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_52" fill-rule="evenodd" clip-rule="evenodd" d="M463 67H479V101H463V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_53" fill-rule="evenodd" clip-rule="evenodd" d="M527 16H543V50H527V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_54" fill-rule="evenodd" clip-rule="evenodd" d="M527 67H543V101H527V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_55" fill-rule="evenodd" clip-rule="evenodd" d="M559 16H575V50H559V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_56" fill-rule="evenodd" clip-rule="evenodd" d="M559 67H575V101H559V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_57" fill-rule="evenodd" clip-rule="evenodd" d="M415 16H431V50H415V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_58" fill-rule="evenodd" clip-rule="evenodd" d="M415 67H431V101H415V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_59" fill-rule="evenodd" clip-rule="evenodd" d="M479 16H495V50H479V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_60" fill-rule="evenodd" clip-rule="evenodd" d="M479 67H495V101H479V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_61" fill-rule="evenodd" clip-rule="evenodd" d="M543 16H559V50H543V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_62" fill-rule="evenodd" clip-rule="evenodd" d="M543 67H559V101H543V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_63" fill-rule="evenodd" clip-rule="evenodd" d="M575 16H591V50H575V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_64" fill-rule="evenodd" clip-rule="evenodd" d="M637 16H653V50H637V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_65" fill-rule="evenodd" clip-rule="evenodd" d="M637 67H653V101H637V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_66" fill-rule="evenodd" clip-rule="evenodd" d="M575 67H591V101H575V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_67" fill-rule="evenodd" clip-rule="evenodd" d="M316 43H300V9H316V43Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_68" fill-rule="evenodd" clip-rule="evenodd" d="M316 108H300V74H316V108Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_69" fill-rule="evenodd" clip-rule="evenodd" d="M669 16H683V50H669V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_70" fill-rule="evenodd" clip-rule="evenodd" d="M730 16L744 16.5V50H730V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_71" fill-rule="evenodd" clip-rule="evenodd" d="M744 16.5L758 17V50H744V16.5Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_72" fill-rule="evenodd" clip-rule="evenodd" d="M744 67H758V100L744 100.5V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_73" fill-rule="evenodd" clip-rule="evenodd" d="M758 67H772V99L758 100V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_74" fill-rule="evenodd" clip-rule="evenodd" d="M758 50H772V18.281L758 17V50Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_75" fill-rule="evenodd" clip-rule="evenodd" d="M786 97.219V67H772V99L786 97.219Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_76" fill-rule="evenodd" clip-rule="evenodd" d="M786 20V50H772V18.312L786 20Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_77" fill-rule="evenodd" clip-rule="evenodd" d="M730 67H744V100.5L730 101V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_78" fill-rule="evenodd" clip-rule="evenodd" d="M669 101H683V67H669V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_79" fill-rule="evenodd" clip-rule="evenodd" d="M591 16H614V50H591V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_80" fill-rule="evenodd" clip-rule="evenodd" d="M614 16H637V50H614V16Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_81" fill-rule="evenodd" clip-rule="evenodd" d="M614 67H637V101H614V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="vector_82" fill-rule="evenodd" clip-rule="evenodd" d="M591 67H614V101H591V67Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        </g>
+                                                        <path id="Vector 60" d="M0.0140013 77.898V40.661C0.0140013 24.035 24.046 16.587 50.3584 10.699C71.7592 5.84901 112.455 1 151.047 1H803.068C822.89 1 882.357 16.414 922 57.807C880.953 100.066 820.083 116 800.261 116H151.047C110.877 116 72.1099 114.095 50.3584 109.072C25.0985 103.01 -0.687599 95.91 0.0140013 77.898Z" stroke="#333333" stroke-width="2" stroke-miterlimit="2.6131" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path id="Vector 61" d="M730 16C774.47 16 835.963 24.271 841 40.638V77.77C834.747 93.785 767.522 101 730 101" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 62" d="M652 16H683" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 63" d="M652 101H730" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 64" d="M367 16H332.526V9H316" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 65" d="M314 108H333.765V101H368" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 66" d="M311 47H204V70H311V47Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 67" d="M185 9.0001H110.717C106.542 9.0001 65.3125 8.8281 38 22.8971V96.8471C65.3125 108 97.496 108 109.325 108H184.826" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 69" d="M786 20V97" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <text id="ÃÂ&nbsp;ÃÂµÃ‘ÂÃ‘Â‚ÃÂ¾Ã‘Â€ÃÂ°ÃÂ½ Ã‚Â«ÃÂ’ÃÂ¾ÃÂ»ÃÂ³ÃÂ°Ã‚Â»" fill="#4F4F4F" xml:space="preserve" style="white-space: pre" font-family="DIN Pro" font-size="10" letter-spacing="0em"><tspan x="70.0298" y="63.481">Ресторан «Волга»</tspan></text>
+                                                        <text id="ÃÂšÃÂ¾Ã‘Â„ÃÂµÃÂ¹ÃÂ½Ã‘Â" fill="#4F4F4F" xml:space="preserve" style="white-space: pre" font-family="DIN Pro" font-size="10" letter-spacing="0em"><tspan x="793.704" y="63.5899">Кофейня</tspan></text>
+                                                        <g id="Group 1799">
+                                                        <path id="Vector 70" d="M347.665 53.1311H345.587V63.6951H347.665V53.1311Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 71" d="M345.588 53.1311H343.336V63.6951H345.588V53.1311Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 72" d="M343.337 53.1311H341.085V63.6951H343.337V53.1311Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 73" d="M341.087 53.1311H338.835V63.6951H341.087V53.1311Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 74" d="M338.836 53.1311H336.584V63.6951H338.836V53.1311Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 75" d="M347.665 63.696H357.706V65.947H347.665V63.696Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 76" d="M347.665 65.947H357.706V68.199H347.665V65.947Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 77" d="M347.665 68.198H357.706V70.45H347.665V68.198Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 78" d="M347.665 70.4502H357.706V72.7012H347.665V70.4502Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 79" d="M347.665 72.7021H357.706V74.9532H347.665V72.7021Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 80" d="M347.665 53.1311H357.706V50.7061H347.665V53.1311Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 81" d="M347.665 50.7061H357.706V48.4551H347.665V50.7061Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 82" d="M347.665 48.4541H357.706V46.2031H347.665V48.4541Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 83" d="M347.665 46.2031H357.706V43.7791H347.665V46.2031Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 84" d="M347.665 43.7791H357.706V41.5271H347.665V43.7791Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        </g>
+                                                        <g id="Group 1801">
+                                                        <path id="Vector 92" d="M373.5 7H376.264V16H373.5V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 93" d="M376.265 7H378.856V16H376.265V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 94" d="M378.854 7H381.618V16H378.854V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 95" d="M381.617 7H384.381V16H381.617V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 96" d="M384.381 7H386.973V16H384.381V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 97" d="M386.971 7H389.737V16H386.971V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 98" d="M389.735 7H392.5V16H389.735V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        </g>
+                                                        <g id="Group 1802">
+                                                        <path id="Vector 99" d="M373.5 101H376.264V110H373.5V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 100" d="M376.263 101H378.855V110H376.263V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 101" d="M378.854 101H381.618V110H378.854V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 102" d="M381.616 101H384.381V110H381.616V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 103" d="M384.381 101H386.973V110H384.381V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 104" d="M386.971 101H389.736V110H386.971V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 105" d="M389.735 101H392.5V110H389.735V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        </g>
+                                                        <g id="Group 1804">
+                                                        <path id="Vector 106" d="M549.5 7H552.265V16H549.5V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 107" d="M552.266 7H554.857V16H552.266V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 108" d="M554.855 7H557.619V16H554.855V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 109" d="M557.618 7H560.382V16H557.618V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 110" d="M560.382 7H563.146V16H560.382V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 111" d="M563.145 7H565.736V16H563.145V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 112" d="M565.736 7H568.5V16H565.736V7Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        </g>
+                                                        <g id="Group 1803">
+                                                        <path id="Vector 113" d="M549.5 101H552.265V110H549.5V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 114" d="M552.266 101H554.857V110H552.266V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 115" d="M554.855 101H557.619V110H554.855V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 116" d="M557.618 101H560.382V110H557.618V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 117" d="M560.382 101H563.146V110H560.382V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 118" d="M563.145 101H565.736V110H563.145V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector 119" d="M565.736 101H568.5V110H565.736V101Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        </g>
+                                                        <g id="ÃÂ“ÃÂ»ÃÂ°ÃÂ´ÃÂ¸ÃÂ»Ã‘ÂŒÃÂ½ÃÂ°Ã‘Â ÃÂºÃÂ¾ÃÂ¼ÃÂ°ÃÂ½ÃÂ°Ã‘Â‚ÃÂ°">
+                                                        <path id="Vector_9" d="M222.5 68C227.747 68 232 63.747 232 58.5C232 53.253 227.747 49 222.5 49C217.253 49 213 53.253 213 58.5C213 63.747 217.253 68 222.5 68Z" fill="#AF1234" stroke="#F2F2F2" stroke-width="2" stroke-miterlimit="10"></path>
+                                                        <g id="Group 1820">
+                                                        <path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M215.906 61.1199C217.398 58.4679 221.439 54.2039 227.87 54.7469C228.09 54.7659 228.237 54.9799 228.185 55.1939C227.896 56.3709 227.56 58.2389 227.795 59.1989C227.846 59.4099 227.779 59.6669 227.618 59.8119C227.279 60.1159 226.904 60.6229 226.832 61.1319C226.798 61.3759 226.617 61.6259 226.372 61.6259H216.213C215.948 61.6259 215.776 61.3509 215.906 61.1199ZM221.628 58.8309C220.888 58.6449 220.154 58.1409 221.593 57.1819C223.064 56.2009 225.012 55.8799 226.056 55.8239C226.239 55.8139 226.393 55.9539 226.412 56.1369L226.636 58.2409C226.655 58.4179 226.541 58.5829 226.369 58.6269L225.511 58.8499C225.41 58.8759 225.328 58.9469 225.259 59.0249C225.05 59.2619 224.551 59.5749 223.644 59.5749C222.525 59.5749 222.092 59.5749 221.972 59.1999C221.918 59.0299 221.802 58.8749 221.628 58.8309Z" fill="#F2F2F2"></path>
+                                                        <path id="Ellipse 281" d="M223.846 59.2327C224.412 59.2327 224.871 59.0797 224.871 58.8909C224.871 58.7021 224.412 58.5491 223.846 58.5491C223.279 58.5491 222.82 58.7021 222.82 58.8909C222.82 59.0797 223.279 59.2327 223.846 59.2327Z" fill="#F2F2F2"></path>
+                                                        </g>
+                                                        </g>
+                                                        <g id="ÃÂ¡Ã‘ÂƒÃÂ²ÃÂµÃÂ½ÃÂ¸Ã‘Â€ÃÂ½Ã‘Â‹ÃÂ¹ ÃÂ¼ÃÂ°ÃÂ³ÃÂ°ÃÂ·ÃÂ¸ÃÂ½">
+                                                        <path id="Vector_12" d="M316 68C321.247 68 325.5 63.747 325.5 58.5C325.5 53.253 321.247 49 316 49C310.753 49 306.5 53.253 306.5 58.5C306.5 63.747 310.753 68 316 68Z" fill="#AF1234" stroke="#F2F2F2" stroke-width="2" stroke-miterlimit="10"></path>
+                                                        <path id="Vector_13" d="M311.25 58.2429V62.3509C311.25 62.7369 311.507 62.9929 311.892 62.9929H315.358V58.2429H311.25Z" fill="#F2F2F2"></path>
+                                                        <path id="Vector_14" d="M320.926 55.4189H318.744C318.872 55.2909 319 55.1619 319.129 55.1619C319.642 54.6489 319.642 53.7499 319.129 53.1079C318.615 52.5949 317.716 52.5949 317.075 53.1079C316.818 53.3649 316.048 54.6489 316.048 55.4189C316.176 54.6489 315.406 53.3649 315.021 53.1079C314.507 52.5949 313.608 52.5949 312.967 53.1079C312.453 53.6219 312.453 54.5199 312.967 55.1619C313.095 55.2909 313.223 55.4189 313.352 55.4189H311.169C310.784 55.4189 310.527 55.6759 310.527 56.0609V57.0879C310.527 57.2159 310.656 57.4729 310.913 57.4729H315.277V56.0609H316.689V57.4729H321.054C321.183 57.4729 321.439 57.3449 321.439 57.0879V56.0609C321.568 55.8039 321.311 55.4189 320.926 55.4189ZM315.406 55.4189C314.764 55.4189 313.865 54.9049 313.608 54.6489C313.352 54.3919 313.352 53.8779 313.608 53.6219C313.737 53.4929 313.994 53.3649 314.122 53.3649C314.379 53.3649 314.507 53.4929 314.635 53.6219C315.149 54.1349 315.534 55.2909 315.406 55.4189ZM316.946 55.4189C316.946 55.4189 316.818 55.4189 316.946 55.4189C316.689 55.2909 317.075 54.0069 317.588 53.6219C317.845 53.3649 318.358 53.3649 318.615 53.6219C318.872 53.8779 318.872 54.3919 318.615 54.6489C318.358 55.0339 317.46 55.4189 316.946 55.4189Z" fill="#F2F2F2"></path>
+                                                        <path id="Vector_15" d="M316.642 58.2429V62.9929H320.108C320.493 62.9929 320.75 62.7369 320.75 62.3509V58.2429H316.642Z" fill="#F2F2F2"></path>
+                                                        </g>
+                                                        <path id="Vector 68" d="M184.4 40.1411V77.8971" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <g id="Group 1795_2">
+                                                        <path id="Vector_16" d="M663.517 53H666.301V64H663.517V53Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector_17" d="M660.734 53H663.517V64H660.734V53Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector_18" d="M666.301 53H669.084V64H666.301V53Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector_19" d="M669.084 53H671.867V64H669.084V53Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector_20" d="M671.867 53H674.65V64H671.867V53Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector_21" d="M674.65 53H677.434V64H674.65V53Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector_22" d="M677.434 53H680.217V64H677.434V53Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="Vector_23" d="M680.217 53H683V64H680.217V53Z" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        </g>
+                                                        </g>
+                                                        <g id="deck-572-class-1524">
+                                                        <path id="rf-303" fill-rule="evenodd" clip-rule="evenodd" d="M300 9H242V43H300V9Z" fill="#FACACC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-301" fill-rule="evenodd" clip-rule="evenodd" d="M242 9H184V43H242V9Z" fill="#FACACC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-304" fill-rule="evenodd" clip-rule="evenodd" d="M300 74H242V108H300V74Z" fill="#FACACC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-302" fill-rule="evenodd" clip-rule="evenodd" d="M242 74H184V108H242V74Z" fill="#FACACC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <text id="rn-303" transform="matrix(0 -1 1 0 266.545 35)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">303</tspan></text>
+                                                        <text id="rn-304" transform="matrix(0 -1 1 0 266.545 100)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">304</tspan></text>
+                                                        <text id="rn-301" transform="matrix(0 -1 1 0 208.545 35)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">301</tspan></text>
+                                                        <text id="rn-302" transform="matrix(0 -1 1 0 208.545 100)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">302</tspan></text>
+                                                        <path id="rf-360" fill-rule="evenodd" clip-rule="evenodd" d="M683 73.597H714.16V67H730V101H683V73.597Z" fill="#FACACC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-359" fill-rule="evenodd" clip-rule="evenodd" d="M683 43.572H714.159V50H730V16H683V43.572Z" fill="#FACACC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <text id="rn-359" transform="matrix(0 -1 1 0 700.963 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">359</tspan></text>
+                                                        <text id="rn-360" transform="matrix(0 -1 1 0 700.963 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">360</tspan></text>
+                                                        </g>
+                                                        <g id="deck-572-class-1523">
+                                                        <path id="rf 319" fill-rule="evenodd" clip-rule="evenodd" d="M367 16H383V50H367V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-320" fill-rule="evenodd" clip-rule="evenodd" d="M367 67H383V101H367V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-327" fill-rule="evenodd" clip-rule="evenodd" d="M431 16H447V50H431V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-328" fill-rule="evenodd" clip-rule="evenodd" d="M431 67H447V101H431V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-335" fill-rule="evenodd" clip-rule="evenodd" d="M495 16H511V50H495V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-336" fill-rule="evenodd" clip-rule="evenodd" d="M495 67H511V101H495V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-321" fill-rule="evenodd" clip-rule="evenodd" d="M383 16H399V50H383V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-322" fill-rule="evenodd" clip-rule="evenodd" d="M383 67H399V101H383V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-329" fill-rule="evenodd" clip-rule="evenodd" d="M447 16H463V50H447V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-330" fill-rule="evenodd" clip-rule="evenodd" d="M447 67H463V101H447V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-337" fill-rule="evenodd" clip-rule="evenodd" d="M511 16H527V50H511V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-338" fill-rule="evenodd" clip-rule="evenodd" d="M511 67H527V101H511V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-323" fill-rule="evenodd" clip-rule="evenodd" d="M399 16H415V50H399V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-324" fill-rule="evenodd" clip-rule="evenodd" d="M399 67H415V101H399V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-331" fill-rule="evenodd" clip-rule="evenodd" d="M463 16H479V50H463V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-332" fill-rule="evenodd" clip-rule="evenodd" d="M463 67H479V101H463V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-339" fill-rule="evenodd" clip-rule="evenodd" d="M527 16H543V50H527V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-340" fill-rule="evenodd" clip-rule="evenodd" d="M527 67H543V101H527V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-343" fill-rule="evenodd" clip-rule="evenodd" d="M559 16H575V50H559V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-344" fill-rule="evenodd" clip-rule="evenodd" d="M559 67H575V101H559V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-325" fill-rule="evenodd" clip-rule="evenodd" d="M415 16H431V50H415V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-326" fill-rule="evenodd" clip-rule="evenodd" d="M415 67H431V101H415V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-333" fill-rule="evenodd" clip-rule="evenodd" d="M479 16H495V50H479V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-334" fill-rule="evenodd" clip-rule="evenodd" d="M479 67H495V101H479V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-341" fill-rule="evenodd" clip-rule="evenodd" d="M543 16H559V50H543V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-342" fill-rule="evenodd" clip-rule="evenodd" d="M543 67H559V101H543V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-345" fill-rule="evenodd" clip-rule="evenodd" d="M575 16H591V50H575V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-351" fill-rule="evenodd" clip-rule="evenodd" d="M637 16H653V50H637V16Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-352" fill-rule="evenodd" clip-rule="evenodd" d="M637 67H653V101H637V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-346" fill-rule="evenodd" clip-rule="evenodd" d="M575 67H591V101H575V67Z" fill="#D7E8EC" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <text id="rn-321" transform="matrix(0 -1 1 0 384.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">321</tspan></text>
+                                                        <text id="rn-319" transform="matrix(0 -1 1 0 368.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">319</tspan></text>
+                                                        <text id="rn-323" transform="matrix(0 -1 1 0 399.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">323</tspan></text>
+                                                        <text id="rn-325" transform="matrix(0 -1 1 0 415.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">325</tspan></text>
+                                                        <text id="rn-327" transform="matrix(0 -1 1 0 432.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">327</tspan></text>
+                                                        <text id="rn-329" transform="matrix(0 -1 1 0 448.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">329</tspan></text>
+                                                        <text id="rn-331" transform="matrix(0 -1 1 0 465.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">331</tspan></text>
+                                                        <text id="rn-333" transform="matrix(0 -1 1 0 481.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">333</tspan></text>
+                                                        <text id="rn-341" transform="matrix(0 -1 1 0 545.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">341</tspan></text>
+                                                        <text id="rn-343" transform="matrix(0 -1 1 0 561.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">343</tspan></text>
+                                                        <text id="rn-339" transform="matrix(0 -1 1 0 529.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">339</tspan></text>
+                                                        <text id="rn-335" transform="matrix(0 -1 1 0 497.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">335</tspan></text>
+                                                        <text id="rn-337" transform="matrix(0 -1 1 0 512.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">337</tspan></text>
+                                                        <text id="rn-345" transform="matrix(0 -1 1 0 577.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">345</tspan></text>
+                                                        <text id="rn-351" transform="matrix(0 -1 1 0 638.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">351</tspan></text>
+                                                        <text id="rn-352" transform="matrix(0 -1 1 0 638.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">352</tspan></text>
+                                                        <text id="rn-324" transform="matrix(0 -1 1 0 400.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">324</tspan></text>
+                                                        <text id="rn-326" transform="matrix(0 -1 1 0 416.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">326</tspan></text>
+                                                        <text id="rn-328" transform="matrix(0 -1 1 0 433.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">328</tspan></text>
+                                                        <text id="rn-330" transform="matrix(0 -1 1 0 448.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">330</tspan></text>
+                                                        <text id="rn-332" transform="matrix(0 -1 1 0 465.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">332</tspan></text>
+                                                        <text id="rn-334" transform="matrix(0 -1 1 0 481.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">334</tspan></text>
+                                                        <text id="rn-342" transform="matrix(0 -1 1 0 545.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">342</tspan></text>
+                                                        <text id="rn-344" transform="matrix(0 -1 1 0 561.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">344</tspan></text>
+                                                        <text id="rn-346" transform="matrix(0 -1 1 0 576.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">346</tspan></text>
+                                                        <text id="rn-322" transform="matrix(0 -1 1 0 384.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">322</tspan></text>
+                                                        <text id="rn-320" transform="matrix(0 -1 1 0 368.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">320</tspan></text>
+                                                        <text id="rn-340" transform="matrix(0 -1 1 0 529.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">340</tspan></text>
+                                                        <text id="rn-336" transform="matrix(0 -1 1 0 497.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">336</tspan></text>
+                                                        <text id="rn-338" transform="matrix(0 -1 1 0 513.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">338</tspan></text>
+                                                        </g>
+                                                        <g id="deck-572-class-1525">
+                                                        <path id="rf-317" fill-rule="evenodd" clip-rule="evenodd" d="M316 43H300V9H316V43Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-318" fill-rule="evenodd" clip-rule="evenodd" d="M316 108H300V74H316V108Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <text id="rn-317" transform="matrix(0 -1 1 0 301.545 35)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">317</tspan></text>
+                                                        <text id="rn-318" transform="matrix(0 -1 1 0 301.545 100)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">318</tspan></text>
+                                                        <path id="rf-355" fill-rule="evenodd" clip-rule="evenodd" d="M669 16H683V50H669V16Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-365" fill-rule="evenodd" clip-rule="evenodd" d="M730 16L744 16.5V50H730V16Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-367" fill-rule="evenodd" clip-rule="evenodd" d="M744 16.5L758 17V50H744V16.5Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-368" fill-rule="evenodd" clip-rule="evenodd" d="M744 67H758V100L744 101V67Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-370" fill-rule="evenodd" clip-rule="evenodd" d="M758 67H772V99L758 100V67Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-369" fill-rule="evenodd" clip-rule="evenodd" d="M758 50H772V18L758 17V50Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-372" fill-rule="evenodd" clip-rule="evenodd" d="M786 97.219V67H772V99L786 97.219Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-371" fill-rule="evenodd" clip-rule="evenodd" d="M786 19.781V50H772V18L786 19.781Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-366" fill-rule="evenodd" clip-rule="evenodd" d="M730 67H744V101H730V67Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-356" fill-rule="evenodd" clip-rule="evenodd" d="M669 101H683V67H669V101Z" fill="#D7E5C4" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <text id="rn-355" transform="matrix(0 -1 1 0 668.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">355</tspan></text>
+                                                        <text id="rn-365" transform="matrix(0 -1 1 0 729.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">365</tspan></text>
+                                                        <text id="rn-367" transform="matrix(0 -1 1 0 743.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">367</tspan></text>
+                                                        <text id="rn-368" transform="matrix(0 -1 1 0 743.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">368</tspan></text>
+                                                        <text id="rn-369" transform="matrix(0 -1 1 0 757.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">369</tspan></text>
+                                                        <text id="rn-370" transform="matrix(0 -1 1 0 757.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">370</tspan></text>
+                                                        <text id="rn-371" transform="matrix(0 -1 1 0 771.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">371</tspan></text>
+                                                        <text id="rn-372" transform="matrix(0 -1 1 0 772.545 91)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">372</tspan></text>
+                                                        <text id="rn-366" transform="matrix(0 -1 1 0 729.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">366</tspan></text>
+                                                        <text id="rn-356" transform="matrix(0 -1 1 0 668.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">356</tspan></text>
+                                                        </g>
+                                                        <g id="deck-572-class-1797">
+                                                        <path id="rf-347" fill-rule="evenodd" clip-rule="evenodd" d="M591 16H614V50H591V16Z" fill="#D7D2EA" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-349" fill-rule="evenodd" clip-rule="evenodd" d="M614 16H637V50H614V16Z" fill="#D7D2EA" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-350" fill-rule="evenodd" clip-rule="evenodd" d="M614 67H637V101H614V67Z" fill="#D7D2EA" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <path id="rf-348" fill-rule="evenodd" clip-rule="evenodd" d="M591 67H614V101H591V67Z" fill="#D7D2EA" stroke="#4F4F4F" stroke-miterlimit="2.6131"></path>
+                                                        <text id="rn-347" transform="matrix(0 -1 1 0 596.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">347</tspan></text>
+                                                        <text id="rn-349" transform="matrix(0 -1 1 0 619.545 42)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">349</tspan></text>
+                                                        <text id="rn-350" transform="matrix(0 -1 1 0 619.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">350</tspan></text>
+                                                        <text id="rn-348" transform="matrix(0 -1 1 0 596.545 93)" fill="#4F4F4F" xml:space="preserve" style="white-space: pre; display: none;" font-family="DIN Pro" font-size="10" font-weight="bold" letter-spacing="0em"><tspan x="0" y="10.545">348</tspan></text>
+                                                        </g>
+                                                        <g id="deck-name-572">
+                                                        <text id="ÃÂ¡Ã‘Â€ÃÂµÃÂ´ÃÂ½Ã‘ÂÃ‘Â" fill="#333333" xml:space="preserve" style="white-space: pre" font-family="DIN Pro" font-size="16" letter-spacing="0em"><tspan x="924" y="16.144">Средняя</tspan></text>
+                                                        <text id="ÃÂ¿ÃÂ°ÃÂ»Ã‘ÂƒÃÂ±ÃÂ°_3" fill="#333333" xml:space="preserve" style="white-space: pre" font-family="DIN Pro" font-size="10" letter-spacing="0em"><tspan x="954" y="27.5899">палуба</tspan></text>
+                                                        </g>
+                                                        </g>
+                                                    </svg> 
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="cabin-prices__cabin cabin">
+                                                <span class="cabin__name">Название каюты</span>
+                                                <span class="cabin__price">18 000 &#8381;/чел</span>
+                                                <span class="cabin__quantity">Осталось 20 шт</span>
+                                                <img src="/cabin.jpeg" alt="" class="cabin__image">
+                                            </div>
+                                            <div class="cabin-prices__cabin cabin">
+                                                <span class="cabin__name">Название каюты</span>
+                                                <span class="cabin__price">18 000 &#8381;/чел</span>
+                                                <span class="cabin__quantity">Осталось 20 шт</span>
+                                                <img src="/cabin.jpeg" alt="" class="cabin__image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cabin-prices__deсk">
+                                    
+                                </div>
+                                <div class="cabin-prices__deсk">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer page__footer">
+        <div class="footer__wrap-for-content">
+             <div class="footer__column">
+                 <a href="./Главная страница.html" class="emblem__link">
+                     <img class="footer__emblema" src="image/emblema.png" alt="emblem__emblem">
+                 </a>
+                 <ul class="footer__category-navigation navigation-list navigation-list1">
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Смартфоны</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Планшеты</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Бытовая техника</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Аксессуары</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Распродажа</a></li>
+                 </ul>
+             </div>
+             <div class="footer__column">
+                 <div class="footer__title-and-arrow" onclick="viewAndCloseListNavigationInFooter2()">
+                     <h2 class="footer__column-title">Поддержка</h2>
+                     <img class="footer__arrow" src="image/arrow-for-footer.png" alt="a">
+                 </div>
+                 <ul class="footer__support-navigation navigation-list navigation-list2">
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">О компании</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Акции</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Магазины</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Доставка</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Оплата</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Кредит</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Установка техники</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Сервисное обслуживание</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Обмен и возврат</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Бонусная программа</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Политика конфиденциальности</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Условия продажи</a></li>
+                 </ul>
+             </div>
+             <div class="footer__column">
+                 <div class="footer__title-and-arrow" onclick="viewAndCloseContactListInFooter()">
+                     <h2 class="footer__column-title">Контакты</h2>
+                     <img class="footer__arrow" src="image/arrow-for-footer.png" alt="a">
+                 </div>
+                 <div class="footer__contacts">
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             E-mail
+                         </h3>
+                         <a class="contact__email" href="">
+                             samsung@mail.ru
+                         </a>
+                     </div>
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             Телефон
+                         </h3>
+                         <p class="contact__phone">
+                             8 800 000-0000
+                         </p>
+                         <p class="contact__working-time">
+                             Ежедневно с 9:00 до 22:00
+                         </p>
+                     </div>
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             Адрес
+                         </h3>
+                         <div class="contact__wrap-for-address">
+                             <p class="contact__address">
+                                 ООО "ГЭЛЭКСИМАРТ", г. Москва, Волоколамское шоссе, д.1, стр. 1
+                             </p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+    <div class="wrap-for-panel-for-booking">
+        <div class="panel-for-booking">
+            <div class="panel-for-booking__upper-part">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="20000">
+                                <img src="/cabin.jpeg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="20000">
+                                <img src="/cabin2.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="20000">
+                                <img src="/cabin3.jpg" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Предыдущий</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Следующий</span>
+                        </button>
+                </div>
+                <div class="panel-for-booking__wrap-for-description">
+                    <div class="panel-for-booking__wrap-for-name">
+                        <div class="panel-for-booking__cabin-name">
+                            Каюта №323 - Люкс
+                        </div>
+                        <div class="panel-for-booking__deck-name">
+                            Нижняя палуба
+                        </div>
+                    </div>
+                    <div class="panel-for-booking__description">
+                        Ut fugiat duis do incididunt elit enim amet aliqua irure laboris minim sit consectetur reprehenderit.
+                        Occaecat velit eu esse ut do fugiat non magna consequat.
+                        Aliqua eiusmod esse non adipisicing anim id ea.
+                        Sit aliquip dolor qui fugiat labore.
+                        Nulla cillum id consequat dolore irure elit qui minim laboris esse laboris esse eu.
+                    </div>
+                </div>
+                <div class="panel-for-booking__close-button">
+                    <svg class="close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg"><path d="m16.042969 311.097656c-4.09375 0-8.191407-1.554687-11.304688-4.691406-6.25-6.25-6.25-16.386719 0-22.636719l279.058594-279.058593c6.253906-6.253907 16.386719-6.253907 22.636719 0 6.25 6.25 6.25 16.382812 0 22.632812l-279.0625 279.0625c-3.136719 3.136719-7.230469 4.691406-11.328125 4.691406zm0 0"/><path d="m295.125 311.097656c-4.09375 0-8.191406-1.554687-11.304688-4.691406l-279.082031-279.082031c-6.25-6.253907-6.25-16.386719 0-22.636719s16.382813-6.25 22.632813 0l279.0625 279.082031c6.25 6.25 6.25 16.386719 0 22.636719-3.136719 3.136719-7.230469 4.691406-11.308594 4.691406zm0 0"/></svg>
+                </div>
+            </div>
+            <div class="panel-for-booking__lower-part">
+                <div class="panel-for-booking__wrap-for-checkbox">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Одноместное размещение</label>
+                      </div>
+                </div>
+                <div class="panel-for-booking__wrap-for-rate-selection">
+                    <div class="panel-for-booking__wrap-for-rate-of-passenger">
+                        <span class="panel-for-booking__passenger-number">
+                            Пассажир 1
+                        </span>
+                        <button class="form-for-search__button-for-selecting">
+                            <span class="form-for-button__placeholder-for-button">Куда</span>
+                            <div class="form-for-button__arrow-for-button"></div>
+                        </button>
+                        <div class="form-for-button__the-selection-panel">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
+                                  <label class="form-check-label stretched-link" for="1">Все</label>
+                                </li>
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
+                                  <label class="form-check-label stretched-link" for="2">Казань</label>
+                                </li>
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
+                                  <label class="form-check-label stretched-link" for="3">Набережные челны</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="4" id="4">
+                                    <label class="form-check-label stretched-link" for="4">Другой город</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="5" id="5">
+                                    <label class="form-check-label stretched-link" for="5">Другой город</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="6" id="6">
+                                    <label class="form-check-label stretched-link" for="6">Другой город</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-for-booking__wrap-for-rate-of-passenger">
+                        <span class="panel-for-booking__passenger-number">
+                            Пассажир 1
+                        </span>
+                        <button class="form-for-search__button-for-selecting">
+                            <span class="form-for-button__placeholder-for-button">Куда</span>
+                            <div class="form-for-button__arrow-for-button"></div>
+                        </button>
+                        <div class="form-for-button__the-selection-panel">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
+                                  <label class="form-check-label stretched-link" for="1">Все</label>
+                                </li>
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
+                                  <label class="form-check-label stretched-link" for="2">Казань</label>
+                                </li>
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
+                                  <label class="form-check-label stretched-link" for="3">Набережные челны</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="4" id="4">
+                                    <label class="form-check-label stretched-link" for="4">Другой город</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="5" id="5">
+                                    <label class="form-check-label stretched-link" for="5">Другой город</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="6" id="6">
+                                    <label class="form-check-label stretched-link" for="6">Другой город</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-for-booking__wrap-for-rate-of-passenger">
+                        <span class="panel-for-booking__passenger-number">
+                            Пассажир 1
+                        </span>
+                        <button class="form-for-search__button-for-selecting">
+                            <span class="form-for-button__placeholder-for-button">Куда</span>
+                            <div class="form-for-button__arrow-for-button"></div>
+                        </button>
+                        <div class="form-for-button__the-selection-panel">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
+                                  <label class="form-check-label stretched-link" for="1">Все</label>
+                                </li>
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
+                                  <label class="form-check-label stretched-link" for="2">Казань</label>
+                                </li>
+                                <li class="list-group-item">
+                                  <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
+                                  <label class="form-check-label stretched-link" for="3">Набережные челны</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="4" id="4">
+                                    <label class="form-check-label stretched-link" for="4">Другой город</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="5" id="5">
+                                    <label class="form-check-label stretched-link" for="5">Другой город</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="6" id="6">
+                                    <label class="form-check-label stretched-link" for="6">Другой город</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-for-booking__wrap-for-button-and-total">
+                    <div class="panel-for-booking__total">Итого: 260000Р</div>
+                    <button class="panel-for-booking__button">
+                        Добавить в карзину
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="basket">
+        <div class="basket__header">
+            <div class="basket__title">
+                Корзина
+            </div>
+            <div class="basket__wrap-for-close-button">
+                <svg class="close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg"><path d="m16.042969 311.097656c-4.09375 0-8.191407-1.554687-11.304688-4.691406-6.25-6.25-6.25-16.386719 0-22.636719l279.058594-279.058593c6.253906-6.253907 16.386719-6.253907 22.636719 0 6.25 6.25 6.25 16.382812 0 22.632812l-279.0625 279.0625c-3.136719 3.136719-7.230469 4.691406-11.328125 4.691406zm0 0"/><path d="m295.125 311.097656c-4.09375 0-8.191406-1.554687-11.304688-4.691406l-279.082031-279.082031c-6.25-6.253907-6.25-16.386719 0-22.636719s16.382813-6.25 22.632813 0l279.0625 279.082031c6.25 6.25 6.25 16.386719 0 22.636719-3.136719 3.136719-7.230469 4.691406-11.308594 4.691406zm0 0"/></svg>
+            </div>
+        </div>
+        <div class="basket__body">
+            <div class="basket__information-about-cruise">
+                <span class="basket__cruise-name">Восточная сказка</span>
+                <!-- <div class="basket__link-to-cruise">О круизе</div> -->
+                <!-- <div class="basket__cancel-button">Отменить</div> -->
+                 <span class="basket__direction-of-cruise">Москва &mdash; Казань &mdash; Москва</span>
+                 <div class="basket__wrap-for-date-and-time">
+                    <div class="basket__first-date-and-time">
+                        <span class="basket__date">
+                            25 апр 2025
+                        </span>
+                        <span class="basket__day-of-week-and-time">
+                            пт, 10:00
+                        </span>
+                    </div>
+                    <div class="basket__wrap-for-number-of-days">
+                        <div class="basket__arrow">
+
+                        </div>
+                        <span class="basket__number-of-days">
+                            100 дней
+                        </span>
+                    </div>
+                    <div class="basket__second-date-and-time">
+                        <span class="basket__date">
+                            25 апр 2025
+                        </span>
+                        <span class="basket__day-of-week-and-time">
+                            пт, 10:00
+                        </span>
+                    </div>
+                 </div>
+            </div>
+            <div class="basket__cabin">
+                <div class="basket__wrap-for-cabin-name">
+                    <span class="basket__number-of-cabin-and-cabin-name">
+                        Каюта №323 - Двухместная 
+                    </span>
+                    <span class="basket__desk-name">
+                        2-я палуба
+                    </span>
+                </div>
+                <div class="basket__wrap-for-tourist">
+                    <span class="basket__tourist-number">
+                        Турист 1
+                    </span>
+                    <div class="basket__name-of-tariff">
+                        Взрослый тариф
+                    </div>
+                    <div class="basket__ticket-price">
+                        200 000 &#8381;
+                    </div>
+                </div>
+                <div class="basket__wrap-for-tourist">
+                    <span class="basket__tourist-number">
+                        Турист 1
+                    </span>
+                    <div class="basket__name-of-tariff">
+                        Взрослый тариф
+                    </div>
+                    <div class="basket__ticket-price">
+                        200 000 &#8381;
+                    </div>
+                </div>
+                <div class="basket__wrap-for-total-for-cabin">
+                    <span class="basket__label-for-total">Итого</span>
+                    <span class="basket__total-for-cabin">400 000 &#8381;</span>
+                </div>  
+                
+                <div class="basket__wrap-for-buttons">
+                    <div class="basket__delete-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0,0,256,256"
+                        style="fill:#FFFFFF;">
+                        <g fill="#000000" fill-rule="nonzero" stroke="none"  stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M42,5h-10v-2c0,-1.65234 -1.34766,-3 -3,-3h-8c-1.65234,0 -3,1.34766 -3,3v2h-10c-0.55078,0 -1,0.44922 -1,1c0,0.55078 0.44922,1 1,1h1.08594l3.60938,40.51563c0.125,1.39063 1.30859,2.48438 2.69531,2.48438h19.21484c1.38672,0 2.57031,-1.09375 2.69531,-2.48437l3.61328,-40.51562h1.08594c0.55469,0 1,-0.44922 1,-1c0,-0.55078 -0.44531,-1 -1,-1zM20,44c0,0.55469 -0.44922,1 -1,1c-0.55078,0 -1,-0.44531 -1,-1v-33c0,-0.55078 0.44922,-1 1,-1c0.55078,0 1,0.44922 1,1zM20,3c0,-0.55078 0.44922,-1 1,-1h8c0.55078,0 1,0.44922 1,1v2h-10zM26,44c0,0.55469 -0.44922,1 -1,1c-0.55078,0 -1,-0.44531 -1,-1v-33c0,-0.55078 0.44922,-1 1,-1c0.55078,0 1,0.44922 1,1zM32,44c0,0.55469 -0.44531,1 -1,1c-0.55469,0 -1,-0.44531 -1,-1v-33c0,-0.55078 0.44531,-1 1,-1c0.55469,0 1,0.44922 1,1z"></path></g></g>
+                        </svg>
+                    </div>
+                    <div class="basket__edit-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 490.584 490.584" style="enable-background:new 0 0 490.584 490.584;" xml:space="preserve"><g><g><path d="M100.911,419.404l123.8-51c3.1-2.1,6.2-4.2,8.3-6.2l203.9-248.6c6.2-9.4,5.2-21.8-3.1-29.1l-96.8-80.1 c-8-5.9-20.3-6.8-28.1,3.1l-204.9,248.5c-2.1,3.1-3.1,6.2-4.2,9.4l-26,132.1C72.511,420.104,90.611,424.004,100.911,419.404z M326.611,49.004l65.5,54.1l-177.7,217.1l-64.9-53.7L326.611,49.004z M133.411,306.904l44.4,36.8l-57.2,23.6L133.411,306.904z"/><path d="M469.111,448.504h-349.5c0,0-72.5,3.4-75.2-15.2c0-1-1.8-5.6,7.6-17c7.3-9.4,6.2-21.8-2.1-29.1 c-9.4-7.3-21.8-6.2-29.1,2.1c-19.8,23.9-25,44.7-15.6,63.5c25.5,47.5,111.3,36.3,115.4,37.3h348.5c11.4,0,20.8-9.4,20.8-20.8 C490.011,457.804,480.611,448.504,469.111,448.504z"/></g></g></svg>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="basket__cabin"></div>
+        </div>
+        <div class="basket__footer">
+            <div class="basket__total"></div>  
+            <button class="basket__checkout"> 
+                Перейти к бронированию
+            </button>
+        </div>
+    </div>
+    <script src="/script.js"></script> 
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МорТур</title>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/icon.png" type="image/png">
+    <link rel="stylesheet" href="/datepicker.material.css">
+    <script src="/datepicker.rus.js"></script>
+    <link rel="stylesheet" href="/custom.css">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="header page__head">
+        <div class="header__upper-head page_black upper-head">
+            <div class="upper-head__wrap">
+                <div class="upper-head__wrap-for-emblem">
+                    <a href="./Главная страница.html" class="emblem__link">
+                        <img class="emblem" src="/emblem.png" alt="emblem__emblem">
+                    </a>
+                </div>
+                <div class="information-and-entrance">
+                    <a class="information-and-entrance__number" href="">
+                        8 800 755 - 75-25
+                    </a>
+                    <a class="information-and-entrance__entrance entrance" href="">
+                        <img class="entrance__sign" src="/entrance.png" alt="e"> 
+                        <p class="entrance__text">
+                            Войти
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header__lower-head lower-head">
+            <div class="lower-head__wrap">
+                <!-- <div class="lower-head__wrap-for-left-element">
+                    <button class="lower-head__button-for-navigation-menu" onclick="viewMenuNavigation()">
+                        <img src="image/button-for-nav.png" alt="b">
+                    </button>
+                </div> -->
+                <div class="lower-head__wrap-for-center-element">
+                </div>
+                <div class="lower-head__categories-navigation categories-navigation">
+                    <div class="categories-navigation__option">
+                        <p class="categories-navigation__wrap-for-link">Круизы</p>
+                        <div class="navigation-panel">
+                            <div class="navigation-panel__wrap-for-content">
+                                <div class="navigation-panel__column">
+                                    <h3 class="navigation-panel__title">
+                                        Мониторы
+                                    </h3>
+                                    <a class="navigation-panel__option" href="">
+                                        Изогнутые мониторы
+                                    </a>
+                                    <a class="navigation-panel__option" href="">
+                                        Игровые мониторы
+                                    </a>
+                                    <a class="navigation-panel__option" href="">
+                                        Все мониторы
+                                    </a>
+                                </div>
+                                <div class="navigation-panel__column">
+                                    <h3 class="navigation-panel__title">
+                                        Память и накопители
+                                    </h3>
+                                    <a class="navigation-panel__option" href="">
+                                        Карты памяти
+                                    </a>
+                                    <a class="navigation-panel__option" href="">
+                                        Накопители SSD
+                                    </a>
+                                    <a class="navigation-panel__option" href="">
+                                        Накопители USB
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Лайнеры</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Скидки и акции</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">О компании</p></div>
+                    <div class="categories-navigation__option"><p class="categories-navigation__link">Контакты</p></div>
+                </div> 
+                <a class="lower-head__wrap-for-right-element" href="">
+                    Мои заказы
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="body page__body">
+        <div class="booking-page">
+            <h1 class="booking-page__title">Заявка на бронирование</h1>
+            <div class="booking-page__content">
+                <div class="booking-page__section booking-section booking-section_first-section">
+                    <h2 class="booking-section__name-of-section">Данные заказчика</h2>
+                    <div class="booking-section__content">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Фамилия</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Имя</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иван">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Отчество</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иваныч">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Дата рождения</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="ДД.ММ.ГГГГ">
+                        </div>
+                        <div class="booking-section__wrap-for-gender">
+                            <label for="exampleFormControlInput1" class="form-label">Пол</label>
+                            <div class="booking-section__wrap-for-checkboxes">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Мужской
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                      Женский
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Гражданство</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Россия</option>
+                                <option value="1">США</option>
+                                <option value="2">Англия</option>
+                                <option value="3">Польша</option>
+                            </select>                        
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Тип документа</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Паспорт РФ</option>
+                                <option value="1">Иностранный документ</option>
+                                <option value="2">Свидетельство о рождении</option>
+                            </select>                        
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Серия</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="0000">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Номер</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="000000">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Кем выдан документ</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="МВД ПО РЕСПУБЛИКЕ ТАТАРСТАН">
+                        </div>                       
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Номер телефона</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="+ 7 (999) 999-9999 ">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="MorTur@gmail.ru">
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-page__section booking-section">
+                    <h2 class="booking-section__name-of-section">Данные пассажиров</h2>
+                    <div class="booking-section__content">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Фамилия</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Имя</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иван">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Отчество</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иваныч">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Дата рождения</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="ДД.ММ.ГГГГ">
+                        </div>
+                        <div class="booking-section__wrap-for-gender">
+                            <label for="exampleFormControlInput1" class="form-label">Пол</label>
+                            <div class="booking-section__wrap-for-checkboxes">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Мужской
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                      Женский
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Гражданство</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Россия</option>
+                                <option value="1">США</option>
+                                <option value="2">Англия</option>
+                                <option value="3">Польша</option>
+                            </select>                        
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Тип документа</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Паспорт РФ</option>
+                                <option value="1">Иностранный документ</option>
+                                <option value="2">Свидетельство о рождении</option>
+                            </select>                        
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Серия</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="0000">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Номер</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="000000">
+                        </div>                    
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Номер телефона</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="+ 7 (999) 999-9999 ">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="MorTur@gmail.ru">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer page__footer">
+        <div class="footer__wrap-for-content">
+             <div class="footer__column">
+                 <a href="./Главная страница.html" class="emblem__link">
+                     <img class="footer__emblema" src="image/emblema.png" alt="emblem__emblem">
+                 </a>
+                 <ul class="footer__category-navigation navigation-list navigation-list1">
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Смартфоны</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Планшеты</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Бытовая техника</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Аксессуары</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Распродажа</a></li>
+                 </ul>
+             </div>
+             <div class="footer__column">
+                 <div class="footer__title-and-arrow" onclick="viewAndCloseListNavigationInFooter2()">
+                     <h2 class="footer__column-title">Поддержка</h2>
+                     <img class="footer__arrow" src="image/arrow-for-footer.png" alt="a">
+                 </div>
+                 <ul class="footer__support-navigation navigation-list navigation-list2">
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">О компании</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Акции</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Магазины</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Доставка</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Оплата</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Кредит</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Установка техники</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Сервисное обслуживание</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Обмен и возврат</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Бонусная программа</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Политика конфиденциальности</a></li>
+                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Условия продажи</a></li>
+                 </ul>
+             </div>
+             <div class="footer__column">
+                 <div class="footer__title-and-arrow" onclick="viewAndCloseContactListInFooter()">
+                     <h2 class="footer__column-title">Контакты</h2>
+                     <img class="footer__arrow" src="image/arrow-for-footer.png" alt="a">
+                 </div>
+                 <div class="footer__contacts">
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             E-mail
+                         </h3>
+                         <a class="contact__email" href="">
+                             samsung@mail.ru
+                         </a>
+                     </div>
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             Телефон
+                         </h3>
+                         <p class="contact__phone">
+                             8 800 000-0000
+                         </p>
+                         <p class="contact__working-time">
+                             Ежедневно с 9:00 до 22:00
+                         </p>
+                     </div>
+                     <div class="contact">
+                         <h3 class="contact__title">
+                             Адрес
+                         </h3>
+                         <div class="contact__wrap-for-address">
+                             <p class="contact__address">
+                                 ООО "ГЭЛЭКСИМАРТ", г. Москва, Волоколамское шоссе, д.1, стр. 1
+                             </p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+     </div>
+</body>
+</html>
