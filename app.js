@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
+const argon2 = require('argon2');
 
 app.use(express.static("css"));
 app.use(express.static("images"));
@@ -36,14 +37,27 @@ app.listen(3000, () => {
 const pool = new Pool({
   user: 'postgres',   // Ваш пользователь PostgreSQL
   host: 'localhost',       // Хост базы данных (или IP-адрес)
-  database: 'postgres', // Имя базы данных
+  database: 'MorTur', // Имя базы данных
   password: '010669s', // Пароль пользователя
   port: 5432,              // Порт PostgreSQL (по умолчанию 5432)
 });
 
 pool.connect()
   .then(() =>{ console.log('✅ Успешное подключение к PostgreSQL');
-    getCruises("Красноярск", ["По Енисею", "По Волге"], {startDate:"21.03.2025", endDate:"30.03.2025"}, ["1 - 4", "8 - 10"], ["Максим Горький", "Бирюса (СВП)"], "Речной").then(result => console.log(result));
+    // getCruises("Красноярск", ["По Енисею", "По Волге"], {startDate:"21.03.2025", endDate:"30.03.2025"}, ["1 - 4", "8 - 10"], ["Максим Горький", "Бирюса (СВП)"], "Речной").then(result => console.log(result));
+    // getCruise(3).then(result => console.log(result));
+    // authenticationByEmail("scfe@mail.ru", "01gd4545df").then(result=> console.log(result));
+    // authenticationByPhoneNumber("79856810350", "01gd4545df").then(result=> console.log(result));
+    // registerUser({password: "jaaha0169",
+    //   firstName: "Александр",
+    //   lastName: "Иванов",
+    //   middleName: "Иваныч",
+    //   birthDate: "23-07-2000",
+    //   gender: "Мужской",
+    //   citizenship: "Россия",
+    //   email: "sdfkll@gmail.ru",
+    //   phoneNumber: "73493293932"
+    // })
   })
   .catch(err => console.error('❌ Ошибка подключения к PostgreSQL:', err));
 
@@ -76,10 +90,87 @@ app.get('/users', async (req, res) => {
 //     }
 // }
 
-async function getCruise(){
+async function getCruise(cruiseID){
+  try {
+    let query = `
+      SELECT *
+      FROM public."cruises"
+      WHERE cruise_id=${cruiseID}
+     `;
+    let additionalQuery;
+    let routesId=[];
+    let endOfQuery='';
+    query += endOfQuery;
+    const result = await pool.query(query); 
+    return result.rows;
+  } catch (error) {
+      console.error(error);
+  }
+}
+// 01gd4545df
+
+async function registerUser(personalData){
+  if(checkingEmailAndPhone(personalData.email, personalData.phoneNumber)){
+    let result = await argon2.hash(personalData.password);
+    let query = `
+    INSERT INTO public.clients( last_name, first_name, middle_name, birth_date, phone_number, email, password_hash, gender, citizenship, registration)
+    VALUES ('${personalData.lastName}', '${personalData.firstName}', '${personalData.middleName}', '${personalData.birthDate}', '${personalData.phoneNumber}', '${personalData.email}', '${result}', '${personalData.gender}', '${personalData.citizenship}', 'true');`
+    await pool.query(query);
+    return true;
+  }
+  else
+    return false;
+}
+
+async function 
+
+async function changingUserData(changedData, userId){
 
 }
 
+async function checkingEmailAndPhone(email, phoneNumber){
+  let query = `
+  SELECT client_id
+	FROM public.clients
+	WHERE email='${email}' OR phone_number='${phoneNumber}';`
+  const result = await pool.query(query); 
+  if(result.rows==0)
+    return true;
+  else
+    return false;
+}
+
+async function authenticationByEmail (email, password){
+  let query = `
+  SELECT client_id, last_name, first_name, password_hash
+	FROM public.clients
+	WHERE email='${email}'`
+  const result = await pool.query(query); 
+  if(result.rows.length==0){
+    return new Error;
+  }
+  let result2 = await argon2.verify(result.rows[0].password_hash, password);
+  if(result2)
+    return true;
+  else
+    return new Error;
+}
+
+async function authenticationByPhoneNumber (phoneNumber, password){
+  let query = `
+  SELECT client_id, last_name, first_name, password_hash
+	FROM public.clients
+	WHERE phone_number='${phoneNumber}'`
+  const result = await pool.query(query); 
+  if(result.rows.length==0){
+    return false;
+  }
+  let result2 = await argon2.verify(result.rows[0].password_hash, password);
+  if(result2)
+    return true;
+  else
+    return false;
+}
 
 async function getCruises(placeOfDeparture, routes, dates, numberOfDay, liners, type){
     try {
@@ -158,6 +249,19 @@ async function getCruises(placeOfDeparture, routes, dates, numberOfDay, liners, 
     } catch (error) {
         console.error(error);
     }
+}
+
+async function createCruises(cruiseId){
+  let query = `
+        SELECT cruise_description, cruise_name, route_points, start_date, end_date, departure_location, arrival_location, ship_id, cruise_type, cruise_id, day_by_day_info, route_id
+        FROM public."cruises"
+        WHERE cruise_id = ${cruiseId}
+       `;
+       const result = await pool.query(query); 
+       console.log(result.rows);
+      let additionalQuery;
+      let routesId=[];
+      let endOfQuery='';
 }
 
 function convertDateFormat(dateStr) {
