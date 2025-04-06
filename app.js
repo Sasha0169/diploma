@@ -14,6 +14,7 @@ app.use(express.static("html"))
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.set('views', __dirname + '/views'); 
+app.use(express.json());
 
 app.listen(3000, () => {
     console.log(`Сервер запущен на http://localhost:3000`);
@@ -21,7 +22,31 @@ app.listen(3000, () => {
 
 
   app.get("/", (req, res) => {
-      res.render("index", {});
+    getDepartureCities().then(cities => {
+      getRoutes().then(routes => {
+        getShips().then(ships => {
+          res.render("index", {cities: cities, routes: routes, ships: ships})
+        }
+        )
+      })
+      });
+  });
+
+  app.get("/getData", (req, res) => {
+    getDepartureCities().then(cities => {
+      getRoutes().then(routes => {
+        getShips().then(ships => {
+          console.log({cities: cities, routes: routes, ships: ships})
+          res.json({cities: cities, routes: routes, ships: ships})
+        }
+        )
+      })
+      });
+  });
+
+  app.post("/getCruises", (req, res) => {
+    console.log(req.body);
+    getCruises(req.body).then(result => res.json(result));
   });
 
   app.get("/cruise", (req, res) => {
@@ -55,40 +80,123 @@ pool.connect()
     //   birthDate: "23-07-2000",
     //   gender: "Мужской",
     //   citizenship: "Россия",
-    //   email: "sdfkll@gmail.ru",
-    //   phoneNumber: "73493293932"
+    //   email: "sdkll@gmail.ru",
+    //   phoneNumber: "73493293935",
+    //   documentData: {
+    //     type:"pasport",
+    //     passport_series: "4509",
+    //     passport_number: "123456",
+    //     issue_date: "2010-07-20",
+    //     issued_by: "Отделение УФМС России по г. Москве"
+    //   }
+    // })
+    // registerCustomer({
+    //   firstName: "Александр",
+    //   lastName: "Иванов",
+    //   middleName: "Иваныч",
+    //   birthDate: "23-07-2000",
+    //   gender: "Мужской",
+    //   citizenship: "Россия",
+    //   email: "sdkll@gmail.ru",
+    //   phoneNumber: "73493293935",
+    //   documentData: {
+    //     type:"pasport",
+    //     passport_series: "4509",
+    //     passport_number: "123456",
+    //     issue_date: "2010-07-20",
+    //     issued_by: "Отделение УФМС России по г. Москве"
+    //   }
+    // })
+    // createOrder({
+    //   cruiseId: 3,
+    //   orderInformation: [{
+    //     ticketId: 2,
+    //     passengers: [
+    //       {
+    //         firstName: "Александр",
+    //         lastName: "Иванов",
+    //         middleName: "Иваныч",
+    //         birthDate: "23-07-2000",
+    //         gender: "Мужской",
+    //         citizenship: "Россия",
+    //         email: "sdkll@gmail.ru",
+    //         phoneNumber: "73493293935",
+    //         documentData: {
+    //           type:"pasport",
+    //           passport_series: "4509",
+    //           passport_number: "123456",
+    //           issue_date: "2010-07-20",
+    //           issued_by: "Отделение УФМС России по г. Москве"
+    //         }},
+    //         {firstName: "Александр",
+    //           lastName: "Иванов",
+    //           middleName: "Иваныч",
+    //           birthDate: "23-07-2000",
+    //           gender: "Мужской",
+    //           citizenship: "Россия",
+    //           email: "sdkll@gmail.ru",
+    //           phoneNumber: "73493293935",
+    //           documentData: {
+    //             type:"pasport",
+    //             passport_series: "4509",
+    //             passport_number: "123456",
+    //             issue_date: "2010-07-20",
+    //             issued_by: "Отделение УФМС России по г. Москве"
+    //           }}
+    //     ]
+    //   },{ticketId: 3,
+    //     passengers: [
+    //       {
+    //         firstName: "Александр",
+    //         lastName: "Иванов",
+    //         middleName: "Иваныч",
+    //         birthDate: "23-07-2000",
+    //         gender: "Мужской",
+    //         citizenship: "Россия",
+    //         email: "sdkll@gmail.ru",
+    //         phoneNumber: "73493293935",
+    //         documentData: {
+    //           type:"pasport",
+    //           passport_series: "4509",
+    //           passport_number: "123456",
+    //           issue_date: "2010-07-20",
+    //           issued_by: "Отделение УФМС России по г. Москве"
+    //         }}
+    //     ]}],
+    //   customer: {
+    //     userId: 10,
+    //     firstName: "Александр",
+    //     lastName: "Иванов",
+    //     middleName: "Иваныч",
+    //     birthDate: "23-07-2000",
+    //     gender: "Мужской",
+    //     citizenship: "Россия",
+    //     email: "sdkll@gmail.ru",
+    //     phoneNumber: "73493293935",
+    //     documentData: {
+    //       type:"pasport",
+    //       passport_series: "4509",
+    //       passport_number: "123456",
+    //       issue_date: "2010-07-20",
+    //       issued_by: "Отделение УФМС России по г. Москве"
+    //     }
+    //   }
     // })
   })
   .catch(err => console.error('❌ Ошибка подключения к PostgreSQL:', err));
 
-// module.exports = pool;
+app.use(express.json());
 
-// const express = require('express');
-// const pool = require('./db'); // Импортируем pool из db.js
 
-// const app = express();
-app.use(express.json()); // Для обработки JSON-запросов
-
-// Пример запроса к БД: получение всех пользователей
 app.get('/users', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM public."Users"'); // SQL-запрос
-        res.json(result.rows); // Отправляем данные в JSON
+        const result = await pool.query('SELECT * FROM public."Users"');
+        res.json(result.rows);
     } catch (error) {
         console.error(error);
         res.status(500).send('Ошибка сервера');
     }
 });
-
-// async function getInfoAboutCruises(){
-//     try {
-//         const result = await pool.query('SELECT * FROM public."cabins"'); // SQL-запрос
-//         console.log(result.rows);
-//         // console.log(result.rows[0].arrival_location.port)
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
 
 async function getCruise(cruiseID){
   try {
@@ -109,12 +217,25 @@ async function getCruise(cruiseID){
 }
 // 01gd4545df
 
+async function registerCustomer(personalData){
+  let query1 = `
+  INSERT INTO public.customers( last_name, first_name, middle_name, birth_date, phone_number, email, gender, citizenship, document_data)
+  VALUES ('${personalData.lastName}', '${personalData.firstName}', '${personalData.middleName}', '${personalData.birthDate}', '${personalData.phoneNumber}', '${personalData.email}', '${personalData.gender}', '${personalData.citizenship}', '${JSON.stringify(personalData.documentData)}')`
+  await pool.query(query1);
+}
+
 async function registerUser(personalData){
   if(checkingEmailAndPhone(personalData.email, personalData.phoneNumber)){
     let result = await argon2.hash(personalData.password);
+    let query1 = `
+    INSERT INTO public.customers( last_name, first_name, middle_name, birth_date, phone_number, email, gender, citizenship, document_data)
+    VALUES ('${personalData.lastName}', '${personalData.firstName}', '${personalData.middleName}', '${personalData.birthDate}', '${personalData.phoneNumber}', '${personalData.email}', '${personalData.gender}', '${personalData.citizenship}', '${JSON.stringify(personalData.documentData)}')
+    RETURNING customer_id;`
+    let result1 = await pool.query(query1);
+    result1 = result1.rows[0].customer_id;
     let query = `
-    INSERT INTO public.clients( last_name, first_name, middle_name, birth_date, phone_number, email, password_hash, gender, citizenship, registration)
-    VALUES ('${personalData.lastName}', '${personalData.firstName}', '${personalData.middleName}', '${personalData.birthDate}', '${personalData.phoneNumber}', '${personalData.email}', '${result}', '${personalData.gender}', '${personalData.citizenship}', 'true');`
+    INSERT INTO public.users( last_name, first_name, middle_name, birth_date, phone_number, email, password_hash, gender, citizenship, customer_id)
+    VALUES ('${personalData.lastName}', '${personalData.firstName}', '${personalData.middleName}', '${personalData.birthDate}', '${personalData.phoneNumber}', '${personalData.email}', '${result}', '${personalData.gender}', '${personalData.citizenship}', '${result1}');`
     await pool.query(query);
     return true;
   }
@@ -122,16 +243,62 @@ async function registerUser(personalData){
     return false;
 }
 
-async function 
+async function getUserOrders(userId){
+  let query1 = `
+    SELECT order_id, user_id, people_count, payment_amount, booking_date, payment_status, additional_services
+	  FROM public.orders
+	  WHERE user_id=${userId};`
+    let result1 = await pool.query(query1);
+    return result1.rows;
+}
+
+async function getInfoAboutUser(userId){
+  let query1 = `
+    SELECT *
+	  FROM public.users
+	  WHERE user_id=${userId};`
+    let result1 = await pool.query(query1);
+    console.log(result1.rows[0])
+    return result1.rows[0];
+}
+
+async function getDepartureCities() {
+  let query1 = `
+    SELECT *
+	  FROM public.cities;`
+    let result1 = await pool.query(query1);
+    return result1.rows;
+}
+
+async function getRoutes() {
+  let query = `
+    SELECT *
+	  FROM public.routes;`
+    let result = await pool.query(query);
+    return result.rows;
+}
+
+async function getShips() {
+  let query = `
+    SELECT ship_name, ship_id
+	  FROM public.ships;`
+    let result = await pool.query(query);
+    return result.rows;
+}
+
 
 async function changingUserData(changedData, userId){
 
 }
 
+async function createOrder(bookingInformation){
+
+}
+
 async function checkingEmailAndPhone(email, phoneNumber){
   let query = `
-  SELECT client_id
-	FROM public.clients
+  SELECT user_id
+	FROM public.users
 	WHERE email='${email}' OR phone_number='${phoneNumber}';`
   const result = await pool.query(query); 
   if(result.rows==0)
@@ -172,7 +339,7 @@ async function authenticationByPhoneNumber (phoneNumber, password){
     return false;
 }
 
-async function getCruises(placeOfDeparture, routes, dates, numberOfDay, liners, type){
+async function getCruises(params){
     try {
       let query = `
         SELECT cruise_id, cruise_name, route_points, start_date, end_date, (end_date - start_date) AS duration_days, ship_id 
@@ -182,62 +349,81 @@ async function getCruises(placeOfDeparture, routes, dates, numberOfDay, liners, 
       let routesId=[];
       let endOfQuery='';
 
+      let placeOfDeparture = params.departureCity;
+      let routes = params.routes;
+      let date = params.date;
+      let numberOfDay = params.numberOfDay;
+      let ships = params.ships;
+      let type = params.typeOfCruise;
 
       if(placeOfDeparture != undefined)
-        endOfQuery += ` WHERE departure_location::jsonb @> \'{"port": {"city": "${placeOfDeparture}"}}\'`;
+        // endOfQuery += ` WHERE departure_location::jsonb @> \'{"port": {"city": "${placeOfDeparture}"}}\'`;
+        endOfQuery += ` WHERE departure_city_id = \'${placeOfDeparture}\'`;
 
-
-      if(routes != undefined){
-        routes = routes.map(route=> `\'${route}\'`);
-        let stringOfRoutes = routes.join(", ");
-        additionalQuery =   ` 
-          SELECT id 
-          FROM public.routes  
-          WHERE name IN (${stringOfRoutes});`;
-        routesId = await pool.query(additionalQuery); 
-        routesId = routesId.rows.map(routeId=> `${routeId.id}`)
-        let sringOfRoutesId = routesId.join(", ");
+      if(type != undefined){
         endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
-        endOfQuery += `route_id IN (${sringOfRoutesId})`;
+        endOfQuery += `cruise_type = '${type}'`;
+      }
+        
+
+      if(routes != []){
+        // routes = routes.map(route=> `\'${route}\'`);
+        // let stringOfRoutes = routes.join(", ");
+        // additionalQuery =   ` 
+        //   SELECT route_id 
+        //   FROM public.routes  
+        //   WHERE name IN (${stringOfRoutes});`;
+        // routesId = await pool.query(additionalQuery); 
+        // routesId = routesId.rows.map(routeId=> `${routeId.id}`)
+        let stringOfRoutesId = routes.join(", ");
+        endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
+        endOfQuery += `route_id IN (${stringOfRoutesId})`;
       }
 
-
-      if(dates != undefined){
-        let {startDate, endDate} = dates;
-        startDate = convertDateFormat(startDate);
-        endDate = convertDateFormat(endDate);
+      if(date != []){
+        startDate = convertDateFormat(date[0]);
+        endDate = convertDateFormat(date[1]);
         endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
         endOfQuery += `start_date BETWEEN '${startDate}' AND '${endDate}'`;
       }
 
-
-      if(numberOfDay != undefined){
+      if(numberOfDay != []){
+        numberOfDay = numberOfDay.map(a => {
+          if(a == "1")
+            return ["1", "4"]
+          if(a == '2')
+            return ["5", "7"]
+          if(a == '3')
+            return ["8", "10"]
+          if(a == '4')
+            return ["11", "14"]
+          if(a == '3')
+            return ["15", "365"]
+        })
         endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
         for(let i = 0; i < numberOfDay.length; i++){
-          numberOfDay[i] = numberOfDay[i].split(" - ");
           if(i>=1)
             endOfQuery += " OR "
           endOfQuery += `((end_date - start_date) BETWEEN INTERVAL '${numberOfDay[i][0]} days' AND INTERVAL '${numberOfDay[i][1]} days')`;
         }
       }
 
-
-      if(liners != undefined){
-        liners = liners.map(liner=> `\'${liner}\'`);
-        let stringOfLiners = liners.join(", ");
-        additionalQuery =   ` 
-          SELECT ship_id 
-          FROM public.ships  
-          WHERE ship_name IN (${stringOfLiners});`;
-        linersId = await pool.query(additionalQuery); 
-        linersId = linersId.rows.map(routeId=> `${routeId.ship_id}`)
-        let stringOfLinersID = linersId.join(", ");
+      if(ships != []){
+        // ships = ships.map(liner=> `\'${liner}\'`);
+        // let stringOfLiners = ships.join(", ");
+        // additionalQuery =   ` 
+        //   SELECT ship_id 
+        //   FROM public.ships  
+        //   WHERE ship_name IN (${stringOfShips});`;
+        // shipsId = await pool.query(additionalQuery); 
+        // shipsId = shipsId.rows.map(shipId=> `${shipId.ship_id}`)
+        let stringOfShipsID = ships.join(", ");
         endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
-        endOfQuery += `ship_id IN (${stringOfLinersID})`;
+        endOfQuery += `ship_id IN (${stringOfShipsID})`;
       }
       
 
-      if(type != undefined){
+      if(type != ''){
         endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
         endOfQuery += `cruise_type = '${type}'`;
       }
@@ -251,18 +437,18 @@ async function getCruises(placeOfDeparture, routes, dates, numberOfDay, liners, 
     }
 }
 
-async function createCruises(cruiseId){
-  let query = `
-        SELECT cruise_description, cruise_name, route_points, start_date, end_date, departure_location, arrival_location, ship_id, cruise_type, cruise_id, day_by_day_info, route_id
-        FROM public."cruises"
-        WHERE cruise_id = ${cruiseId}
-       `;
-       const result = await pool.query(query); 
-       console.log(result.rows);
-      let additionalQuery;
-      let routesId=[];
-      let endOfQuery='';
-}
+// async function createCruises(cruiseId){
+//   let query = `
+//         SELECT cruise_description, cruise_name, route_points, start_date, end_date, departure_location, arrival_location, ship_id, cruise_type, cruise_id, day_by_day_info, route_id
+//         FROM public."cruises"
+//         WHERE cruise_id = ${cruiseId}
+//        `;
+//        const result = await pool.query(query); 
+//        console.log(result.rows);
+//       let additionalQuery;
+//       let routesId=[];
+//       let endOfQuery='';
+// }
 
 function convertDateFormat(dateStr) {
   const [day, month, year] = dateStr.split('.');

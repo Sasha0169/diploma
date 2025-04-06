@@ -47,43 +47,19 @@
                 <div class="lower-head__categories-navigation categories-navigation">
                     <div class="categories-navigation__option">
                         <p class="categories-navigation__wrap-for-link">Круизы</p>
-                        <div class="navigation-panel">
-                            <div class="navigation-panel__wrap-for-content">
-                                <div class="navigation-panel__column">
-                                    <h3 class="navigation-panel__title">
-                                        Мониторы
-                                    </h3>
-                                    <a class="navigation-panel__option" href="">
-                                        Изогнутые мониторы
-                                    </a>
-                                    <a class="navigation-panel__option" href="">
-                                        Игровые мониторы
-                                    </a>
-                                    <a class="navigation-panel__option" href="">
-                                        Все мониторы
-                                    </a>
-                                </div>
-                                <div class="navigation-panel__column">
-                                    <h3 class="navigation-panel__title">
-                                        Память и накопители
-                                    </h3>
-                                    <a class="navigation-panel__option" href="">
-                                        Карты памяти
-                                    </a>
-                                    <a class="navigation-panel__option" href="">
-                                        Накопители SSD
-                                    </a>
-                                    <a class="navigation-panel__option" href="">
-                                        Накопители USB
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="categories-navigation__option"><p class="categories-navigation__link">Лайнеры</p></div>
-                    <div class="categories-navigation__option"><p class="categories-navigation__link">Скидки и акции</p></div>
-                    <div class="categories-navigation__option"><p class="categories-navigation__link">О компании</p></div>
-                    <div class="categories-navigation__option"><p class="categories-navigation__link">Контакты</p></div>
+                    <div class="categories-navigation__option">
+                        <p class="categories-navigation__link">Лайнеры</p>
+                    </div>
+                    <div class="categories-navigation__option">
+                        <p class="categories-navigation__link">Скидки и акции</p>
+                    </div>
+                    <div class="categories-navigation__option">
+                        <p class="categories-navigation__link">О компании</p>
+                    </div>
+                    <div class="categories-navigation__option">
+                        <p class="categories-navigation__link">Контакты</p>
+                    </div>
                 </div> 
                 <a class="lower-head__wrap-for-right-element" href="">
                     Мои заказы
@@ -97,41 +73,35 @@
             <div class="main-page__content">
                 <div class="section-for-cruise-search">
                     <form class="section-for-cruise-search__form-for-search form-for-search">
+                        <div class="form-for-search__switching-cruise-type">
+                            <button class="form-for-search__button-to-switch-type">
+                                Речные круизы
+                            </button>
+                            <button class="form-for-search__button-to-switch-type">
+                                Морские круизы
+                            </button>
+                        </div>
                         <div class="form-for-search__wrap-for-button">
                             <span class="form-for-search__label-for-button">Место отправления</span>
                             <div class="form-for-search__wrap-for-button-and-panel">
-                                
                                 <button class="form-for-search__button-for-selecting">
-                                <span class="form-for-button__placeholder-for-button">Откуда</span>
-                                <div class="form-for-button__arrow-for-button"></div>
+                                    <span class="form-for-button__placeholder-for-button">Откуда</span>
+                                    <div class="form-for-button__arrow-for-button"></div>
                                 </button>
                                 <div class="form-for-button__the-selection-panel">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
-                                      <label class="form-check-label stretched-link" for="1">Все</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
-                                      <label class="form-check-label stretched-link" for="2">Казань</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
-                                      <label class="form-check-label stretched-link" for="3">Набережные челны</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="4" id="4">
-                                        <label class="form-check-label stretched-link" for="4">Другой город</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="5" id="5">
-                                        <label class="form-check-label stretched-link" for="5">Другой город</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="6" id="6">
-                                        <label class="form-check-label stretched-link" for="6">Другой город</label>
-                                    </li>
-                                </ul>
+                                    <div class="list-group">
+                                        <label class="list-group-item" >
+                                            <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="0" checked>
+                                            Все
+                                        </label>
+                                        <% let i = 1;
+                                        cities.forEach(city => { %>
+                                        <label class="list-group-item" >
+                                            <input class="form-check-input me-1" type="radio" name="listGroupRadio" value='<%= city.city_id %>' ">
+                                            <%= city.name %>
+                                        </label>
+                                        <% }); %>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -144,32 +114,14 @@
                                 <div class="form-for-button__arrow-for-button"></div>
                                 </button>
                                 <div class="form-for-button__the-selection-panel">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
-                                      <label class="form-check-label stretched-link" for="1">Все</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
-                                      <label class="form-check-label stretched-link" for="2">Казань</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
-                                      <label class="form-check-label stretched-link" for="3">Набережные челны</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="4" id="4">
-                                        <label class="form-check-label stretched-link" for="4">Другой город</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="5" id="5">
-                                        <label class="form-check-label stretched-link" for="5">Другой город</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="6" id="6">
-                                        <label class="form-check-label stretched-link" for="6">Другой город</label>
-                                    </li>
-                                </ul>
+                                    <div class="list-group">
+                                        <% routes.forEach(route => { %>
+                                        <label class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value= '<%= route.route_id %>'>
+                                            <%= route.name %>
+                                        </label> 
+                                        <% }); %>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -193,32 +145,28 @@
                                 <div class="form-for-button__arrow-for-button"></div>
                                 </button>
                                 <div class="form-for-button__the-selection-panel">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
-                                      <label class="form-check-label stretched-link" for="1">Все</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
-                                      <label class="form-check-label stretched-link" for="2">Казань</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
-                                      <label class="form-check-label stretched-link" for="3">Набережные челны</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="4" id="4">
-                                        <label class="form-check-label stretched-link" for="4">Другой город</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="5" id="5">
-                                        <label class="form-check-label stretched-link" for="5">Другой город</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="6" id="6">
-                                        <label class="form-check-label stretched-link" for="6">Другой город</label>
-                                    </li>
-                                </ul>
+                                    <div class="list-group">
+                                        <label class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="1">
+                                            1 - 4 дня
+                                        </label>
+                                        <label class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="2">
+                                            5 - 7 дней
+                                        </label>
+                                        <label class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="3">
+                                            8 - 10 дней
+                                        </label>
+                                        <label class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="4">
+                                            11 - 14 дней
+                                        </label>
+                                        <label class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="5">
+                                            более 14 дней
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -227,36 +175,18 @@
                             <div class="form-for-search__wrap-for-button-and-panel">
                                 
                                 <button class="form-for-search__button-for-selecting">
-                                <span class="form-for-button__placeholder-for-button">Откуда</span>
+                                <span class="form-for-button__placeholder-for-button">На чем</span>
                                 <div class="form-for-button__arrow-for-button"></div>
                                 </button>
                                 <div class="form-for-button__the-selection-panel">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
-                                      <label class="form-check-label stretched-link" for="1">Все</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
-                                      <label class="form-check-label stretched-link" for="2">Казань</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
-                                      <label class="form-check-label stretched-link" for="3">Набережные челны</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="4" id="4">
-                                        <label class="form-check-label stretched-link" for="4">Другой город</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="5" id="5">
-                                        <label class="form-check-label stretched-link" for="5">Другой город</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="6" id="6">
-                                        <label class="form-check-label stretched-link" for="6">Другой город</label>
-                                    </li>
-                                </ul>
+                                    <div class="list-group">
+                                        <% ships.forEach(ship => { %>
+                                        <label class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value= '<%= ship.ship_id %>'>
+                                            <%= ship.ship_name %>
+                                        </label> 
+                                        <% }); %>
+                                    </div>
                                 </div>
                             </div>
                             <!-- <button id="1" class="form-for-search__button-for-selecting">
@@ -292,9 +222,9 @@
                         <img class="cruise-card__image" src="/1645411086_WN22-DroneCadiz208R.jpg" alt="">
                     </div>
                     <div class="cruise-card__wrap-for-information">
-                        <span class="cruise-card__name">
+                        <a target="_blank" href="http://localhost:3000/cruise" class="cruise-card__name">
                             Восточная сказка
-                        </span>
+                        </a>
                         <div class="cruise-card__wrap-for-date-and-name-of-liner">
                             <div class="cruise-card__wrap-for-date-and-time">
                                 <div class="cruise-card__first-date-and-time">
@@ -426,7 +356,245 @@
             </div>
        </div>
     </div>
+    <div class="navigation-panel">
+        <div class="navigation-panel__wrap-for-content">
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Популярные направления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    По Енисею
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Волге
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Башкирию
+                </a>
+                <a class="navigation-panel__option" href="">
+                    На Соловецкие острова
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Каме
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Дону
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Москву
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Летний Байкал
+                </a>
+            </div>
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Круизы по городам отправления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    Из Москвы
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Санкт-Петербурга
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Нижнего Новгорода
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Казани
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Волгограда
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Перми
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Ярославля
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-panel">
+        <div class="navigation-panel__wrap-for-content">
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Популярные направления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    По Енисею
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Волге
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Башкирию
+                </a>
+                <a class="navigation-panel__option" href="">
+                    На Соловецкие острова
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Каме
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Дону
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Москву
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Летний Байкал
+                </a>
+            </div>
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Круизы по городам отправления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    Из Москвы
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Санкт-Петербурга
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Нижнего Новгорода
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Казани
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Волгограда
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Перми
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Ярославля
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-panel">
+        <div class="navigation-panel__wrap-for-content">
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Популярные направления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    По Енисею
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Волге
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Башкирию
+                </a>
+                <a class="navigation-panel__option" href="">
+                    На Соловецкие острова
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Каме
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Дону
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Москву
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Летний Байкал
+                </a>
+            </div>
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Круизы по городам отправления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    Из Москвы
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Санкт-Петербурга
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Нижнего Новгорода
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Казани
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Волгограда
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Перми
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Ярославля
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-panel">
+        <div class="navigation-panel__wrap-for-content">
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Популярные направления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    По Енисею
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Волге
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Башкирию
+                </a>
+                <a class="navigation-panel__option" href="">
+                    На Соловецкие острова
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Каме
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Дону
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Москву
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Летний Байкал
+                </a>
+            </div>
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Круизы по городам отправления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    Из Москвы
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Санкт-Петербурга
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Нижнего Новгорода
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Казани
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Волгограда
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Перми
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Ярославля
+                </a>
+            </div>
+        </div>
+    </div>
     <script src="/script.js"></script> 
-    
+    <script class="data" display="none" data="<%= JSON.stringify(cities) %>"></script>
+    <!-- <div style="height:10000px"></div> -->
+
 </body>
 </html>

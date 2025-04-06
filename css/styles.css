@@ -52,6 +52,11 @@ body {
     line-height: 1.5;
 }
 
+.header{
+    position: sticky;
+    top:0px;
+}
+
 .header__upper-head {
     font-weight: 700;
     font-size: 15px;
@@ -180,6 +185,7 @@ body {
     display:inline-flex;
     flex-direction: row;
     align-items: center;
+    background-color: #FFF;
 }
 
 .lower-head__wrap {
@@ -202,6 +208,8 @@ body {
 
 .lower-head__wrap-for-right-element {
     display: flex;
+    color: #000;
+    text-decoration: none;
 }
 
 .lower-head__emblem {
@@ -301,8 +309,39 @@ body {
     gap: 30px;
     justify-items: center;
     grid-template-areas:
-    "A A A A A"
-    "B B B B C";
+    "K K H H H"
+    "A B C D E"
+    "F F F F G";
+
+}
+
+.form-for-search__switching-cruise-type{
+    display: flex;
+    grid-area: K;
+    width: 456px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    
+}
+
+.form-for-search__button-to-switch-type{
+    width: 50%;
+    height: 35px;
+    border: none;
+    background-color: #74c1fc;
+}
+
+.form-for-search__button-to-switch-type:nth-child(1){
+    width: 50%;
+    height: 35px;
+    border: none;
+    background-color: #0094DA;
+}
+
+.form-for-search__button-to-switch-type:focus{
+    color: black;
 }
 
 .form-for-search__string-of-search-parameters{
@@ -316,6 +355,26 @@ body {
     gap: 2px;
 }
 
+.form-for-search__wrap-for-button:nth-child(2){
+    grid-area: A;
+}
+
+.form-for-search__wrap-for-button:nth-child(3){
+    grid-area: B;
+}
+
+.form-for-search__wrap-for-button:nth-child(4){
+    grid-area: C;
+}
+
+.form-for-search__wrap-for-button:nth-child(5){
+    grid-area: D;
+}
+
+.form-for-search__wrap-for-button:nth-child(6){
+    grid-area: E;
+}
+
 .form-for-search__label-for-button{
     font-size: 16px;
 }
@@ -325,8 +384,8 @@ body {
     width: 200px;
     justify-content: space-between;
     align-items: center;
-    height: 30px;
-    
+    height: 35px;
+    border-radius: 10px;
 }
 
 .form-for-button__placeholder-for-button{
@@ -351,6 +410,9 @@ body {
 
 .form-for-search__datepicker{
     width: 200px;
+    /* z-index: 0; */
+    height: 35px;
+    border-radius: 10px;
 }
 
 .form-for-search__wrap-for-button-and-panel{
@@ -359,12 +421,16 @@ body {
 }
 
 .form-for-search__wrap-for-search-button{
-    grid-area: C;
+    grid-area: G;
 }
 
 .form-for-button__button{
     width: 200px;
+    background-color: #74c1fc;
+    height: 35px;
+    border-radius: 10px;
 }
+
 .cruise-card{
     font-family: 'Bookerly';
     font-weight: bold;
@@ -405,7 +471,8 @@ body {
 }
 
 .cruise-card__name{
-    
+    color: black;
+    text-decoration: none;
     font-weight: bold;
     font-size: 26px;
 }
@@ -1001,7 +1068,7 @@ body {
     display: none;  /* Панель по умолчанию скрыта */
     justify-content: center;
     align-items: center;
-    z-index: 1000;  /* Чтобы она была поверх других элементов */
+    z-index: 999;  /* Чтобы она была поверх других элементов */
 }
 
 @keyframes slideIn {
@@ -2448,10 +2515,12 @@ body {
     display: flex;
     justify-content: center;
     padding: 35px 0px;
-    position: relative;
-    /* top: 144px; */
+    position: absolute;
+    top: 110px;
     background-color: #fff;
     display: none;
+    z-index: 1000;
+    left: 0px;
 }
 
 .navigation-panel__column {
