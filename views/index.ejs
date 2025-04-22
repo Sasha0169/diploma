@@ -18,7 +18,7 @@
         <div class="header__upper-head page_black upper-head">
             <div class="upper-head__wrap">
                 <div class="upper-head__wrap-for-emblem">
-                    <a href="./Главная страница.html" class="emblem__link">
+                    <a href="./" class="emblem__link">
                         <img class="emblem" src="/emblem.png" alt="emblem__emblem">
                     </a>
                 </div>
@@ -94,7 +94,7 @@
                                             <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="0" checked>
                                             Все
                                         </label>
-                                        <% let i = 1;
+                                        <% 
                                         cities.forEach(city => { %>
                                         <label class="list-group-item" >
                                             <input class="form-check-input me-1" type="radio" name="listGroupRadio" value='<%= city.city_id %>' ">
@@ -217,68 +217,74 @@
                         </div>
                     </form>
                 </div>
-                <div class="cruise-card">
-                    <div class="cruise-card__wrap-for-image">
-                        <img class="cruise-card__image" src="/1645411086_WN22-DroneCadiz208R.jpg" alt="">
-                    </div>
-                    <div class="cruise-card__wrap-for-information">
-                        <a target="_blank" href="http://localhost:3000/cruise" class="cruise-card__name">
-                            Восточная сказка
-                        </a>
-                        <div class="cruise-card__wrap-for-date-and-name-of-liner">
-                            <div class="cruise-card__wrap-for-date-and-time">
-                                <div class="cruise-card__first-date-and-time">
-                                    <span class="cruise-card__date">
-                                        25 апр 2025
-                                    </span>
-                                    <span class="cruise-card__day-of-week-and-time">
-                                        пт, 10:00
-                                    </span>
-                                </div>
-                                <div class="cruise-card__wrap-for-number-of-days">
-                                    <div class="cruise-card__arrow">
-        
+                <div class="wrap-for-cruise-cards">
+                    <!-- <% cruises.forEach(cruise => { %>
+                    <div class="cruise-card">
+                        <div class="cruise-card__wrap-for-image">
+                            <img class="cruise-card__image" src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1645411086_WN22-DroneCadiz208R.jpg" alt="">
+                        </div>
+                        <div class="cruise-card__wrap-for-information">
+                            <a target="_blank" href="http://localhost:3000/cruise" class="cruise-card__name">
+                                <%= cruise.cruise_name %>
+                            </a>
+                            <div class="cruise-card__wrap-for-date-and-name-of-liner">
+                                <div class="cruise-card__wrap-for-date-and-time">
+                                    <div class="cruise-card__first-date-and-time">
+                                        <span class="cruise-card__date">
+                                            <%= cruise.start_date.day %> <%= cruise.start_date.month %> <%= cruise.start_date.year %>
+                                        </span>
+                                        <span class="cruise-card__day-of-week-and-time">
+                                            <%= cruise.start_date.weekday %>, <%= cruise.start_date.time %>
+                                        </span>
                                     </div>
-                                    <span class="cruise-card__number-of-days">
-                                        100 дней
-                                    </span>
+                                    <div class="cruise-card__wrap-for-number-of-days">
+                                        <div class="cruise-card__arrow">
+            
+                                        </div>
+                                        <span class="cruise-card__number-of-days">
+                                            <%= cruise.duration_days %> дней
+                                        </span>
+                                    </div>
+                                    <div class="cruise-card__second-date-and-time">
+                                        <span class="cruise-card__date">
+                                            <%= cruise.end_date.day %> <%= cruise.end_date.month %> <%= cruise.end_date.year %>
+                                        </span>
+                                        <span class="cruise-card__day-of-week-and-time">
+                                            <%= cruise.end_date.weekday %>, <%= cruise.end_date.time %>
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="cruise-card__second-date-and-time">
-                                    <span class="cruise-card__date">
-                                        25 апр 2025
-                                    </span>
-                                    <span class="cruise-card__day-of-week-and-time">
-                                        пт, 10:00
-                                    </span>
+                                <div class="cruise-card__wrap-for-name-of-liner">
+                                    <img class="cruise-card__liner-icon" src="/443890.png">
+                                    <a href="" class="cruise-card__name-of-liner"><%= cruise.ship_name %></a>
                                 </div>
                             </div>
-                            <div class="cruise-card__wrap-for-name-of-liner">
-                                <img class="cruise-card__liner-icon" src="/443890.png">
-                                <a href="" class="cruise-card__name-of-liner">Николай Чернышевский</a>
+                            <div class="cruise-card__direction">
+                                <% for(let i = 0; i<cruise.route_points.length; i++){%>
+                                <%= cruise.route_points[i] %><% if (i < cruise.route_points.length - 1) { %> &mdash; <% } %>
+                                <% } %>
                             </div>
                         </div>
-                        <div class="cruise-card__direction">
-                            Казань &mdash; Москва &mdash; Санкт-Петербург
+                        <div class="cruise-card__wrap-for-price-and-button">
+                            <div class="cruise-card__prices">
+                                <span class="cruise-card__new-price">
+                                    от <%= cruise.minimum_discounted_price %> &#8381;/чел
+                                </span>
+                                <span class="cruise-card__old-price">
+                                    <%= cruise.minimum_price  %> &#8381;
+                                </span>
+                            </div>
+                            <div class="cruise-card__wrap-for-remains">
+                                <span class="cruise-card__remains">
+                                    Осталось 40 мест!
+                                </span>
+                            </div>
+                            <button class="cruise-card__button">
+                                Выбрать
+                            </button>
                         </div>
                     </div>
-                    <div class="cruise-card__wrap-for-price-and-button">
-                        <div class="cruise-card__prices">
-                            <span class="cruise-card__new-price">
-                                от 250 000 &#8381;/чел
-                            </span>
-                            <span class="cruise-card__old-price">
-                                300 000 &#8381;
-                            </span>
-                        </div>
-                        <div class="cruise-card__wrap-for-remains">
-                            <span class="cruise-card__remains">
-                                Осталось 40 мест!
-                            </span>
-                        </div>
-                        <button class="cruise-card__button">
-                            Выбрать
-                        </button>
-                    </div>
+                    <% }); %> -->
                 </div>
             </div>
         </div>
@@ -286,7 +292,7 @@
     <div class="footer page__footer">
        <div class="footer__wrap-for-content">
             <div class="footer__column">
-                <a href="./Главная страница.html" class="emblem__link">
+                <a href="./" class="emblem__link">
                     <img class="footer__emblema" src="/emblem2.png" alt="emblem__emblem">
                 </a>
                 <ul class="footer__category-navigation navigation-list navigation-list1">
@@ -592,9 +598,95 @@
             </div>
         </div>
     </div>
-    <script src="/script.js"></script> 
-    <script class="data" display="none" data="<%= JSON.stringify(cities) %>"></script>
-    <!-- <div style="height:10000px"></div> -->
 
+    <div class="entrance-panel">
+        <span class="entrance-panel__header">
+            Вход
+        </span>
+        <form class="entrance-panel__form">
+            <div class="mb-3 entrance-panel__section">
+                <label for="exampleInputEmail1" class="form-label entrance-panel__label-for-section">Адрес электронной почты</label>
+                <input type="email" class="form-control entrance-panel__input-for-section" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 entrance-panel__section">
+                <label for="exampleInputPassword1" class="form-label entrance-panel__label-for-section">Пароль</label>
+                <input type="password" class="form-control entrance-panel__input-for-section" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check entrance-panel__section-for-checkbox">
+                <input type="checkbox" class="form-check-input entrance-panel__checkbox" id="exampleCheck1">
+                <label class="form-check-label entrance-panel__label-for-section" for="exampleCheck1">Запомнить меня</label>
+            </div>
+            <button type="submit" class="btn btn-primary entrance-panel__button">Отправить</button>
+        </form>
+    </div>
+    <div class="registration-panel">
+        <span class="registration-panel__header">
+            Регистрация
+        </span>
+        <form class="registration-panel__form">
+            <div class="mb-3 registration-panel__section">
+                <label for="exampleFormControlInput1" class="form-label">Фамилия</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
+            </div>
+            <div class="mb-3 registration-panel__section">
+                <label for="exampleFormControlInput1" class="form-label">Имя</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
+            </div>
+            <div class="mb-3 registration-panel__section">
+                <label for="exampleFormControlInput1" class="form-label">Отчество</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
+            </div>
+            
+            <div class="registration-panel__wrap-for-gender">
+                <label for="exampleFormControlInput1" class="form-label">Пол</label>
+                <div class="booking-section__wrap-for-checkboxes">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Мужской
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Женский
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="mb-3 form-check registration-panel__section-for-checkbox">
+                <input type="checkbox" class="form-check-input entrance-panel__checkbox" id="exampleCheck1">
+                <label class="form-check-label entrance-panel__label-for-section" for="exampleCheck1">Нет отчества</label>
+            </div> -->
+            <div class="mb-3 registration-panel__section">
+                <label for="exampleFormControlInput1" class="form-label">Гражданство</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Россия</option>
+                    <option value="1">США</option>
+                    <option value="2">Англия</option>
+                    <option value="3">Польша</option>
+                </select>                        
+            </div>
+            <div class="mb-3 registration-panel__section">
+                <label for="exampleFormControlInput1" class="form-label">Номер телефона</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="+ 7 (999) 999-9999 ">
+            </div>
+            <div class="mb-3 registration-panel__section">
+                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="MorTur@gmail.ru">
+            </div>
+            <div class="mb-3 registration-panel__section">
+                <label for="exampleInputPassword1" class="form-label registration-panel__label-for-section">Пароль</label>
+                <input type="password" class="form-control registration-panel__input-for-section" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 registration-panel__section">
+                <label for="exampleInputPassword1" class="form-label registration-panel__label-for-section">Повторите пароль</label>
+                <input type="password" class="form-control registration-panel__input-for-section" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary registration-panel__button">Отправить</button>
+        </form>
+    </div>
+    <script src="/script.js"></script> 
+    <!-- <script class="data" display="none" data="<%= JSON.stringify(cities) %>"></script> -->
 </body>
 </html>

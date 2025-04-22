@@ -5,6 +5,7 @@ const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 const argon2 = require('argon2');
+const jwt = require("jsonwebtoken"); 
 
 app.use(express.static("css"));
 app.use(express.static("images"));
@@ -25,7 +26,7 @@ app.listen(3000, () => {
     getDepartureCities().then(cities => {
       getRoutes().then(routes => {
         getShips().then(ships => {
-          res.render("index", {cities: cities, routes: routes, ships: ships})
+          getCruises().then(cruises=> res.render("index", {cities: cities, routes: routes, ships: ships, cruises: cruises}))
         }
         )
       })
@@ -36,7 +37,6 @@ app.listen(3000, () => {
     getDepartureCities().then(cities => {
       getRoutes().then(routes => {
         getShips().then(ships => {
-          console.log({cities: cities, routes: routes, ships: ships})
           res.json({cities: cities, routes: routes, ships: ships})
         }
         )
@@ -45,12 +45,36 @@ app.listen(3000, () => {
   });
 
   app.post("/getCruises", (req, res) => {
-    console.log(req.body);
+    console.log(req.body)
     getCruises(req.body).then(result => res.json(result));
   });
 
-  app.get("/cruise", (req, res) => {
-    res.render("cruise page", {});
+//   app.get("/cruise", (req, res) => {
+//     res.render("cruise page", {});
+// });
+
+// app.post("/cruise", (req, res) => {
+//   console.log(req.body);
+//   getCruise(req.body.value).then(a=>res.render("cruise page", a));
+  
+// });
+
+app.get("/cruise/:id", (req, res) => {
+  const cruiseId = req.params.id;
+  getCruise(cruiseId).then(data => {
+    console.log(data);
+    res.render("cruise page", data); 
+  }).catch(err => {
+    res.status(500).send("Ошибка при получении данных круиза");
+  });
+});
+
+app.post("/login", (req, res) => {
+  console.log(req.body);
+  authenticationByEmail(req.body).then(user=>{
+    const token = jwt.sign({userId: user.user_id}, "secret-key", { expiresIn: "1h" });
+    res.json({ success: true, token });
+  });
 });
 
   app.get("/booking-form", (req, res)=>{
@@ -201,7 +225,7 @@ app.get('/users', async (req, res) => {
 async function getCruise(cruiseID){
   try {
     let query = `
-      SELECT *
+      SELECT *, (end_date - start_date) AS duration_days
       FROM public."cruises"
       WHERE cruise_id=${cruiseID}
      `;
@@ -210,12 +234,70 @@ async function getCruise(cruiseID){
     let endOfQuery='';
     query += endOfQuery;
     const result = await pool.query(query); 
-    return result.rows;
+    let cruise = result.rows[0];
+    cruise.ship_name = await getShipName(cruise.ship_id);
+    cruise.start_date = formatDateInfo(cruise.start_date);
+    cruise.end_date = formatDateInfo(cruise.end_date);
+    cruise.duration_days = cruise.duration_days.days;
+    console.log(cruise.day_by_day_info)
+    for(let i = 0; i<cruise.day_by_day_info.length; i++){
+      cruise.day_by_day_info[i].cities.forEach(element => {element.arrival_time = getTimeFromDate(element.arrival_time),
+        element.departure_time = getTimeFromDate(element.departure_time)
+        console.log(element.arrival_time)
+      });
+      cruise.day_by_day_info[i].date = formatDate(cruise.day_by_day_info[i].date);
+    }
+    return cruise;
   } catch (error) {
       console.error(error);
   }
 }
 // 01gd4545df
+// scfe@mail.ru
+
+function formatDateInfo(date) {
+  const day = date.getDate();
+  const weekday = date.toLocaleString("ru-RU", { weekday: "short" }).slice(0, 2);  
+  const month = date.toLocaleString("ru-RU", { month: "short" }).substring(0, 3); 
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const time = `${hours}:${minutes}`; 
+  const year = date.getFullYear(); 
+
+  return {
+    day,
+    weekday,
+    month,
+    time,
+    year
+  };
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); 
+  const year = date.getFullYear();
+
+  const daysOfWeek = [
+    "воскресенье", "понедельник", "вторник", "среда",
+    "четверг", "пятница", "суббота"
+  ];
+  const weekday = daysOfWeek[date.getDay()];
+
+  return {
+    date: `${day}.${month}.${year}`,
+    weekday
+  };
+}
+
+function getTimeFromDate(dateString) {
+  const date = new Date(dateString);
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
 
 async function registerCustomer(personalData){
   let query1 = `
@@ -258,7 +340,6 @@ async function getInfoAboutUser(userId){
 	  FROM public.users
 	  WHERE user_id=${userId};`
     let result1 = await pool.query(query1);
-    console.log(result1.rows[0])
     return result1.rows[0];
 }
 
@@ -286,6 +367,14 @@ async function getShips() {
     return result.rows;
 }
 
+async function getShipName(shipId) {
+  let query = `
+    SELECT ship_name
+	  FROM public.ships
+    WHERE ship_id=${shipId}`
+    let result = await pool.query(query);
+    return result.rows[0].ship_name;
+}
 
 async function changingUserData(changedData, userId){
 
@@ -307,18 +396,18 @@ async function checkingEmailAndPhone(email, phoneNumber){
     return false;
 }
 
-async function authenticationByEmail (email, password){
+async function authenticationByEmail (data){
   let query = `
-  SELECT client_id, last_name, first_name, password_hash
-	FROM public.clients
-	WHERE email='${email}'`
+  SELECT user_id, last_name, first_name, password_hash
+	FROM public.users
+	WHERE email='${data.email}'`
   const result = await pool.query(query); 
   if(result.rows.length==0){
     return new Error;
   }
-  let result2 = await argon2.verify(result.rows[0].password_hash, password);
+  let result2 = await argon2.verify(result.rows[0].password_hash, data.password);
   if(result2)
-    return true;
+    return result.rows[0];
   else
     return new Error;
 }
@@ -339,22 +428,22 @@ async function authenticationByPhoneNumber (phoneNumber, password){
     return false;
 }
 
-async function getCruises(params){
+async function getCruises(params={}){
     try {
       let query = `
-        SELECT cruise_id, cruise_name, route_points, start_date, end_date, (end_date - start_date) AS duration_days, ship_id 
+        SELECT cruise_id, cruise_name, route_points, start_date, end_date, (end_date - start_date) AS duration_days, ship_id, minimum_price, minimum_discounted_price 
         FROM public."cruises"
        `;
       let additionalQuery;
       let routesId=[];
       let endOfQuery='';
 
-      let placeOfDeparture = params.departureCity;
-      let routes = params.routes;
-      let date = params.date;
-      let numberOfDay = params.numberOfDay;
-      let ships = params.ships;
-      let type = params.typeOfCruise;
+      let placeOfDeparture = params.departureCity==undefined? undefined: params.departureCity;
+      let routes = params.routes==undefined? undefined: params.routes;
+      let date = params.date==undefined? undefined: params.date;
+      let numberOfDay = params.numberOfDay==undefined? undefined: params.numberOfDay;
+      let ships = params.ships==undefined? undefined: params.ships;
+      let type = params.typeOfCruise==undefined? undefined: params.typeOfCruise;
 
       if(placeOfDeparture != undefined)
         // endOfQuery += ` WHERE departure_location::jsonb @> \'{"port": {"city": "${placeOfDeparture}"}}\'`;
@@ -365,29 +454,22 @@ async function getCruises(params){
         endOfQuery += `cruise_type = '${type}'`;
       }
         
-
-      if(routes != []){
-        // routes = routes.map(route=> `\'${route}\'`);
-        // let stringOfRoutes = routes.join(", ");
-        // additionalQuery =   ` 
-        //   SELECT route_id 
-        //   FROM public.routes  
-        //   WHERE name IN (${stringOfRoutes});`;
-        // routesId = await pool.query(additionalQuery); 
-        // routesId = routesId.rows.map(routeId=> `${routeId.id}`)
+      console.log(routes)
+      if(routes != [] && routes != undefined){
         let stringOfRoutesId = routes.join(", ");
         endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
         endOfQuery += `route_id IN (${stringOfRoutesId})`;
       }
 
-      if(date != []){
+      if(date != [] && date != undefined){
+        console.log(date)
         startDate = convertDateFormat(date[0]);
         endDate = convertDateFormat(date[1]);
         endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
         endOfQuery += `start_date BETWEEN '${startDate}' AND '${endDate}'`;
       }
 
-      if(numberOfDay != []){
+      if(numberOfDay != [] && numberOfDay != undefined){
         numberOfDay = numberOfDay.map(a => {
           if(a == "1")
             return ["1", "4"]
@@ -408,7 +490,8 @@ async function getCruises(params){
         }
       }
 
-      if(ships != []){
+      console.log(ships)
+      if(ships != [] && ships != undefined){
         // ships = ships.map(liner=> `\'${liner}\'`);
         // let stringOfLiners = ships.join(", ");
         // additionalQuery =   ` 
@@ -423,15 +506,25 @@ async function getCruises(params){
       }
       
 
-      if(type != ''){
+      if(type != '' && type != undefined){
         endOfQuery += endOfQuery!=""? " AND ": " WHERE ";
         endOfQuery += `cruise_type = '${type}'`;
       }
 
 
       query += endOfQuery;
+      console.log(query)
       const result = await pool.query(query); 
-      return result.rows;
+      let cruises = result.rows;
+      for(let i = 0; i<cruises.length; i++){
+        cruises[i].ship_name = await getShipName(cruises[i].ship_id);
+        cruises[i].start_date = formatDateInfo(cruises[i].start_date);
+        cruises[i].end_date = formatDateInfo(cruises[i].end_date);
+        cruises[i].duration_days = cruises[i].duration_days.days;
+      }
+      
+      return cruises;
+
     } catch (error) {
         console.error(error);
     }

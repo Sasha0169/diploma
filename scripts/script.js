@@ -173,12 +173,12 @@ function closeMenuNavigation()
     document.body.style.overflow = 'scroll';
 }
 
-let buttons = Array.from(document.getElementsByClassName("cruise-card__button"));
-buttons.forEach(a=>a.addEventListener("click", openCruisePage))
+// let buttons = Array.from(document.getElementsByClassName("cruise-card__button"));
+// buttons.forEach(a=>a.addEventListener("click", openCruisePage))
 
-function openCruisePage(a){
-    window.open("http://localhost:3000/cruise", "_blank");
-}
+// function openCruisePage(a){
+//     window.open("http://localhost:3000/cruise", "_blank");
+// }
 
 let selectedType = "Речной";
 
@@ -199,11 +199,11 @@ buttonForSearch.addEventListener("click", function(e){
     e.preventDefault();
     let searchParameters = {
         typeOfCruise: selectedType,
-        departureCity: buttonsForSelection[0].values,
-        routes: buttonsForSelection[1].values,
-        date: document.getElementsByClassName("form-for-search__datepicker")[0].value.split(" - "),
-        numberOfDay: buttonsForSelection[2].values,
-        ships: buttonsForSelection[2].values
+        departureCity: buttonsForSelection[0].values.length == 0?undefined:buttonsForSelection[0].values,
+        routes: buttonsForSelection[1].values.length == 0?undefined:buttonsForSelection[1].values,
+        date: document.getElementsByClassName("form-for-search__datepicker")[0].value != ""? document.getElementsByClassName("form-for-search__datepicker")[0].value.split(" - "):undefined,
+        numberOfDay: buttonsForSelection[2].values.length == 0?undefined:buttonsForSelection[2].values,
+        ships: buttonsForSelection[3].values.length == 0?undefined:buttonsForSelection[3].values
     }
     console.log(searchParameters)
     fetch("http://localhost:3000/getCruises", {
@@ -216,7 +216,133 @@ buttonForSearch.addEventListener("click", function(e){
     .then(response => response.json()) // Парсим JSON
     .then(data => {
         console.log(data)
+        renderCruises(data);
   })   
   .catch(error => console.error("Ошибка:", error));
 })
 
+buttonForSearch.click();
+
+let cruiseCard = document.getElementsByClassName("cruise-card")[0];
+let buttonCruiseCard = cruiseCard.getElementsByClassName("cruise-card__button")[0];
+buttonCruiseCard.value = "3";
+buttonCruiseCard.addEventListener("click", function (e){
+    let button = e.currentTarget;
+//     fetch("http://localhost:3000/cruise", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json" 
+//           },
+//         body: JSON.stringify({value: button.value})
+//     })
+//     .then(response => response.json()) // Парсим JSON
+//     .then(data => {
+//         console.log(data)
+//   })   
+//   .catch(error => console.error("Ошибка:", error));
+// window.location.href = `/cruise/${button.value}`;
+    window.open(`http://localhost:3000/cruise/${button.value}`, "_blank");
+})
+
+let inputForEmail = document.getElementsByClassName("entrance-panel__input-for-section")[0];
+let inputForPassword = document.getElementsByClassName("entrance-panel__input-for-section")[1];
+let entrancePanel = document.getElementsByClassName("entrance-panel")[0];
+let buttonForEntrance = entrancePanel.getElementsByClassName("btn")[0];
+
+buttonForEntrance.addEventListener("click", function(e){
+    e.preventDefault();
+    fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json" 
+          },
+        body: JSON.stringify({email: inputForEmail.value, password: inputForPassword.value})
+    })
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem("token", data.token);
+        console.log(data.token);
+  })   
+  .catch(error => console.error("Ошибка:", error));
+})
+
+
+function createCruiseCard(cruise) {
+    const card = document.createElement('div');
+    card.classList.add('cruise-card');
+  
+    card.innerHTML = `
+      <div class="cruise-card__wrap-for-image">
+        <img class="cruise-card__image" src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1645411086_WN22-DroneCadiz208R.jpg" alt="">
+      </div>
+      <div class="cruise-card__wrap-for-information">
+        <a target="_blank" href="http://localhost:3000/cruise" class="cruise-card__name">${cruise.cruise_name}</a>
+        <div class="cruise-card__wrap-for-date-and-name-of-liner">
+          <div class="cruise-card__wrap-for-date-and-time">
+            <div class="cruise-card__first-date-and-time">
+              <span class="cruise-card__date">
+                ${cruise.start_date.day} ${cruise.start_date.month} ${cruise.start_date.year}
+              </span>
+              <span class="cruise-card__day-of-week-and-time">
+                ${cruise.start_date.weekday}, ${cruise.start_date.time}
+              </span>
+            </div>
+            <div class="cruise-card__wrap-for-number-of-days">
+              <span class="cruise-card__number-of-days">
+                ${cruise.duration_days} дней
+              </span>
+            </div>
+            <div class="cruise-card__second-date-and-time">
+              <span class="cruise-card__date">
+                ${cruise.end_date.day} ${cruise.end_date.month} ${cruise.end_date.year}
+              </span>
+              <span class="cruise-card__day-of-week-and-time">
+                ${cruise.end_date.weekday}, ${cruise.end_date.time}
+              </span>
+            </div>
+          </div>
+          <div class="cruise-card__wrap-for-name-of-liner">
+            <img class="cruise-card__liner-icon" src="/443890.png">
+            <a href="" class="cruise-card__name-of-liner">${cruise.ship_name}</a>
+          </div>
+        </div>
+        <div class="cruise-card__direction">
+          ${cruise.route_points.join(' &mdash; ')}
+        </div>
+      </div>
+      <div class="cruise-card__wrap-for-price-and-button">
+        <div class="cruise-card__prices">
+          <span class="cruise-card__new-price">
+            от ${cruise.minimum_discounted_price} &#8381;/чел
+          </span>
+          <span class="cruise-card__old-price">
+            ${cruise.minimum_price} &#8381;
+          </span>
+        </div>
+        <div class="cruise-card__wrap-for-remains">
+          <span class="cruise-card__remains">
+            Осталось 40 мест!
+          </span>
+        </div>
+        <button class="cruise-card__button">
+          Выбрать
+        </button>
+      </div>
+    `;
+    
+    return card;
+  }
+  
+  // Функция для добавления всех круизов на страницу
+  function renderCruises(cruises) {
+    const container = document.querySelector('.wrap-for-cruise-cards'); // Где будем добавлять карточки
+    cruises.forEach(cruise => {
+      const cruiseCard = createCruiseCard(cruise);
+      container.appendChild(cruiseCard); // Добавляем карточку в контейнер
+      let buttonCruiseCard = cruiseCard.getElementsByClassName("cruise-card__button")[0];
+      buttonCruiseCard.value = cruise.cruise_id;
+      console.log(buttonCruiseCard.value)
+      
+    });
+  }
+  

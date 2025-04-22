@@ -55,6 +55,7 @@ body {
 .header{
     position: sticky;
     top:0px;
+    z-index: 100;
 }
 
 .header__upper-head {
@@ -293,6 +294,12 @@ body {
     align-self:flex-start;
 }
 
+.main-page__content{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 .form-for-search{
     display: flex
 }
@@ -300,6 +307,13 @@ body {
 .section-for-cruise-search{
     width: 1250px;
 }
+
+.wrap-for-cruise-cards{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 
 .form-for-search{
     display: grid;
@@ -631,7 +645,7 @@ body {
 .block-of-images__main-image{
     width: 800px;
     height: 500px;
-    background-image: url("/1645411086_WN22-DroneCadiz208R.jpg");
+    background-image: url("https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1645411086_WN22-DroneCadiz208R.jpg");
     background-size: cover;
     border-radius: 20px;
 }
@@ -652,7 +666,7 @@ body {
 .block-of-images__image{
     width: 150px;
     height: 100px;
-    background-image: url("/1645411086_WN22-DroneCadiz208R.jpg");
+    background-image: url("https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1645411086_WN22-DroneCadiz208R.jpg");
     background-size: cover;
     border-radius: 4px;
 }
@@ -1345,32 +1359,79 @@ body {
     grid-area: K;
 }
 
-.mb-3:nth-child(6){
+.booking-section_passenger-section .mb-3:nth-child(6){
     grid-area: C;
 }
 
-.mb-3:nth-child(7){
+.booking-section_passenger-section .mb-3:nth-child(7){
     grid-area: D;
 }
 
-.mb-3:nth-child(8){
+.booking-section_passenger-section .mb-3:nth-child(8){
     grid-area: E;
 }
 
-.mb-3:nth-child(9){
+.booking-section_passenger-section .mb-3:nth-child(9){
     grid-area: F;
 }
 
-.mb-3:nth-child(10){
+.booking-section_passenger-section .mb-3:nth-child(10){
     grid-area: G;
 }
 
-.mb-3:nth-child(11){
+.booking-section_passenger-section .mb-3:nth-child(11){
     grid-area: H;
 }
 
 .about-us__header{
 
+}
+
+.entrance-panel{
+    background-color: #74c1fc;
+    width: 500px;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.entrance-panel__header, .registration-panel__header{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.registration-panel{
+    background-color: #74c1fc;
+    width: 500px;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.registration-panel__form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    gap: 30px;
+    grid-template-areas:
+   "A A"
+   "B B"
+   "C C"
+   "D D"
+   "E E"
+   "F G";
+}
+
+.registration-panel .registration-panel__section:nth-child(5){
+    grid-area: C;
+}
+
+.registration-panel__button{
+    grid-area: G;
 }
 
 /* .sliders {
@@ -2412,8 +2473,7 @@ body {
 }
 
 .footer__emblema {
-    width: 163px;
-    height: 32px;
+    height: 60px;
 }
 
 .navigation-list {
@@ -2446,6 +2506,7 @@ body {
     align-items: center;
     width: 100%;
     padding-right: 20px;
+    height: 60px;
 }
 
 .footer__arrow {
@@ -2515,7 +2576,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 35px 0px;
-    position: absolute;
+    position: fixed;
     top: 110px;
     background-color: #fff;
     display: none;

@@ -59,7 +59,7 @@
     </div>
     <div class="body page__body">
         <div class="cruise-page">
-            <h1 class="cruise-page__cruise-name">Название круиза</h1>
+            <h1 class="cruise-page__cruise-name"><%= cruise_name %></h1>
             <div class="cruise-page__content">
                 <div class="cruise-page__general-information">
                     <div class="cruise-page__wrap-for-images block-of-images">
@@ -76,26 +76,28 @@
                     <div class="cruise-page__wrap-for-price-panel price-panel">
                         <div class="price-panel__wrap-for-prices">
                             <div class="price-panel__price">
-                                от 250 000 &#8381;/чел
+                                от <%= minimum_discounted_price %> &#8381;/чел
                             </div>
                             <div class="price-panel__old-price">
-                                300 000 &#8381;
+                                <%= minimum_price  %> &#8381;
                             </div>
                         </div>
                         <div class="price-panel__wrap-for-liner">
                             <img class="price-panel__liner-icon" src="/443890.png">
-                            <span class="price-panel__name-of-liner">Название лайнера</span>
+                            <span class="price-panel__name-of-liner"><%= ship_name %></span>
                         </div>
                         <div class="price-panel__direction">
-                            Москва &mdash; Казань &mdash; Москва
+                            <% for(let i = 0; i<route_points.length; i++){%>
+                            <%= route_points[i] %><% if (i < route_points.length - 1) { %> &mdash; <% } %>
+                            <% } %>
                         </div>
                         <div class="price-panel__wrap-for-date-and-time">
                             <div class="price-panel__first-date-and-time">
                                 <span class="price-panel__date">
-                                    25 апр 2025
+                                    <%= start_date.day %> <%= start_date.month %> <%= start_date.year %>
                                 </span>
                                 <span class="price-panel__day-of-week-and-time">
-                                    пт, 10:00
+                                    <%= start_date.weekday %>, <%= start_date.time %>
                                 </span>
                             </div>
                             <div class="price-panel__wrap-for-number-of-days">
@@ -103,15 +105,15 @@
     
                                 </div>
                                 <span class="price-panel__number-of-days">
-                                    100 дней
+                                    <%= duration_days %> дней
                                 </span>
                             </div>
                             <div class="price-panel__second-date-and-time">
                                 <span class="price-panel__date">
-                                    25 апр 2025
+                                    <%= end_date.day %> <%= end_date.month %> <%= end_date.year %>
                                 </span>
                                 <span class="price-panel__day-of-week-and-time">
-                                    пт, 10:00
+                                    <%= end_date.weekday %>, <%= end_date.time %>
                                 </span>
                             </div>
                         </div>
@@ -148,18 +150,7 @@
                             Описание круиза
                         </h2>
                         <div class="cruise-page-section__content">
-                            <p class="cruise-page-section__text-of-section">
-                                Cupidatat voluptate do excepteur tempor excepteur cillum culpa ullamco. Consectetur nisi eiusmod deserunt aliquip ea in aliquip sit labore dolor mollit ad enim laboris. Duis do eiusmod sit elit duis ad fugiat. Ea ullamco eiusmod officia quis quis. Amet tempor veniam cillum mollit voluptate ipsum cupidatat Lorem quis culpa incididunt. Id laborum anim reprehenderit commodo ea.
-                            </p>
-                            <p class="cruise-page-section__text-of-section">
-                                Aliquip labore proident irure aliquip. Officia est aute ex id esse sit. Culpa aliqua excepteur id eiusmod esse labore. Excepteur irure tempor velit ipsum in aute.
-                            </p>
-                            <p class="cruise-page-section__text-of-section">
-                                Ut ipsum dolor est ad velit ex sint ad irure et deserunt officia nulla. Magna ipsum magna consectetur sit irure excepteur officia mollit nostrud. Fugiat cillum excepteur do consectetur laboris. Do ex ex cupidatat mollit cupidatat ad eiusmod. Consectetur dolore qui dolor labore ex excepteur esse. Consectetur deserunt tempor non sunt laboris reprehenderit mollit irure occaecat quis mollit sunt nisi ullamco. Commodo minim ipsum in adipisicing exercitation duis proident aliqua ut culpa aliqua fugiat sint cillum.
-                            </p>
-                            <p class="cruise-page-section__text-of-section">
-                                Esse commodo do aliquip nisi laboris nisi aute voluptate veniam cillum dolore ex. Enim ea minim consequat magna cupidatat incididunt magna. Veniam proident dolor ad quis tempor commodo amet amet deserunt mollit magna officia aute.
-                            </p>
+                            <%- cruise_description %>
                         </div>
                     </div>
                     <div id="section2" class="cruise-page__section cruise-page-section">
@@ -242,7 +233,7 @@
                         </h2>
                         <div class="cruise-page-section__content">
                             <p class="cruise-page-section__text-of-section">
-                                Название: <a href="">"Название теплохода"</a> 
+                                Название: <a href="">"<%= ship_name %>"</a> 
                             </p>
                             <p class="cruise-page-section__text-of-section">
                                 Cupidatat officia voluptate velit sint eiusmod quis quis culpa nisi enim sit. Mollit consectetur et occaecat commodo consequat esse consectetur elit ut anim qui aliquip proident dolore. Reprehenderit non amet pariatur duis reprehenderit aute mollit. Fugiat dolore cupidatat aliquip in occaecat sit adipisicing.
