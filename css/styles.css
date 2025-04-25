@@ -786,8 +786,8 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: solid 1px #000;
-    border-radius: 14px;
+    /* border: solid 1px #000;
+    border-radius: 14px; */
     padding: 20px 20px;
 }
 
@@ -1044,12 +1044,26 @@ body {
     border-radius:5px;
     height: 40px;
     width: 80px;
-    /* background-color: #74c1fc; */
     display: flex;
     justify-content: center;
     align-items: center;
-    border:#000 solid 1px;
+    border:#000 solid 2px;
     cursor: pointer;
+}
+
+.cabin__scheme{
+    align-self: center;
+}
+
+.cabin__available-place_occupied{
+    border-radius:5px;
+    height: 40px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:#777777 solid 1px;
+    color: #777777;
 }
 
 .cabin__available-place:hover{
