@@ -265,6 +265,13 @@ async function getCruise(cruiseID) {
       cruise.decks[i].cabins = await getCabinsInformation(cruise.ship_id, cruise.decks[i].deck_id);
       for (let j = 0; j < cruise.decks[i].cabins.length; j++) {
         cruise.decks[i].cabins[j].tickets = await getTicketsInformation(cruise.cruise_id, cruise.decks[i].cabins[j].cabin_id);
+        let count = 0;
+        for (let k = 0; k< cruise.decks[i].cabins[j].tickets.length; k++){
+          if(cruise.decks[i].cabins[j].tickets[k].status == "free"){
+            count += 1;
+          }
+        }
+        cruise.decks[i].cabins[j].numberOfFreeTickets = count;
       }
     }
     // cruise.tickets = await getTicketsInformation(cruise.cruise_id);

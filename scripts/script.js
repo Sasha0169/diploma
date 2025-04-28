@@ -288,6 +288,9 @@ function createCruiseCard(cruise) {
               </span>
             </div>
             <div class="cruise-card__wrap-for-number-of-days">
+              <div class="cruise-card__arrow">
+            
+              </div>
               <span class="cruise-card__number-of-days">
                 ${cruise.duration_days} дней
               </span>

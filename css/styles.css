@@ -533,6 +533,7 @@ body {
 
 .cruise-card__arrow{
     background-image: url("/strelka.png");
+    /* background-image: url("/grey-arrow.png"); */
     width:100%;
     height:19px;
     background-size: cover;
@@ -645,7 +646,7 @@ body {
 .block-of-images__main-image{
     width: 800px;
     height: 500px;
-    background-image: url("https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1645411086_WN22-DroneCadiz208R.jpg");
+    background-image: url("https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1.jpg");
     background-size: cover;
     border-radius: 20px;
 }
@@ -666,7 +667,7 @@ body {
 .block-of-images__image{
     width: 150px;
     height: 100px;
-    background-image: url("https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1645411086_WN22-DroneCadiz208R.jpg");
+    background-image: url("https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1.jpg");
     background-size: cover;
     border-radius: 4px;
 }
