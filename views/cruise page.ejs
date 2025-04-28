@@ -80,14 +80,13 @@
             <div class="cruise-page__content">
                 <div class="cruise-page__general-information">
                     <div class="cruise-page__wrap-for-images block-of-images">
-                        <div class="block-of-images__main-image"></div>
+                        <img src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/gallery/1" class="block-of-images__main-image">
                         <div class="block-of-images__images">
-                            <img src="/left-arrow-for-images.png" class="block-of-images__left-arrow"></img>
-                            <div class="block-of-images__image"></div>
-                            <div class="block-of-images__image"></div>
-                            <div class="block-of-images__image"></div>
-                            <div class="block-of-images__image"></div>
-                            <img src="/right-arrow-for-images.png" class="block-of-images__right-arrow"></img>
+                            <img src="/left-arrow-for-images.png" class="block-of-images__left-arrow">
+                            <% for(let i=1; i<=numberOfPhotos; i++){%>
+                            <img class="block-of-images__image" src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/gallery/<%= i %>.jpg">
+                            <% } %>
+                            <img src="/right-arrow-for-images.png" class="block-of-images__right-arrow">
                         </div>
                     </div>
                     <div class="cruise-page__wrap-for-price-panel price-panel">

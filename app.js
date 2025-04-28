@@ -1,4 +1,5 @@
 const fs = require("fs");
+// import fetch from 'node-fetch';
 // var sql = require("mssql/msnodesqlv8");
 const express = require("express");
 const app = express();
@@ -6,6 +7,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+// const fetch = require('node-fetch');
 
 app.use(express.static("css"));
 app.use(express.static("images"));
@@ -276,6 +278,13 @@ async function getCruise(cruiseID) {
     }
     // cruise.tickets = await getTicketsInformation(cruise.cruise_id);
     // cruise.cabins = await getCabinsInformation(cruise.ship_id);
+    const response = await fetch("https://api.github.com/repos/Sasha0169/diploma/contents/images/photos/cruises/11/gallery", {
+      headers: {
+        'Authorization': ''
+      }
+    });
+    const data = await response.json();
+    cruise.numberOfPhotos = data.length;
     return cruise;
   } catch (error) {
     console.error(error);
