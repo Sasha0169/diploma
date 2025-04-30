@@ -7,6 +7,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+// const { DOMParser, XMLSerializer } = require('xmldom');
 // const fetch = require('node-fetch');
 
 app.use(express.static("css"));
@@ -51,19 +52,17 @@ app.get("/getData", (req, res) => {
 });
 
 app.post("/getCruises", (req, res) => {
-  console.log(req.body);
   getCruises(req.body).then((result) => res.json(result));
 });
 
-//   app.get("/cruise", (req, res) => {
-//     res.render("cruise page", {});
-// });
+app.post("/getSchemes", (req, res) => {
+  console.log(req.body)
+})
 
-// app.post("/cruise", (req, res) => {
-//   console.log(req.body);
-//   getCruise(req.body.value).then(a=>res.render("cruise page", a));
+app.post("/getInfoAboutPlace", (req, res) => {
+  getInfoAboutPlace(req.body.numberOfTicket).then((result)=>res.json(result));
+});
 
-// });
 
 app.get("/cruise/:id", (req, res) => {
   const cruiseId = req.params.id;
@@ -268,16 +267,23 @@ async function getCruise(cruiseID) {
       for (let j = 0; j < cruise.decks[i].cabins.length; j++) {
         cruise.decks[i].cabins[j].tickets = await getTicketsInformation(cruise.cruise_id, cruise.decks[i].cabins[j].cabin_id);
         let count = 0;
+        // cruise.decks[i].cabins[j].scheme = cruise.decks[i].deck_scheme;
+        // let parser = new DOMParser();
+        
+        // let deck_scheme = parser.parseFromString(cruise.decks[i].deck_scheme, "image/svg+xml");
         for (let k = 0; k< cruise.decks[i].cabins[j].tickets.length; k++){
           if(cruise.decks[i].cabins[j].tickets[k].status == "free"){
             count += 1;
           }
+          // if(cruise.decks[i].cabins[j].tickets[k].status == "occupied"){
+          //   let ticket = cruise.decks[i].cabins[j].tickets[k];
+          //   deck_scheme.getElementsByClassName(`rn-${ticket.place}`)[0].setAttribute("style", "display: none");
+          // }
         }
         cruise.decks[i].cabins[j].numberOfFreeTickets = count;
+        // cruise.decks[i].cabins[j].deck_scheme = deck_scheme;
       }
     }
-    // cruise.tickets = await getTicketsInformation(cruise.cruise_id);
-    // cruise.cabins = await getCabinsInformation(cruise.ship_id);
     const response = await fetch("https://api.github.com/repos/Sasha0169/diploma/contents/images/photos/cruises/11/gallery", {
       headers: {
         'Authorization': ''
@@ -293,6 +299,31 @@ async function getCruise(cruiseID) {
 // 01gd4545df
 // scfe@mail.ru
 
+async function getInfoAboutPlace(ticketId){
+  let query1 = `
+    SELECT prices, cabin_id, place
+	  FROM public.tickets
+	  WHERE ticket_id=${ticketId};`;
+  let result1 = await pool.query(query1);
+  let query2 = `
+  SELECT cabin_description, cabin_name, single_occupancy, capacity
+	  FROM public.cabins
+	  WHERE cabin_id=${result1.rows[0].cabin_id};`;
+    let result2 = await pool.query(query2);
+    result2.rows[0].prices = result1.rows[0].prices;
+    result2.rows[0].place = result1.rows[0].place;
+    
+    const response = await fetch(`https://api.github.com/repos/Sasha0169/diploma/contents/images/photos/cabins/${data.cabin_id}/gallery`, {
+      headers: {
+        'Authorization': ''
+      }
+    });
+    const data = await response.json();
+    result2.rows[0].numberOfPhotos = data.length;
+    console.log(result2.rows[0])
+  return result2.rows[0];
+}
+
 async function getDecksInformation(shipId){
   let query1 = `
     SELECT deck_id, deck_scheme, deck_name, deck_scheme
@@ -304,7 +335,7 @@ async function getDecksInformation(shipId){
 
 async function getCabinsInformation(shipId, deckId){
   let query1 = `
-    SELECT cabin_id, deck_id, cabin_description, cabin_name, total_count, cabin_numbers, single_occupancy, capacity
+    SELECT cabin_id, deck_id, cabin_description, cabin_name
 	  FROM public.cabins
 	  WHERE ship_id=${shipId} AND deck_id=${deckId};`;
   let result1 = await pool.query(query1);
@@ -313,7 +344,7 @@ async function getCabinsInformation(shipId, deckId){
 
 async function getTicketsInformation(cruiseId, cabinId){
   let query1 = `
-    SELECT place, prices, status
+    SELECT place, prices, status, ticket_id
 	  FROM public.tickets
 	  WHERE cruise_id=${cruiseId} AND cabin_id=${cabinId};`;
   let result1 = await pool.query(query1);

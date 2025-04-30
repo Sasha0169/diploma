@@ -79,13 +79,15 @@
             </h1>
             <div class="cruise-page__content">
                 <div class="cruise-page__general-information">
-                    <div class="cruise-page__wrap-for-images block-of-images">
-                        <img src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/gallery/1" class="block-of-images__main-image">
+                    <div class="block-of-images">
+                        <img src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/main.jpg" class="block-of-images__main-image">
                         <div class="block-of-images__images">
                             <img src="/left-arrow-for-images.png" class="block-of-images__left-arrow">
-                            <% for(let i=1; i<=numberOfPhotos; i++){%>
-                            <img class="block-of-images__image" src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/gallery/<%= i %>.jpg">
-                            <% } %>
+                            <div class="block-of-images__wrap-for-images">
+                                <% for(let i=1; i<=numberOfPhotos; i++){%>
+                                <img class="block-of-images__image" src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/gallery/<%= i %>.jpg">
+                                <% } %>
+                            </div>
                             <img src="/right-arrow-for-images.png" class="block-of-images__right-arrow">
                         </div>
                     </div>
@@ -181,7 +183,8 @@
                             Маршрут
                         </h2>
                         <div class="cruise-page-section__content">
-                            <% for(let i=0; i<day_by_day_info.length; i++){ %>
+                            <% let k = 1;
+                             for(let i=0; i<day_by_day_info.length; i++){ %>
                                 <div class="route-point">
                                     <div class="route-point__header">
                                         <div class="route-point__wrap-for-date">
@@ -225,7 +228,7 @@
                                                                 </div>
                                                             </div>
                                                             <img class="route-point__place-image"
-                                                                src="/a24b6fd8-5cb4-5bde-89ee-13f73b2d6c76.jpg" alt="">
+                                                                src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/cities/<%= k++  %>.jpg" alt="">
                                                         </div>
                                                         <div class="route-point__description">
                                                             <%= day_by_day_info[i].cities[j].description %>
@@ -403,9 +406,9 @@
                                                     <img src="/cabin.jpeg" alt="" class="cabin__image">
                                                     <div class="cabin__wrap-for-information">
                                                         <span class="cabin__name"><%= decks[i].cabins[j].cabin_name %></span>
-                                                        <span class="cabin__description">
+                                                        <!-- <span class="cabin__description">
                                                             <%= decks[i].cabins[j].cabin_description %>
-                                                        </span>
+                                                        </span> -->
                                                         <div class="cabin__wrap-for-rates">
                                                             <div class="cabin__wrap-for-rate">
                                                                 <div class="rate">
@@ -435,9 +438,15 @@
                                                         </div>
                                                         <div class="cabin__wrap-for-quantity-and-button">
                                                             <span class="cabin__quantity">Свободных кают: <%= decks[i].cabins[j].numberOfFreeTickets %></span>
-                                                            <button class="cabin__button">
-                                                                Забронировать
-                                                            </button>
+                                                            <% if(decks[i].cabins[j].numberOfFreeTickets == 0){ %>
+                                                                <button class="cabin__button cabin__button_not-working" cabin_id="<%= decks[i].cabins[j].cabin_id %>">
+                                                                    Забронировать
+                                                                </button>
+                                                            <% } else {%>
+                                                                <button class="cabin__button" cabin_id="<%= decks[i].cabins[j].cabin_id %>">
+                                                                    Забронировать
+                                                                </button>
+                                                            <% } %>
                                                         </div>
 
                                                     </div>
@@ -449,7 +458,7 @@
                                                     <div class="cabin__wrap-for-available-places">
                                                         <% for(let k=0; k<decks[i].cabins[j].tickets.length; k++){ %>
                                                             <% if(decks[i].cabins[j].tickets[k].status == "free") {%>
-                                                        <div class="cabin__available-place">
+                                                        <div class="cabin__available-place" ticket_id="<%= decks[i].cabins[j].tickets[k].ticket_id %>">
                                                             <%= decks[i].cabins[j].tickets[k].place %>
                                                         </div>
                                                             <% } %>
@@ -556,7 +565,7 @@
         </div>
     </div>
     <div class="wrap-for-panel-for-booking">
-        <div class="panel-for-booking">
+        <!-- <div class="panel-for-booking">
             <div class="panel-for-booking__upper-part">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -747,7 +756,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
     </div>
     <div class="basket">
         <div class="basket__header">
@@ -875,8 +884,245 @@
             </button>
         </div>
     </div>
+    <div class="navigation-panel">
+        <div class="navigation-panel__wrap-for-content">
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Популярные направления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    По Енисею
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Волге
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Башкирию
+                </a>
+                <a class="navigation-panel__option" href="">
+                    На Соловецкие острова
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Каме
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Дону
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Москву
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Летний Байкал
+                </a>
+            </div>
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Круизы по городам отправления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    Из Москвы
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Санкт-Петербурга
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Нижнего Новгорода
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Казани
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Волгограда
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Перми
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Ярославля
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-panel">
+        <div class="navigation-panel__wrap-for-content">
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Популярные направления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    По Енисею
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Волге
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Башкирию
+                </a>
+                <a class="navigation-panel__option" href="">
+                    На Соловецкие острова
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Каме
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Дону
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Москву
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Летний Байкал
+                </a>
+            </div>
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Круизы по городам отправления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    Из Москвы
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Санкт-Петербурга
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Нижнего Новгорода
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Казани
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Волгограда
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Перми
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Ярославля
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-panel">
+        <div class="navigation-panel__wrap-for-content">
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Популярные направления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    По Енисею
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Волге
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Башкирию
+                </a>
+                <a class="navigation-panel__option" href="">
+                    На Соловецкие острова
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Каме
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Дону
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Москву
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Летний Байкал
+                </a>
+            </div>
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Круизы по городам отправления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    Из Москвы
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Санкт-Петербурга
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Нижнего Новгорода
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Казани
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Волгограда
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Перми
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Ярославля
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-panel">
+        <div class="navigation-panel__wrap-for-content">
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Популярные направления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    По Енисею
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Волге
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Башкирию
+                </a>
+                <a class="navigation-panel__option" href="">
+                    На Соловецкие острова
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Каме
+                </a>
+                <a class="navigation-panel__option" href="">
+                    По Дону
+                </a>
+                <a class="navigation-panel__option" href="">
+                    В Москву
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Летний Байкал
+                </a>
+            </div>
+            <div class="navigation-panel__column">
+                <h3 class="navigation-panel__title">
+                    Круизы по городам отправления
+                </h3>
+                <a class="navigation-panel__option" href="">
+                    Из Москвы
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Санкт-Петербурга
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Нижнего Новгорода
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Казани
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Волгограда
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Перми
+                </a>
+                <a class="navigation-panel__option" href="">
+                    Из Ярославля
+                </a>
+            </div>
+        </div>
+    </div>
     <script src="/script.js"></script>
-    <svg width="1012" height="117" viewBox="0 0 1012 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <script src="/cruise-page.js"></script>
+    <!-- <svg width="1012" height="117" viewBox="0 0 1012 117" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="deck-1">
             <g id="ÑÐºÐµÐ»ÐµÑ‚">
                 <g id="Ð¡Ñ‚ÐµÐ¿ÑŒ">
@@ -1906,7 +2152,7 @@
                 </text>
             </g>
         </g>
-    </svg>
+    </svg> -->
 </body>
 
 </html>
