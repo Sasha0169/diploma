@@ -4,11 +4,9 @@ let routes;
 fetch("http://localhost:3000/getData")
   .then(response => response.json()) // Парсим JSON
   .then(data => {
-    console.log(data)
     cities = new Map(data.cities.map(city => [city.city_id, city.name]));
     routes = new Map(data.routes.map(route => [route.route_id, route.name]));
     ships = new Map(data.ships.map(ship => [ship.ship_id, ship.ship_name]));
-    console.log(cities, routes, ships)
   })   
   .catch(error => console.error("Ошибка:", error));
 
@@ -66,15 +64,12 @@ radios.forEach((a)=>a.addEventListener("change",(e)=>{
 
 let numbersOfDays = [[1, "1 - 4 дня"], [2, "5 - 7 дней"], [3, "8 - 10 дней"], [4, "11 - 14 дней"], [5, "более 14 дней"]];
 numbersOfDays = new Map(numbersOfDays);
-console.log(numbersOfDays)
 let wraps = Array.from(document.getElementsByClassName("form-for-search__wrap-for-button-and-panel"));
 for(let i=1; i<wraps.length; i++){
-    console.log(wraps[i])
     let checkboxes = wraps[i].querySelectorAll(".form-check-input[type=checkbox]");
     checkboxes.forEach((a)=>a.addEventListener("change",(e)=>{
     let checkbox = e.currentTarget;
     let button = checkbox.closest(".form-for-search__wrap-for-button").getElementsByClassName("form-for-search__button-for-selecting")[0];
-    console.log(button.values)
     let label = button.getElementsByClassName("form-for-button__placeholder-for-button")[0];
     if(checkbox.checked){
         button.values.push(checkbox.value);
@@ -130,7 +125,6 @@ buttonForSearch.addEventListener("click", function(e){
         numberOfDay: buttonsForSelection[2].values.length == 0?undefined:buttonsForSelection[2].values,
         ships: buttonsForSelection[3].values.length == 0?undefined:buttonsForSelection[3].values
     }
-    console.log(searchParameters)
     fetch("http://localhost:3000/getCruises", {
         method: "POST",
         headers: {
@@ -140,34 +134,30 @@ buttonForSearch.addEventListener("click", function(e){
     })
     .then(response => response.json()) // Парсим JSON
     .then(data => {
-        console.log(data)
         renderCruises(data);
-  })   
+        let cruiseCards = Array.from(document.getElementsByClassName("cruise-card"));
+        cruiseCards.forEach(cruiseCard=>{
+          let buttonCruiseCard = cruiseCard.getElementsByClassName("cruise-card__button")[0];
+          let name = cruiseCard.getElementsByClassName("cruise-card__name")[0];
+          let image = cruiseCard.getElementsByClassName("cruise-card__image")[0];
+          // buttonCruiseCard.value = "3";
+        buttonCruiseCard.addEventListener("click", addLinkToCruise);
+        name.addEventListener("click", addLinkToCruise);
+        image.addEventListener("click", addLinkToCruise);
+      })
+    })   
   .catch(error => console.error("Ошибка:", error));
 })
 
 buttonForSearch.click();
 
-let cruiseCard = document.getElementsByClassName("cruise-card")[0];
-let buttonCruiseCard = cruiseCard.getElementsByClassName("cruise-card__button")[0];
-buttonCruiseCard.value = "3";
-buttonCruiseCard.addEventListener("click", function (e){
-    let button = e.currentTarget;
-//     fetch("http://localhost:3000/cruise", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json" 
-//           },
-//         body: JSON.stringify({value: button.value})
-//     })
-//     .then(response => response.json()) // Парсим JSON
-//     .then(data => {
-//         console.log(data)
-//   })   
-//   .catch(error => console.error("Ошибка:", error));
-// window.location.href = `/cruise/${button.value}`;
-    window.open(`http://localhost:3000/cruise/${button.value}`, "_blank");
-})
+function addLinkToCruise(e){
+  e.preventDefault();
+  let element = e.currentTarget;
+  let value = element.closest(".cruise-card").cruiseId;
+  window.open(`http://localhost:3000/cruise/${value}`, "_blank");
+}
+
 
 function createCruiseCard(cruise) {
     const card = document.createElement('div');
@@ -178,7 +168,7 @@ function createCruiseCard(cruise) {
         <img class="cruise-card__image" src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/${cruise.cruise_id}/main.jpg" alt="">
       </div>
       <div class="cruise-card__wrap-for-information">
-        <a target="_blank" href="http://localhost:3000/cruise" class="cruise-card__name">${cruise.cruise_name}</a>
+        <span target="_blank" class="cruise-card__name">${cruise.cruise_name}</span>
         <div class="cruise-card__wrap-for-date-and-name-of-liner">
           <div class="cruise-card__wrap-for-date-and-time">
             <div class="cruise-card__first-date-and-time">
@@ -208,7 +198,7 @@ function createCruiseCard(cruise) {
           </div>
           <div class="cruise-card__wrap-for-name-of-liner">
             <img class="cruise-card__liner-icon" src="/443890.png">
-            <a href="" class="cruise-card__name-of-liner">${cruise.ship_name}</a>
+            <span href="" class="cruise-card__name-of-liner">${cruise.ship_name}</span>
           </div>
         </div>
         <div class="cruise-card__direction">
@@ -229,7 +219,7 @@ function createCruiseCard(cruise) {
             Осталось 40 мест!
           </span>
         </div>
-        <button class="cruise-card__button">
+        <button class="cruise-card__button"">
           Выбрать
         </button>
       </div>
@@ -238,15 +228,50 @@ function createCruiseCard(cruise) {
     return card;
   }
   
-  // Функция для добавления всех круизов на страницу
   function renderCruises(cruises) {
     const container = document.querySelector('.wrap-for-cruise-cards'); // Где будем добавлять карточки
     cruises.forEach(cruise => {
-      const cruiseCard = createCruiseCard(cruise);
+      let cruiseCard = createCruiseCard(cruise);
       container.appendChild(cruiseCard); // Добавляем карточку в контейнер
       let buttonCruiseCard = cruiseCard.getElementsByClassName("cruise-card__button")[0];
-      buttonCruiseCard.value = cruise.cruise_id;
-      console.log(buttonCruiseCard.value)
+      cruiseCard.cruiseId = cruise.cruise_id;
       
     });
   }
+
+//   document.getElementsByClassName("entrance-panel__button")[0].addEventListener("click", function(e){
+//     e.preventDefault();
+//     let email = document.getElementsByClassName("form-control entrance-panel__input-for-section")[0].value;
+//     let password = document.getElementsByClassName("form-control entrance-panel__input-for-section")[1].value;
+//     console.log({email: email, password: password});
+//     fetch("http://localhost:3000/login", {
+//       method: "POST",
+//       headers: {
+//           "Content-Type": "application/json" 
+//         },
+//       body: JSON.stringify({email: email, password: password})
+//   })
+//   .then(response => response.json()) // Парсим JSON
+//   .then(data => {
+//       console.log(data);
+//       getUserName();
+// })   
+// .catch(error => console.error("Ошибка:", error));
+//   })
+
+//   async function getUserName(){
+//     fetch("http://localhost:3000/getUserName", {
+//       method: "POST",
+//       headers: {
+//         credentials: 'include',
+//           "Content-Type": "application/json" 
+//         },
+//       body: JSON.stringify({})
+//   })
+//   .then(response => response.json()) // Парсим JSON
+//   .then(data => {
+//     console.log(data)
+//     document.getElementsByClassName("entrance__text")[0].textContent=`${data.last_name} ${data.first_name}`;
+//   })   
+//   .catch(error => console.error("Ошибка:", error));
+//   }

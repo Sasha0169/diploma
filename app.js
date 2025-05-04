@@ -7,6 +7,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 // const { DOMParser, XMLSerializer } = require('xmldom');
 // const fetch = require('node-fetch');
 
@@ -19,6 +21,11 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
+  origin: 'http://localhost:5500', // порт, на котором будет клиент
+  credentials: true // важно для передачи cookies
+}));
 
 app.listen(3000, () => {
   console.log(`Сервер запущен на http://localhost:3000`);
@@ -63,12 +70,25 @@ app.post("/getInfoAboutPlace", (req, res) => {
   getInfoAboutPlace(req.body.numberOfTicket).then((result)=>res.json(result));
 });
 
+app.get("/checkAuth", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json({ authenticated: false });
+  }
+
+  try {
+    const decoded = jwt.verify(token, SECRET);
+    res.json({ authenticated: true });
+  } catch (err) {
+    res.json({ authenticated: false });
+  }
+});
+
 
 app.get("/cruise/:id", (req, res) => {
   const cruiseId = req.params.id;
   getCruise(cruiseId)
     .then((data) => {
-      console.log(data.decks[0].cabins[0].prices);
       res.render("cruise page", data);
     })
     .catch((err) => {
@@ -76,15 +96,42 @@ app.get("/cruise/:id", (req, res) => {
     });
 });
 
+let SECRET = "secret-key"
+
 app.post("/login", (req, res) => {
   console.log(req.body);
   authenticationByEmail(req.body).then((user) => {
-    const token = jwt.sign({ userId: user.user_id }, "secret-key", {
-      expiresIn: "1h",
+    console.log(user)
+    const token = jwt.sign( user , SECRET, { expiresIn: '1h' });
+    res.cookie('token', token, {
+      httpOnly: true,
+      sameSite: 'Lax',
+      maxAge: 1000*60*60*24
     });
-    res.json({ success: true, token });
-  });
+    res.json({authenticated: true})
+  }).catch((err)=>res.json({authenticated: false}));
 });
+
+app.post("/getUserName", authMiddleware, (req, res) => {
+  const token = req.cookies.token;
+  console.log(token);
+  getUserName(token).then(result=>res.json(result));
+});
+
+function authMiddleware(req, res, next) {
+  const token = req.cookies.token;
+  console.log(token)
+  if (!token) return res.status(401).json({ error: "Not authenticated" });
+  console.log(1)
+  try {
+    const user = jwt.verify(token, SECRET);
+    console.log(2)
+    console.log(user);
+    next();
+  } catch (err) {
+    res.status(403).json({ error: "Invalid token" });
+  }
+}
 
 app.get("/booking-form", (req, res) => {
   res.render("booking form", {});
@@ -99,6 +146,41 @@ const pool = new Pool({
   password: "010669s", // Пароль пользователя
   port: 5432, // Порт PostgreSQL (по умолчанию 5432)
 });
+
+// app.post('/register', async (req, res) => {
+//   const { username, password } = req.body;
+//   const hashed = await bcrypt.hash(password, 10);
+//   users.push({ username, password: hashed });
+//   res.send({ message: 'User registered' });
+// });
+
+// app.post('/login', async (req, res) => {
+//   const { username, password } = req.body;
+//   const user = users.find(u => u.username === username);
+//   if (!user || !(await bcrypt.compare(password, user.password))) {
+//     return res.status(401).send({ error: 'Invalid credentials' });
+//   }
+
+//   const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' });
+//   res.send({ token });
+// });
+
+app.get('/protected', (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.sendStatus(401);
+
+  const token = authHeader.split(' ')[1];
+  try {
+    const user = jwt.verify(token, SECRET);
+    res.send({ message: 'Access granted', user });
+  } catch {
+    res.status(403).send({ error: 'Invalid token' });
+  }
+});
+
+
+
+
 
 pool
   .connect()
@@ -232,6 +314,8 @@ app.get("/users", async (req, res) => {
   }
 });
 
+const TOKEN = ""
+
 async function getCruise(cruiseID) {
   try {
     let query = `
@@ -255,7 +339,6 @@ async function getCruise(cruiseID) {
         element.arrival_time = getTimeFromDate(element.arrival_time);
         element.departure_time = getTimeFromDate(element.departure_time);
         element.stop_time = convertTimeToRussianFormat(element.stop_time);
-        console.log(element.arrival_time);
       });
       cruise.day_by_day_info[i].date = formatDate(
         cruise.day_by_day_info[i].date
@@ -286,7 +369,7 @@ async function getCruise(cruiseID) {
     }
     const response = await fetch("https://api.github.com/repos/Sasha0169/diploma/contents/images/photos/cruises/11/gallery", {
       headers: {
-        'Authorization': ''
+        'Authorization': TOKEN
       }
     });
     const data = await response.json();
@@ -301,7 +384,7 @@ async function getCruise(cruiseID) {
 
 async function getInfoAboutPlace(ticketId){
   let query1 = `
-    SELECT prices, cabin_id, place
+    SELECT prices, cabin_id, place, ticket_id
 	  FROM public.tickets
 	  WHERE ticket_id=${ticketId};`;
   let result1 = await pool.query(query1);
@@ -312,16 +395,20 @@ async function getInfoAboutPlace(ticketId){
     let result2 = await pool.query(query2);
     result2.rows[0].prices = result1.rows[0].prices;
     result2.rows[0].place = result1.rows[0].place;
-    
-    const response = await fetch(`https://api.github.com/repos/Sasha0169/diploma/contents/images/photos/cabins/${data.cabin_id}/gallery`, {
+    result2.rows[0].cabin_id = result1.rows[0].cabin_id;
+    const response = await fetch(`https://api.github.com/repos/Sasha0169/diploma/contents/images/photos/cabins/${result1.rows[0].cabin_id}/gallery`, {
       headers: {
-        'Authorization': ''
+        'Authorization': TOKEN
       }
     });
-    const data = await response.json();
-    result2.rows[0].numberOfPhotos = data.length;
-    console.log(result2.rows[0])
+    const result3 = await response.json();
+    result2.rows[0].numberOfPhotos = result3.length;
   return result2.rows[0];
+}
+
+async function getUserName(token){
+  const user = jwt.verify(token, SECRET);
+  return {first_name: user.first_name, last_name: user.last_name};
 }
 
 async function getDecksInformation(shipId){
@@ -536,6 +623,7 @@ async function authenticationByEmail(data) {
     result.rows[0].password_hash,
     data.password
   );
+  delete result.rows[0].password_hash;
   if (result2) return result.rows[0];
   else return new Error();
 }
@@ -583,7 +671,6 @@ async function getCruises(params = {}) {
       endOfQuery += `cruise_type = '${type}'`;
     }
 
-    console.log(routes);
     if (routes != [] && routes != undefined) {
       let stringOfRoutesId = routes.join(", ");
       endOfQuery += endOfQuery != "" ? " AND " : " WHERE ";
@@ -591,7 +678,6 @@ async function getCruises(params = {}) {
     }
 
     if (date != [] && date != undefined) {
-      console.log(date);
       startDate = convertDateFormat(date[0]);
       endDate = convertDateFormat(date[1]);
       endOfQuery += endOfQuery != "" ? " AND " : " WHERE ";
@@ -613,7 +699,6 @@ async function getCruises(params = {}) {
       }
     }
 
-    console.log(ships);
     if (ships != [] && ships != undefined) {
       // ships = ships.map(liner=> `\'${liner}\'`);
       // let stringOfLiners = ships.join(", ");
@@ -634,7 +719,6 @@ async function getCruises(params = {}) {
     }
 
     query += endOfQuery;
-    console.log(query);
     const result = await pool.query(query);
     let cruises = result.rows;
     for (let i = 0; i < cruises.length; i++) {

@@ -96,6 +96,54 @@ let entrancePanel = document.getElementsByClassName("entrance-panel")[0];
 //   .catch(error => console.error("Ошибка:", error));
 // })
 
+document.getElementsByClassName("entrance-panel__button")[0].addEventListener("click", function(e){
+    e.preventDefault();
+    let email = document.getElementsByClassName("form-control entrance-panel__input-for-section")[0].value;
+    let password = document.getElementsByClassName("form-control entrance-panel__input-for-section")[1].value;
+    console.log({email: email, password: password});
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json" 
+        },
+      body: JSON.stringify({email: email, password: password})
+  })
+  .then(response => response.json()) // Парсим JSON
+  .then(data => {
+      console.log(data);
+      getUserName();
+})   
+.catch(error => console.error("Ошибка:", error));
+  })
+
+  async function getUserName(){
+    fetch("http://localhost:3000/getUserName", {
+      method: "POST",
+      headers: {
+        credentials: 'include',
+          "Content-Type": "application/json" 
+        },
+      body: JSON.stringify({})
+  })
+  .then(response => response.json()) // Парсим JSON
+  .then(data => {
+    console.log(data)
+    document.getElementsByClassName("entrance__text")[0].textContent=`${data.last_name} ${data.first_name}`;
+  })   
+  .catch(error => console.error("Ошибка:", error));
+  }
+
+
+fetch('/checkAuth', {
+    method: 'GET',
+    credentials: 'include', 
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.authenticated) {
+        getUserName()
+    } 
+  });
 
 
   

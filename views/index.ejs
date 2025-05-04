@@ -37,11 +37,6 @@
         </div>
         <div class="header__lower-head lower-head">
             <div class="lower-head__wrap">
-                <!-- <div class="lower-head__wrap-for-left-element">
-                    <button class="lower-head__button-for-navigation-menu" onclick="viewMenuNavigation()">
-                        <img src="image/button-for-nav.png" alt="b">
-                    </button>
-                </div> -->
                 <div class="lower-head__wrap-for-center-element">
                 </div>
                 <div class="lower-head__categories-navigation categories-navigation">
@@ -97,7 +92,7 @@
                                         <% 
                                         cities.forEach(city => { %>
                                         <label class="list-group-item" >
-                                            <input class="form-check-input me-1" type="radio" name="listGroupRadio" value='<%= city.city_id %>' ">
+                                            <input class="form-check-input me-1" type="radio" name="listGroupRadio" value='<%= city.city_id %>' >
                                             <%= city.name %>
                                         </label>
                                         <% }); %>
@@ -310,15 +305,9 @@
                 </div>
                 <ul class="footer__support-navigation navigation-list navigation-list2">
                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">О компании</a></li>
-                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Акции</a></li> -->
-                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Магазины</a></li> -->
-                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Доставка</a></li> -->
                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Оплата</a></li>
                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Кредит</a></li>
-                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Установка техники</a></li> -->
-                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Сервисное обслуживание</a></li> -->
                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Отмена бронирования и возврат средств</a></li>
-                    <!-- <li class="navigation-list__variant"><a href="" class="navigation-list__link">Бонусная программа</a></li> -->
                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Политика конфиденциальности</a></li>
                     <li class="navigation-list__variant"><a href="" class="navigation-list__link">Условия продажи</a></li>
                 </ul>
@@ -598,7 +587,6 @@
             </div>
         </div>
     </div>
-
     <div class="entrance-panel">
         <span class="entrance-panel__header">
             Вход
@@ -606,11 +594,11 @@
         <form class="entrance-panel__form">
             <div class="mb-3 entrance-panel__section">
                 <label for="exampleInputEmail1" class="form-label entrance-panel__label-for-section">Адрес электронной почты</label>
-                <input type="email" class="form-control entrance-panel__input-for-section" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="email" class="form-control entrance-panel__input-for-section" id="exampleInputEmail1" aria-describedby="emailHelp" value="scfe@mail.ru">
             </div>
             <div class="mb-3 entrance-panel__section">
                 <label for="exampleInputPassword1" class="form-label entrance-panel__label-for-section">Пароль</label>
-                <input type="password" class="form-control entrance-panel__input-for-section" id="exampleInputPassword1">
+                <input type="password" class="form-control entrance-panel__input-for-section" id="exampleInputPassword1" value="01gd4545df">
             </div>
             <div class="mb-3 form-check entrance-panel__section-for-checkbox">
                 <input type="checkbox" class="form-check-input entrance-panel__checkbox" id="exampleCheck1">
@@ -619,22 +607,22 @@
             <button type="submit" class="btn btn-primary entrance-panel__button">Отправить</button>
         </form>
     </div>
-    <div class="registration-panel">
+    <div class="registration-panel" style="display: none;">
         <span class="registration-panel__header">
             Регистрация
         </span>
         <form class="registration-panel__form">
             <div class="mb-3 registration-panel__section">
                 <label for="exampleFormControlInput1" class="form-label">Фамилия</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
             </div>
             <div class="mb-3 registration-panel__section">
                 <label for="exampleFormControlInput1" class="form-label">Имя</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
             </div>
             <div class="mb-3 registration-panel__section">
                 <label for="exampleFormControlInput1" class="form-label">Отчество</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Иванов">
             </div>
             
             <div class="registration-panel__wrap-for-gender">
@@ -669,11 +657,11 @@
             </div>
             <div class="mb-3 registration-panel__section">
                 <label for="exampleFormControlInput1" class="form-label">Номер телефона</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="+ 7 (999) 999-9999 ">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="+ 7 (999) 999-9999 ">
             </div>
             <div class="mb-3 registration-panel__section">
                 <label for="exampleFormControlInput1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="MorTur@gmail.ru">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="MorTur@gmail.ru">
             </div>
             <div class="mb-3 registration-panel__section">
                 <label for="exampleInputPassword1" class="form-label registration-panel__label-for-section">Пароль</label>
@@ -686,8 +674,18 @@
             <button type="submit" class="btn btn-primary registration-panel__button">Отправить</button>
         </form>
     </div>
+    <div class="menu-for-user">
+        <div class="menu-for-user__wrap-for-section">
+            <span class="menu-for-user__section">Личный кабинет</span>
+        </div>
+        <div class="menu-for-user__wrap-for-section">
+            <span class="menu-for-user__section">История заказов</span>
+        </div>
+        <div class="menu-for-user__wrap-for-section">
+            <span class="menu-for-user__section">Выход</span>
+        </div>
+    </div>
     <script src="/script.js"></script> 
     <script src="/index.js"></script> 
-    <!-- <script class="data" display="none" data="<%= JSON.stringify(cities) %>"></script> -->
 </body>
 </html>

@@ -34,9 +34,7 @@ buttonsForBook.forEach(button => {
 
 // }))
 let wrapForPanelForBooking = document.getElementsByClassName("wrap-for-panel-for-booking")[0];
-// wrapForPanelForBooking.getElementsByClassName("close-button")[0].addEventListener("click", function(e){
-//     panelForBooking.style.display = "none";
-// })
+
 let buttonsForTickets = Array.from(document.getElementsByClassName("cabin__available-place"));
 buttonsForTickets.forEach(button => button.addEventListener("click", function(e){
     let numberOfTicket = e.currentTarget.getAttribute("ticket_id");
@@ -50,6 +48,50 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
         .then(response => response.json())
         .then(data => {
             wrapForPanelForBooking.style.display = "flex";
+            let stringOfPhotos=``;
+            let selectedPanels = ``;
+            for (let i = 0; i < data.numberOfPhotos; i++) {
+                stringOfPhotos+=`
+                    <div class="carousel-item" data-bs-interval="1000">
+                        <img src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cabins/${data.cabin_id}/gallery/${i+1}.jpg" class="d-block w-100" alt="...">
+                    </div>`;
+            }
+            let pan = "";
+            for (let i = 0; i < data.capacity; i++) {
+                
+                let a = '';
+                for (let j = 0; j < data.prices.length; j++) {
+                    let cat ="";
+                    if(data.prices[j].category=="pensioner")
+                        cat = "Пенсионный"
+                    if(data.prices[j].category=="adult")
+                        cat = "Взрослый"
+                    if(data.prices[j].category=="child")
+                        cat = "Детский"
+                    a += `                 
+                        <label class="list-group-item" >
+                            <input class="form-check-input me-1" type="radio" name="listGroupRadio${i}" price="${data.prices[j].discounted_price == ''?data.prices[j].base_price:data.prices[j].discounted_price}" value="${data.prices[j].category}" ${j==0?"checked":""}>
+                            Тариф ${cat} - ${data.prices[j].discounted_price} (${data.prices[j].base_price})
+                        </label>`
+                    
+                }
+                
+                pan += `<div class="panel-for-booking__wrap-for-rate-of-passenger">
+                        <span class="panel-for-booking__passenger-number">
+                            Пассажир ${i+1}
+                        </span>
+                        <button class="form-for-search__button-for-selecting">
+                            <span class="form-for-button__placeholder-for-button">Куда</span>
+                            <div class="form-for-button__arrow-for-button"></div>
+                        </button>
+                        <div class="form-for-button__the-selection-panel">
+                            <div class="list-group">
+                                ${a}
+                            </div>
+                        </div>
+                    </div>`
+                
+            }
             wrapForPanelForBooking.innerHTML=`
         <div class="panel-for-booking">
             <div class="panel-for-booking__upper-part">
@@ -63,15 +105,10 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
                             aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="20000">
-                            <img src="/cabin.jpeg" class="d-block w-100" alt="...">
+                        <div class="carousel-item active" data-bs-interval="1000">
+                            <img src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cabins/${data.cabin_id}/main.jpg" class="d-block w-100" alt="...">
                         </div>
-                        <div class="carousel-item" data-bs-interval="20000">
-                            <img src="/cabin2.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="20000">
-                            <img src="/cabin3.jpg" class="d-block w-100" alt="...">
-                        </div>
+                        ${stringOfPhotos}
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
@@ -97,8 +134,8 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
                         ${data.cabin_description}
                     </div>
                 </div>
-                <div class="panel-for-booking__close-button">
-                    <svg class="close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg">
+                <div class="panel-for-booking__wrap-for-close-button">
+                    <svg class="panel-for-booking__close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="m16.042969 311.097656c-4.09375 0-8.191407-1.554687-11.304688-4.691406-6.25-6.25-6.25-16.386719 0-22.636719l279.058594-279.058593c6.253906-6.253907 16.386719-6.253907 22.636719 0 6.25 6.25 6.25 16.382812 0 22.632812l-279.0625 279.0625c-3.136719 3.136719-7.230469 4.691406-11.328125 4.691406zm0 0" />
                         <path
@@ -114,116 +151,62 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
                     </div>
                 </div>
                 <div class="panel-for-booking__wrap-for-rate-selection">
-                    <div class="panel-for-booking__wrap-for-rate-of-passenger">
-                        <span class="panel-for-booking__passenger-number">
-                            Пассажир 1
-                        </span>
-                        <button class="form-for-search__button-for-selecting">
-                            <span class="form-for-button__placeholder-for-button">Куда</span>
-                            <div class="form-for-button__arrow-for-button"></div>
-                        </button>
-                        <div class="form-for-button__the-selection-panel">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
-                                    <label class="form-check-label stretched-link" for="1">Все</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
-                                    <label class="form-check-label stretched-link" for="2">Казань</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Набережные челны"
-                                        id="3">
-                                    <label class="form-check-label stretched-link" for="3">Набережные челны</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="4" id="4">
-                                    <label class="form-check-label stretched-link" for="4">Другой город</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="5" id="5">
-                                    <label class="form-check-label stretched-link" for="5">Другой город</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="6" id="6">
-                                    <label class="form-check-label stretched-link" for="6">Другой город</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="panel-for-booking__wrap-for-rate-of-passenger">
-                        <span class="panel-for-booking__passenger-number">
-                            Пассажир 1
-                        </span>
-                        <button class="form-for-search__button-for-selecting">
-                            <span class="form-for-button__placeholder-for-button">Куда</span>
-                            <div class="form-for-button__arrow-for-button"></div>
-                        </button>
-                        <div class="form-for-button__the-selection-panel">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Все" id="1">
-                                    <label class="form-check-label stretched-link" for="1">Все</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
-                                    <label class="form-check-label stretched-link" for="2">Казань</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
-                                    <label class="form-check-label stretched-link" for="3">Набережные челны</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="panel-for-booking__wrap-for-rate-of-passenger">
-                        <span class="panel-for-booking__passenger-number">
-                            Пассажир 1
-                        </span>
-                        <button class="form-for-search__button-for-selecting">
-                            <span class="form-for-button__placeholder-for-button">Куда</span>
-                            <div class="form-for-button__arrow-for-button"></div>
-                        </button>
-                        <div class="form-for-button__the-selection-panel">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="${data.prices[0].name}" id="1">
-                                    <label class="form-check-label stretched-link" for="1">Все</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Казань" id="2">
-                                    <label class="form-check-label stretched-link" for="2">Казань</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Набережные челны" id="3">
-                                    <label class="form-check-label stretched-link" for="3">Набережные челны</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="4" id="4">
-                                    <label class="form-check-label stretched-link" for="4">Другой город</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="5" id="5">
-                                    <label class="form-check-label stretched-link" for="5">Другой город</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="6" id="6">
-                                    <label class="form-check-label stretched-link" for="6">Другой город</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    ${pan}
                 </div>
                 <div class="panel-for-booking__wrap-for-button-and-total">
-                    <div class="panel-for-booking__total">Итого: 260000Р</div>
+                    <div class="panel-for-booking__total">Итого: 0</div>
                     <button class="panel-for-booking__button">
                         Добавить в карзину
                     </button>
                 </div>
             </div>
-
         </div>`
+        let closeButton = wrapForPanelForBooking.getElementsByClassName("panel-for-booking__close-button")[0];
+        closeButton.addEventListener("click", function(e){
+            wrapForPanelForBooking.style.display = "none";
+        })
+
+    
+
+
+        let buttonsForSelection = wrapForPanelForBooking.getElementsByClassName("form-for-search__button-for-selecting");
+        buttonsForSelection = Array.from(buttonsForSelection);
+        let openPanel;
+        buttonsForSelection.forEach((a)=>{
+            a.value = "adult"
+            a.getElementsByClassName("form-for-button__placeholder-for-button")[0].textContent = a.nextElementSibling.querySelectorAll(".list-group-item:has(input[type='radio'][checked])")[0].textContent;
+            a.addEventListener("click",(e)=>{
+            e.preventDefault();
+            if(openPanel!=undefined && openPanel != e.currentTarget.nextElementSibling){
+                openPanel.style.display="";
+            }
+            openPanel = e.currentTarget.nextElementSibling;
+            if(openPanel.style.display == ""){
+                openPanel.style.display = "flex";
+            }
+            else
+                openPanel.style.display = "";
+        
+        })
+        let radios = a.parentElement.querySelectorAll(".form-check-input[type=radio]");
+        radios.forEach((b, index)=>{b.addEventListener("change",(e)=>{
+            let radioButton = e.currentTarget;
+            let button = radioButton.closest(".panel-for-booking__wrap-for-rate-of-passenger").getElementsByClassName("form-for-search__button-for-selecting")[0];
+            button.value = radioButton.value;
+            button.price = radioButton.getAttribute("price");
+            let label = button.getElementsByClassName("form-for-button__placeholder-for-button")[0];
+            label.textContent = radioButton.parentElement.textContent;
+            let total = wrapForPanelForBooking.getElementsByClassName("panel-for-booking__total")[0];
+            let sum = 0;
+            buttonsForSelection.forEach(c => sum += Number(c.price));
+            total.textContent = `Итого: ${sum}`;
+        })
+        if (index == 0){
+            b.checked = true;
+            b.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        })
+        });
         })   
         .catch(error => console.error("Ошибка:", error));
 }))

@@ -57,6 +57,7 @@ body {
     position: sticky;
     top:0px;
     z-index: 100;
+    display: none;
 }
 
 .header__upper-head {
@@ -473,7 +474,7 @@ body {
     height:220px;
     width: 330px;
     border-radius: 5px;
-    
+    cursor: pointer;
 }
 
 .cruise-card__wrap-for-information{
@@ -490,6 +491,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     font-size: 26px;
+    cursor: pointer;
 }
 
 .cruise-card__wrap-for-date-and-name-of-liner{
@@ -947,10 +949,9 @@ body {
 .cabin-prices__wrap-for-cabins{
     display: flex;
     flex-direction: column;
-    column-gap: 20px;
+    gap: 20px;
     width: 100%;
     justify-content: space-between;
-
 }
 
 .cabin{
@@ -1062,9 +1063,9 @@ body {
 .cabin__wrap-for-available-places{
     display:grid;
     grid-template-columns: repeat(8, 1fr);
-    /* display:flex; */
     gap: 15px;
     width: 80%;
+    justify-items: center;
 }
 
 .cabin__available-place{
@@ -1103,13 +1104,13 @@ body {
     font-weight: bold;
 }
 
-.close-button{
+.cabin__close-button{
     width: 20px;
     height: 20px;
     justify-self: flex-end;
 }
 
-.close-button:hover{
+.cabin__close-button:hover{
     fill: #74c1fc;
 }
 
@@ -1151,6 +1152,10 @@ body {
     width: 50%;
 }
 
+.panel-for-booking__wrap-for-close-button{
+    width: 20px;
+}
+
 .panel-for-booking__upper-part{
     display: flex;
 }
@@ -1178,18 +1183,17 @@ body {
 }
 
 .basket{
-    /* display: flex; */
-    display: none;
+    display: flex;
     flex-direction: column;
     width: 500px;
     background-color: #DBCE81;
     position: fixed;
     top:0px;
-    /* right: 0px; */
     bottom: 0px;
     justify-content: space-between;
     border-radius: 20px;
     padding: 15px;
+    gap:20px
 }
 
 .basket__header{
@@ -1202,12 +1206,26 @@ body {
 
 }
 
+.basket__direction-of-cruise{
+    padding-left: 20px;
+}
+
 .basket__wrap-for-close-button{
     align-self: flex-start;
     height: fit-content;
     position:relative;
     right:4px;
+    width: 20px;
 }
+
+/* .basket__wrap-for-close-button{
+    color:#0094DA;
+} */
+
+.basket__close-button:hover{
+    color:#0094DA;
+}
+
 
 .basket__body{
     display: flex;
@@ -1221,11 +1239,15 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    gap:15px;
+}
 
+.basket__wrap-for-cabins{
+    padding:10px;
 }
 
 .basket__cruise-name{
-    
+    font-size: 25px;
 }
 
 .basket__wrap-for-date-and-time{
@@ -1251,7 +1273,12 @@ body {
 
 
 .basket__cabin{
-
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    border: solid #000 1px;
+    padding: 20px;
+    gap: 20px;
 }
 
 .basket__wrap-for-cabin-name{
@@ -1259,13 +1286,41 @@ body {
     flex-direction: column;
 }
 
+.basket__number-of-cabin-and-cabin-name{
+    font-size: 20px;
+}
+
+.basket__desk-name{
+    color:#777777
+}
+
+.basket__wrap-for-tourists{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* align-items: center; */
+}
+
 .basket__wrap-for-tourist{
     display:flex;
     justify-content: space-between;
 }
 
+.basket__tourist-number{
+    width: 16%;
+}
+
+.basket__ticket-price{
+    width: 21%;
+    text-align: right;
+}
+
+.basket__name-of-tariff{
+    max-width: 60%;
+}
+
 .basket__wrap-for-total-for-cabin{
-    display:flex;
+    display:none;
     justify-content: space-between;
 }
 
@@ -1278,6 +1333,12 @@ body {
     display:flex;
     gap: 20px;
     justify-self: end;
+}
+
+.basket__checkout{
+    width: 100%;
+    height: 40px;
+    border-radius: 15px;
 }
 
 
@@ -1473,6 +1534,23 @@ body {
 
 .registration-panel__button{
     grid-area: G;
+}
+
+.menu-for-user{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: #74c1fc;
+    border-radius: 10px;
+    display: none;
+}
+
+.menu-for-user__wrap-for-section{
+    padding:15px;
+}
+
+.menu-for-user__wrap-for-section:hover{
+    color: red
 }
 
 /* .sliders {
