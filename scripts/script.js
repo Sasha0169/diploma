@@ -108,12 +108,19 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
         },
       body: JSON.stringify({email: email, password: password})
   })
-  .then(response => response.json()) // Парсим JSON
+  .then(response => {
+    if (!response.ok) {
+    // Пробрасываем ошибку, чтобы попасть в .catch
+    return response.json().then(err => {
+      throw new Error(err.error || "Ошибка авторизации");
+    });
+  }
+  return response.json();
+    }) // Парсим JSON
   .then(data => {
-      console.log(data);
-      getUserName();
+    getUserName();
 })   
-.catch(error => console.error("Ошибка:", error));
+.catch(error => alert("Неправильный логин или пароль"));
   })
 
   async function getUserName(){

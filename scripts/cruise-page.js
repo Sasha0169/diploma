@@ -49,7 +49,6 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
         .then(data => {
             wrapForPanelForBooking.style.display = "flex";
             let stringOfPhotos=``;
-            let selectedPanels = ``;
             for (let i = 0; i < data.numberOfPhotos; i++) {
                 stringOfPhotos+=`
                     <div class="carousel-item" data-bs-interval="1000">
@@ -58,7 +57,6 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
             }
             let pan = "";
             for (let i = 0; i < data.capacity; i++) {
-                
                 let a = '';
                 for (let j = 0; j < data.prices.length; j++) {
                     let cat ="";
@@ -161,6 +159,10 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
                 </div>
             </div>
         </div>`
+        let addToCartButton = wrapForPanelForBooking.getElementsByClassName("panel-for-booking__button")[0];
+        addToCartButton.value = data.ticket_id;
+        addToCartButton.addEventListener("click", addTicketCart)
+
         let closeButton = wrapForPanelForBooking.getElementsByClassName("panel-for-booking__close-button")[0];
         closeButton.addEventListener("click", function(e){
             wrapForPanelForBooking.style.display = "none";
@@ -210,3 +212,56 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
         })   
         .catch(error => console.error("Ошибка:", error));
 }))
+const cart = document.getElementsByClassName("cart")[0];
+const closeCartButton = document.getElementsByClassName("cart__close-button")[0];
+closeCartButton.addEventListener("click", function(e){
+    cart.style.display = "none";
+})
+const deleteCabinButtons = Array.from(cart.getElementsByClassName("cart__delete-button"));
+deleteCabinButtons.forEach(button => button.addEventListener("click", function(e){
+    const cabin = e.currentTarget.closest('.cart__cabin').remove();
+    checkCabinsExist();
+}))
+
+function checkCabinsExist(){
+    const arrayCabins = cart.getElementsByClassName("cart__cabin");
+    if(arrayCabins.length==0){
+        const body = cart.getElementsByClassName("cart__body")[0];
+        const buttonForBook = cart.getElementsByClassName("cart__checkout")[0];
+        body.innerHTML = `<span class="cart__empty-cart-message">
+            Ваша корзина пуста
+        </span>`;
+        body.style.justifyContent="center";        
+        buttonForBook.style.display = "none";
+    }
+}
+
+function addTicketCart(e){
+    e.preventDefault;
+    const ticketId = wrapForPanelForBooking.getElementsByClassName("panel-for-booking__button")[0].value;
+    const values = [];
+    const selectedButtons = Array.from(wrapForPanelForBooking.getElementsByClassName("form-for-search__button-for-selecting"));
+    selectedButtons.forEach((button, index)=>{
+        values[index] = button.value;
+    })
+    console.log(values, ticketId)
+    fetch("http://localhost:3000/addTicketCart", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json" 
+          },
+        body: JSON.stringify({ticketId: ticketId, values: values})
+    })
+    .then(response => {
+        if (!response.ok) {
+        // Пробрасываем ошибку, чтобы попасть в .catch
+        return response.json().then(err => {
+          throw new Error(err.error || "Ошибка авторизации");
+        });
+      }
+      return response.json();
+        })
+    .then(data => {
+            
+    }).catch((error)=>alert("Войдите в аккаунт"))
+}

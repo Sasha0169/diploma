@@ -109,14 +109,25 @@ app.post("/login", (req, res) => {
       maxAge: 1000*60*60*24
     });
     res.json({authenticated: true})
-  }).catch((err)=>res.json({authenticated: false}));
+  }).catch((err)=>res.status(401).json({ error: "Not authenticated" }));
 });
 
 app.post("/getUserName", authMiddleware, (req, res) => {
   const token = req.cookies.token;
-  console.log(token);
   getUserName(token).then(result=>res.json(result));
 });
+
+app.post("/addTicketCart", authMiddleware, (req, res) => {
+  console.log(req.body)
+  const token = req.cookies.token;
+  const userId = getUserIdByToken(token);
+  const data = {userId: userId, ticketId: req.body.ticketId, values: req.body.values};
+  addTicketCart(data);
+});
+
+function getUserIdByToken(token){
+  return jwt.verify(token, SECRET).user_id;
+}
 
 function authMiddleware(req, res, next) {
   const token = req.cookies.token;
@@ -186,6 +197,7 @@ pool
   .connect()
   .then(() => {
     console.log("✅ Успешное подключение к PostgreSQL");
+    addTicketCart({ticketId: 45, values:["child", "adult"], userId: 3});
     // getCruises("Красноярск", ["По Енисею", "По Волге"], {startDate:"21.03.2025", endDate:"30.03.2025"}, ["1 - 4", "8 - 10"], ["Максим Горький", "Бирюса (СВП)"], "Речной").then(result => console.log(result));
     // getCruise(3).then(result => console.log(result));
     // authenticationByEmail("scfe@mail.ru", "01gd4545df").then(result=> console.log(result));
@@ -396,6 +408,7 @@ async function getInfoAboutPlace(ticketId){
     result2.rows[0].prices = result1.rows[0].prices;
     result2.rows[0].place = result1.rows[0].place;
     result2.rows[0].cabin_id = result1.rows[0].cabin_id;
+    result2.rows[0].ticket_id = ticketId;
     const response = await fetch(`https://api.github.com/repos/Sasha0169/diploma/contents/images/photos/cabins/${result1.rows[0].cabin_id}/gallery`, {
       headers: {
         'Authorization': TOKEN
@@ -750,4 +763,73 @@ async function getCruises(params = {}) {
 function convertDateFormat(dateStr) {
   const [day, month, year] = dateStr.split(".");
   return `${year}-${month}-${day}`;
+}
+
+async function addTicketCart(data){
+  const query1 = `
+  SELECT cart
+	FROM public.users
+	WHERE user_id='${data.userId}'`;
+  const result1 = await pool.query(query1);
+  const query2 = `
+  SELECT cruise_id
+	FROM public.tickets
+	WHERE ticket_id='${data.ticketId}'`;
+  const result2 = await pool.query(query2);
+  console.log(result1.rows[0].cart);
+  console.log(result2.rows[0].cruise_id);
+  console.log(result1.rows[0].cart?.cruise_id);
+  if(result1.rows[0].cart == null || result1.rows[0].cart.cruise_id != result2.rows[0].cruise_id)
+  {
+    console.log("Вариант 1")
+    let text = "";
+    data.values.forEach((value, index)=>{
+      text += `"${value}"${index==data.values.length-1?"":","}`
+    })
+    console.log(text);
+    const query3 = `
+    UPDATE users
+    SET cart = '{
+      "cruise_id": ${result2.rows[0].cruise_id},
+      "tickets": [
+        {
+          "ticket_id": ${data.ticketId},
+          "selected_tariffs": [${text}]
+        }
+      ]
+    }'::jsonb
+    WHERE user_id = '${data.userId}';`;
+  const result3 = await pool.query(query3);
+    return;
+  }
+  console.log("Вариант 2");
+  let map = new Map();
+  result1.rows[0].cart.tickets.forEach((ticket)=> map.set(ticket.ticket_id, ticket.selected_tariffs))
+  console.log(map);
+  map.set(data.ticketId, data.values)
+  console.log(map);
+  let text = "";
+  let array = Array.from(map);
+  array.forEach((value, index) => {
+    let text1 = "";
+    value[1].forEach((value, index)=>{
+      text1 += `"${value}"${index==data.values.length-1?"":","}`
+    })
+    text += `
+      {
+        "ticket_id": ${value[0]},
+        "selected_tariffs": [${text1}]
+      }${index==array.length-1?"":","}`
+  })
+  const query3 = `
+    UPDATE users
+    SET cart = '{
+      "cruise_id": ${result2.rows[0].cruise_id},
+      "tickets": [
+        ${text}
+      ]
+    }'::jsonb
+    WHERE user_id = '${data.userId}';`;
+    console.log(query3);
+  const result3 = await pool.query(query3);
 }

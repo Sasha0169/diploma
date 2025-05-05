@@ -12,4 +12,4 @@ SET cart = '{
     }
   ]
 }'::jsonb
-WHERE user_id = 1;
+WHERE user_id = 2;

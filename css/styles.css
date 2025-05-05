@@ -57,7 +57,7 @@ body {
     position: sticky;
     top:0px;
     z-index: 100;
-    display: none;
+    /* display: flex; */
 }
 
 .header__upper-head {
@@ -1182,35 +1182,37 @@ body {
     justify-content: space-between;
 }
 
-.basket{
+.cart{
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 400px;
     background-color: #DBCE81;
     position: fixed;
     top:0px;
+    right: 0px;
     bottom: 0px;
+    z-index: 100;
     justify-content: space-between;
     border-radius: 20px;
     padding: 15px;
     gap:20px
 }
 
-.basket__header{
+.cart__header{
     display:flex;
     justify-content: space-between;
 }
 
-.basket__title{
+.cart__title{
     font-size: 23px;
 
 }
 
-.basket__direction-of-cruise{
+.cart__direction-of-cruise{
     padding-left: 20px;
 }
 
-.basket__wrap-for-close-button{
+.cart__wrap-for-close-button{
     align-self: flex-start;
     height: fit-content;
     position:relative;
@@ -1218,16 +1220,16 @@ body {
     width: 20px;
 }
 
-/* .basket__wrap-for-close-button{
+/* .cart__wrap-for-close-button{
     color:#0094DA;
 } */
 
-.basket__close-button:hover{
+.cart__close-button:hover{
     color:#0094DA;
 }
 
 
-.basket__body{
+.cart__body{
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -1235,44 +1237,44 @@ body {
     height: 100%;
 }
 
-.basket__information-about-cruise{
+.cart__information-about-cruise{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     gap:15px;
 }
 
-.basket__wrap-for-cabins{
+.cart__wrap-for-cabins{
     padding:10px;
 }
 
-.basket__cruise-name{
+.cart__cruise-name{
     font-size: 25px;
 }
 
-.basket__wrap-for-date-and-time{
+.cart__wrap-for-date-and-time{
     display: flex;
-    width: 400px;
+    width: 300px;
     justify-content: space-between;
     align-self: center;
 }
 
-.basket__first-date-and-time, .basket__second-date-and-time{
+.cart__first-date-and-time, .cart__second-date-and-time{
     display: flex;
     flex-direction: column;
     width: 30%;
 }
 
-.basket__date{
+.cart__date{
     font-size: 16px;
 }
 
-.basket__day-of-week-and-time{
+.cart__day-of-week-and-time{
     font-size: 14px;
 }
 
 
-.basket__cabin{
+.cart__cabin{
     display: flex;
     flex-direction: column;
     border-radius: 15px;
@@ -1281,64 +1283,70 @@ body {
     gap: 20px;
 }
 
-.basket__wrap-for-cabin-name{
+.cart__wrap-for-cabin-name{
     display:flex;
     flex-direction: column;
 }
 
-.basket__number-of-cabin-and-cabin-name{
+.cart__number-of-cabin-and-cabin-name{
     font-size: 20px;
 }
 
-.basket__desk-name{
+.cart__desk-name{
     color:#777777
 }
 
-.basket__wrap-for-tourists{
+.cart__wrap-for-tourists{
     display: flex;
     flex-direction: column;
     gap: 15px;
     /* align-items: center; */
 }
 
-.basket__wrap-for-tourist{
+.cart__wrap-for-tourist{
     display:flex;
     justify-content: space-between;
 }
 
-.basket__tourist-number{
+.cart__tourist-number{
     width: 16%;
 }
 
-.basket__ticket-price{
+.cart__ticket-price{
     width: 21%;
     text-align: right;
 }
 
-.basket__name-of-tariff{
+.cart__name-of-tariff{
     max-width: 60%;
 }
 
-.basket__wrap-for-total-for-cabin{
+.cart__wrap-for-total-for-cabin{
     display:none;
     justify-content: space-between;
 }
 
-.basket__delete-button{
+.cart__delete-button{
     width: 20px;
     height: 20px;
 }
 
-.basket__wrap-for-buttons{
+.cart__wrap-for-buttons{
     display:flex;
     gap: 20px;
     justify-self: end;
 }
 
-.basket__checkout{
+.cart__checkout{
     width: 100%;
     height: 40px;
     border-radius: 15px;
+}
+
+.cart__empty-cart-message{
+    align-self: center;
+    justify-self: center;
+    font-size: 23px;
 }
 
 
@@ -2699,7 +2707,7 @@ body {
     top: 110px;
     background-color: #fff;
     display: none;
-    z-index: 1000;
+    z-index: 50;
     left: 0px;
 }
 
