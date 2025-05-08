@@ -58,7 +58,7 @@ app.get("/getData", (req, res) => {
   });
 });
 
-app.post("/getCruises", (req, res) => {
+app.post("/cruises", (req, res) => {
   getCruises(req.body).then((result) => res.json(result));
 });
 
@@ -123,7 +123,24 @@ app.post("/addTicketCart", authMiddleware, (req, res) => {
   const userId = getUserIdByToken(token);
   const data = {userId: userId, ticketId: req.body.ticketId, values: req.body.values};
   addTicketCart(data);
+  res.json({});
 });
+
+app.get("/cart", authMiddleware, (req, res) => {
+  console.log(req.body)
+  const token = req.cookies.token;
+  const userId = getUserIdByToken(token);
+  getCart(userId).then((result)=>res.json(result))
+});
+
+app.delete("/cart/:ticketId", authMiddleware, (req, res) => {
+  console.log(req.body)
+  const ticketId = req.params.ticketId;
+  const token = req.cookies.token;
+  const userId = getUserIdByToken(token);
+  deleteTicketFromCart(userId, ticketId)
+});
+
 
 function getUserIdByToken(token){
   return jwt.verify(token, SECRET).user_id;
@@ -197,7 +214,7 @@ pool
   .connect()
   .then(() => {
     console.log("✅ Успешное подключение к PostgreSQL");
-    addTicketCart({ticketId: 45, values:["child", "adult"], userId: 3});
+    // addTicketCart({ticketId: 45, values:["child", "adult"], userId: 3});
     // getCruises("Красноярск", ["По Енисею", "По Волге"], {startDate:"21.03.2025", endDate:"30.03.2025"}, ["1 - 4", "8 - 10"], ["Максим Горький", "Бирюса (СВП)"], "Речной").then(result => console.log(result));
     // getCruise(3).then(result => console.log(result));
     // authenticationByEmail("scfe@mail.ru", "01gd4545df").then(result=> console.log(result));
@@ -804,16 +821,16 @@ async function addTicketCart(data){
   }
   console.log("Вариант 2");
   let map = new Map();
-  result1.rows[0].cart.tickets.forEach((ticket)=> map.set(ticket.ticket_id, ticket.selected_tariffs))
+  result1.rows[0].cart.tickets.forEach((ticket)=> map.set(Number(ticket.ticket_id), ticket.selected_tariffs))
   console.log(map);
-  map.set(data.ticketId, data.values)
+  map.set(Number(data.ticketId), data.values)
   console.log(map);
   let text = "";
   let array = Array.from(map);
   array.forEach((value, index) => {
     let text1 = "";
-    value[1].forEach((value, index)=>{
-      text1 += `"${value}"${index==data.values.length-1?"":","}`
+    value[1].forEach((value2, index)=>{
+      text1 += `"${value2}"${index==value[1].length-1?"":","}`
     })
     text += `
       {
@@ -832,4 +849,186 @@ async function addTicketCart(data){
     WHERE user_id = '${data.userId}';`;
     console.log(query3);
   const result3 = await pool.query(query3);
+}
+
+function isEmptyObject(obj) {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
+
+async function getCart(userId){
+  let result={};
+  const query1 = `
+  SELECT cart
+	FROM public.users
+	WHERE user_id='${userId}'`;
+  const result1 = await pool.query(query1);
+  console.log(result1.rows[0])
+  if(isEmptyObject(result1.rows[0].cart))
+    return{};
+  console.log(result1.rows[0])
+  const result2 = await getInfoAboutCruiseForCart(result1.rows[0].cart.cruise_id)
+  console.log(result2)
+  let tickets = [];
+  const cart = result1.rows[0].cart;
+  for (const ticket of cart.tickets) {
+    const infoAboutTicket = await getInfoAboutTicketForCart(ticket.ticket_id, ticket.selected_tariffs);
+    tickets.push(infoAboutTicket);
+  }
+
+  result = {tickets, 
+            cruiseName: result2.cruise_name,
+            routePoints: result2.route_points,
+            startDate: formatDateInfo(result2.start_date),
+            endDate: formatDateInfo(result2.end_date),
+            durationDays: result2.duration_days.days,
+            cruiseId: cart.cruise_id
+          }
+  console.log(result.tickets)
+  return result;
+}
+
+async function getInfoAboutCruiseForCart(cruiseId) {
+  const query1 = `
+  SELECT cruise_name, route_points, start_date, end_date, (end_date - start_date) AS duration_days
+	FROM public.cruises
+	WHERE cruise_id='${cruiseId}'`;
+  const result1 = await pool.query(query1);
+  return result1.rows[0];
+}
+
+// async function getTariffPrice(ticketId, tariffs){
+//   const query1 = `
+//   SELECT prices, cabin_id
+// 	FROM public.tickets
+// 	WHERE ticket_id='${ticketId}'`;
+//   const result1 = await pool.query(query1);
+//   const prices= new Map();
+//   result1.rows[0].prices.forEach((price)=>{
+//     let realPrice
+//     if(price.discounted_price!=undefined)
+//       realPrice = price.discounted_price;
+//     else
+//       realPrice = price.base_price;
+//     prices.set(price.category, realPrice)
+//   })
+//   console.log(prices)
+//   let result = [];
+//   tariffs.forEach((tariff)=>{
+//     result.push([tariff, prices.get(tariff)])
+//   })
+//   console.log(result)
+//   return result;
+// }
+
+// async function getCabinName(cabinId){
+//   const query1 = `
+//   SELECT 
+// 	FROM public.tickets
+// 	WHERE ticket_id='${ticketId}'`;
+//   const result1 = await pool.query(query1);
+// }
+
+async function getInfoAboutTicketForCart(ticketId, arrayOfTariffs){
+  const query1 = `
+  SELECT prices, cabin_id, place
+	FROM public.tickets
+	WHERE ticket_id='${ticketId}'`;
+  const result1 = await pool.query(query1);
+  const prices= new Map();
+  result1.rows[0].prices.forEach((price)=>{
+    let realPrice
+    if(price.discounted_price!=undefined)
+      realPrice = price.discounted_price;
+    else
+      realPrice = price.base_price;
+    prices.set(price.category, realPrice)
+  })
+  console.log(prices)
+  let selectedTariffsWithPrice = [];
+  arrayOfTariffs.forEach((tariff)=>{
+    selectedTariffsWithPrice.push({tariff, price: prices.get(tariff)})
+  })
+  const infoAboutCabin = await getInfoAboutCabinForCart(result1.rows[0].cabin_id);
+  const infoAboutDeck = await getInfoAboutDeckForCart(infoAboutCabin.deckId);
+  delete infoAboutCabin.deckId;
+  const result = {
+    ticketId,
+    place: result1.rows[0].place,
+    selectedTariffsWithPrice,
+    infoAboutCabin,
+    infoAboutDeck
+  }
+  return result
+}
+
+async function getInfoAboutCabinForCart(cabinId){
+  const query1 = `
+  SELECT cabin_name, deck_id
+	FROM public.cabins
+	WHERE cabin_id='${cabinId}'`;
+  const result1 = await pool.query(query1);
+  const result = {
+    cabinName: result1.rows[0].cabin_name,
+    deckId: result1.rows[0].deck_id,
+    cabinId
+  }
+  return result;
+}
+
+async function getInfoAboutDeckForCart(deckId){
+  const query1 = `
+  SELECT deck_name, deck_id
+	FROM public.decks
+	WHERE deck_id='${deckId}'`;
+  const result1 = await pool.query(query1);
+  const result = {
+    deckName: result1.rows[0].deck_name,
+    deckId: result1.rows[0].deck_id,
+  }
+  return result;
+}
+
+async function deleteTicketFromCart(userId, ticketId){
+  const query1 = `
+  SELECT cart
+	FROM public.users
+	WHERE user_id='${userId}'`;
+  const result1 = await pool.query(query1);
+  const cart = result1.rows[0].cart;
+  console.log(cart);
+  let tickets = cart.tickets;
+  console.log(ticketId, tickets[0].ticket_id)
+  tickets = tickets.filter(item => item.ticket_id != ticketId);
+  if(tickets.length == 0)
+  {
+    const query2 = `
+    UPDATE users
+    SET cart = '{}'
+    WHERE user_id = ${userId};`;
+    await pool.query(query2);
+    return;
+  }
+  let textForTickets = "";
+  tickets.forEach((ticket, index)=> {
+    let textForTariffs= "";
+    ticket.selected_tariffs.forEach((tariff, index)=>{
+      textForTariffs += `"${tariff}"${index==ticket.selected_tariffs.length-1?"":","}`
+    })
+    textForTickets += `{
+      "ticket_id": ${ticket.ticket_id},
+      "selected_tariffs": [${textForTariffs}]
+    }${index==tickets.length-1?"":","}`
+  })
+
+  const query3 = `
+  UPDATE users
+  SET cart = '{
+  "cruise_id": ${cart.cruise_id},
+  "tickets": [
+    ${textForTickets}
+  ]
+  }'::jsonb
+  WHERE user_id = ${userId};`;
+  console.log(query3);
+  await pool.query(query3);
 }

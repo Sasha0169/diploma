@@ -125,7 +125,7 @@ buttonForSearch.addEventListener("click", function(e){
         numberOfDay: buttonsForSelection[2].values.length == 0?undefined:buttonsForSelection[2].values,
         ships: buttonsForSelection[3].values.length == 0?undefined:buttonsForSelection[3].values
     }
-    fetch("http://localhost:3000/getCruises", {
+    fetch("http://localhost:3000/cruises", {
         method: "POST",
         headers: {
             "Content-Type": "application/json" 

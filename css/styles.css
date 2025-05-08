@@ -1235,6 +1235,7 @@ body {
     gap: 15px;
     justify-self: flex-start;
     height: 100%;
+    overflow: hidden;
 }
 
 .cart__information-about-cruise{
@@ -1245,7 +1246,12 @@ body {
 }
 
 .cart__wrap-for-cabins{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     padding:10px;
+    overflow-y: scroll;
+    scrollbar-width: none; 
 }
 
 .cart__cruise-name{
@@ -1309,11 +1315,11 @@ body {
 }
 
 .cart__tourist-number{
-    width: 16%;
+    /* width: 16%; */
 }
 
 .cart__ticket-price{
-    width: 21%;
+    /* width: 21%; */
     text-align: right;
 }
 
@@ -1559,6 +1565,12 @@ body {
 
 .menu-for-user__wrap-for-section:hover{
     color: red
+}
+
+.wrap-for-map{
+    border:#000 solid 1px;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 /* .sliders {
