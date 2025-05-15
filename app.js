@@ -874,14 +874,15 @@ async function getCart(userId){
     const infoAboutTicket = await getInfoAboutTicketForCart(ticket.ticket_id, ticket.selected_tariffs);
     tickets.push(infoAboutTicket);
   }
-
+  const total = getTotalForCart(tickets);
   result = {tickets, 
             cruiseName: result2.cruise_name,
             routePoints: result2.route_points,
             startDate: formatDateInfo(result2.start_date),
             endDate: formatDateInfo(result2.end_date),
             durationDays: result2.duration_days.days,
-            cruiseId: cart.cruise_id
+            cruiseId: cart.cruise_id,
+            total
           }
   console.log(result.tickets)
   return result;
@@ -1031,4 +1032,15 @@ async function deleteTicketFromCart(userId, ticketId){
   WHERE user_id = ${userId};`;
   console.log(query3);
   await pool.query(query3);
+}
+
+function getTotalForCart(tickets){
+  let sum = 0;
+  for(let i =0;i<tickets.length;i++){
+    for(let j = 0; j<tickets[i].selectedTariffsWithPrice.length; j++){
+      sum += Number(tickets[i].selectedTariffsWithPrice[j].price);
+    }
+  }
+  console.log("sum ",sum);
+  return sum;
 }

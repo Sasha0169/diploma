@@ -32,7 +32,12 @@
                         8 800 755 - 75-25
                     </a>
                     <a class="information-and-entrance__entrance entrance" href="">
-                        <img class="entrance__sign" src="/entrance.png" alt="e">
+                        <!-- <img class="entrance__sign" src="/entrance.png" alt="e"> -->
+                        <svg class="entrance__icon" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 16C8 18.8284 8 20.2426 8.87868 21.1213C9.51998 21.7626 10.4466 21.9359 12 21.9827M8 8C8 5.17157 8 3.75736 8.87868 2.87868C9.75736 2 11.1716 2 14 2H15C17.8284 2 19.2426 2 20.1213 2.87868C21 3.75736 21 5.17157 21 8V10V14V16C21 18.8284 21 20.2426 20.1213 21.1213C19.3529 21.8897 18.175 21.9862 16 21.9983" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M3 9.5V14.5C3 16.857 3 18.0355 3.73223 18.7678C4.46447 19.5 5.64298 19.5 8 19.5M3.73223 5.23223C4.46447 4.5 5.64298 4.5 8 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M6 12L15 12M15 12L12.5 14.5M15 12L12.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         <p class="entrance__text">
                             Войти
                         </p>
@@ -67,7 +72,18 @@
                     </div>
                 </div>
                 <div class="lower-head__wrap-for-right-element">
-                    Мои заказы
+                    <!-- <img class="lower-head__cart-icon" src="/cart-icon2.png" alt="icon" > -->
+                    <svg class="lower-head__cart-icon" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.5 9.5L18.7896 6.89465C18.5157 5.89005 18.3787 5.38775 18.0978 5.00946C17.818 4.63273 17.4378 4.34234 17.0008 4.17152C16.5619 4 16.0413 4 15 4M4.5 9.5L5.2104 6.89465C5.48432 5.89005 5.62128 5.38775 5.90221 5.00946C6.18199 4.63273 6.56216 4.34234 6.99922 4.17152C7.43808 4 7.95872 4 9 4" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4C15 4.55228 14.5523 5 14 5H10C9.44772 5 9 4.55228 9 4Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 13V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 13V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 13V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.864 16.4552C4.40967 18.6379 4.68251 19.7292 5.49629 20.3646C6.31008 21 7.435 21 9.68486 21H14.3155C16.5654 21 17.6903 21 18.5041 20.3646C19.3179 19.7292 19.5907 18.6379 20.1364 16.4552C20.9943 13.0234 21.4233 11.3075 20.5225 10.1538C19.6217 9 17.853 9 14.3155 9H9.68486C6.14745 9 4.37875 9 3.47791 10.1538C2.94912 10.831 2.87855 11.702 3.08398 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="lower-head__cart-label">
+                        Корзина
+                    </span>
                 </div>
             </div>
         </div>
@@ -368,7 +384,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <% } %>
+                            <% } %>
+                        </div>
+                        <div class="cruise-page-section__wrap-for-cruise-map">
+                            <span class="cruise-page-section__header-for-cruise-map">Карта круиза</span>
+                            <div class="cruise-page-section__cruise-map">
+                                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1ad551c77053aebe2f7b405973ac3ed8f6f9934eb29ff0b98dec41604d0528b1&amp;width=600&amp;height=600&amp;lang=ru_RU&amp;scroll=true"></script>
+                            </div>
                         </div>
                     </div>
                     <div id="section3" class="cruise-page__section cruise-page-section">

@@ -587,25 +587,37 @@
             </div>
         </div>
     </div>
-    <div class="entrance-panel">
-        <span class="entrance-panel__header">
-            Вход
-        </span>
-        <form class="entrance-panel__form">
-            <div class="mb-3 entrance-panel__section">
-                <label for="exampleInputEmail1" class="form-label entrance-panel__label-for-section">Адрес электронной почты</label>
-                <input type="email" class="form-control entrance-panel__input-for-section" id="exampleInputEmail1" aria-describedby="emailHelp" value="scfe@mail.ru">
+    <div class="wrap-for-entrance-panel">
+        <div class="entrance-panel">
+            <div class="entrance-panel__header">
+                <span class="entrance-panel__title">
+                    Вход
+                </span>
+                <div class="entrance-panel__wrap-for-close-button">
+                    <svg class="entrance-panel__close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m16.042969 311.097656c-4.09375 0-8.191407-1.554687-11.304688-4.691406-6.25-6.25-6.25-16.386719 0-22.636719l279.058594-279.058593c6.253906-6.253907 16.386719-6.253907 22.636719 0 6.25 6.25 6.25 16.382812 0 22.632812l-279.0625 279.0625c-3.136719 3.136719-7.230469 4.691406-11.328125 4.691406zm0 0" />
+                        <path
+                            d="m295.125 311.097656c-4.09375 0-8.191406-1.554687-11.304688-4.691406l-279.082031-279.082031c-6.25-6.253907-6.25-16.386719 0-22.636719s16.382813-6.25 22.632813 0l279.0625 279.082031c6.25 6.25 6.25 16.386719 0 22.636719-3.136719 3.136719-7.230469 4.691406-11.308594 4.691406zm0 0" />
+                    </svg>
+                </div>
             </div>
-            <div class="mb-3 entrance-panel__section">
-                <label for="exampleInputPassword1" class="form-label entrance-panel__label-for-section">Пароль</label>
-                <input type="password" class="form-control entrance-panel__input-for-section" id="exampleInputPassword1" value="01gd4545df">
-            </div>
-            <div class="mb-3 form-check entrance-panel__section-for-checkbox">
-                <input type="checkbox" class="form-check-input entrance-panel__checkbox" id="exampleCheck1">
-                <label class="form-check-label entrance-panel__label-for-section" for="exampleCheck1">Запомнить меня</label>
-            </div>
-            <button type="submit" class="btn btn-primary entrance-panel__button">Отправить</button>
-        </form>
+            <form class="entrance-panel__form">
+                <div class="mb-3 entrance-panel__section">
+                    <label for="exampleInputEmail1" class="form-label entrance-panel__label-for-section">Адрес электронной почты</label>
+                    <input type="email" class="form-control entrance-panel__input-for-section" id="exampleInputEmail1" aria-describedby="emailHelp" value="scfe@mail.ru">
+                </div>
+                <div class="mb-3 entrance-panel__section">
+                    <label for="exampleInputPassword1" class="form-label entrance-panel__label-for-section">Пароль</label>
+                    <input type="password" class="form-control entrance-panel__input-for-section" id="exampleInputPassword1" value="01gd4545df">
+                </div>
+                <div class="mb-3 form-check entrance-panel__section-for-checkbox">
+                    <input type="checkbox" class="form-check-input entrance-panel__checkbox" id="exampleCheck1">
+                    <label class="form-check-label entrance-panel__label-for-section" for="exampleCheck1">Запомнить меня</label>
+                </div>
+                <button type="submit" class="btn btn-primary entrance-panel__button">Отправить</button>
+            </form>
+        </div>
     </div>
     <div class="registration-panel" style="display: none;">
         <span class="registration-panel__header">

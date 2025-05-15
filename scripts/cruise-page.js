@@ -17,13 +17,14 @@
 let buttonsForBook = Array.from(document.getElementsByClassName("cabin__button"));
 buttonsForBook.forEach(button => {
     let wrap = button.closest(".cabin");
-    
+
     button.lowerPart = wrap.getElementsByClassName("cabin__lower-part")[0];
     button.addEventListener("click", function (e){
+        e.preventDefault();
     let button = e.currentTarget;
     
     let lowerPart = button.lowerPart;
-    if(lowerPart.style.display == "none")
+    if(lowerPart.style.display == "none"||lowerPart.style.display == "")
         lowerPart.style.display = "flex";
     else
         lowerPart.style.display = "none";

@@ -76,7 +76,7 @@ function closeMenuNavigation()
 
 let inputForEmail = document.getElementsByClassName("entrance-panel__input-for-section")[0];
 let inputForPassword = document.getElementsByClassName("entrance-panel__input-for-section")[1];
-let entrancePanel = document.getElementsByClassName("entrance-panel")[0];
+let entrancePanel = document.getElementsByClassName("wrap-for-entrance-panel")[0];
 // let buttonForEntrance = entrancePanel.getElementsByClassName("btn")[0];
 
 // buttonForEntrance.addEventListener("click", function(e){
@@ -119,6 +119,9 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
     }) // Парсим JSON
   .then(data => {
     getUserName();
+    entrancePanel.style.display = "none";
+    buttonForEntrance.removeEventListener("click", buttonForEntranceForUnauthorizedUser)
+    buttonForEntrance.addEventListener("click", buttonForEntranceForAuthorizedUser)
 })   
 .catch(error => alert("Неправильный логин или пароль"));
   })
@@ -136,6 +139,7 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
   .then(data => {
     console.log(data)
     document.getElementsByClassName("entrance__text")[0].textContent=`${data.last_name} ${data.first_name}`;
+    
   })   
   .catch(error => console.error("Ошибка:", error));
   }
@@ -150,9 +154,12 @@ fetch('/checkAuth', {
     if (data.authenticated) {
         getUserName();
         refreshCart();
+        buttonForEntrance.removeEventListener("click", buttonForEntranceForUnauthorizedUser)
+        buttonForEntrance.addEventListener("click", buttonForEntranceForAuthorizedUser)
     } 
     else{
         refreshCartForUnauthorizedUser();
+        
     }
   });
 
@@ -263,38 +270,45 @@ fetch('/checkAuth', {
     
                 </div>`
         })
-        cartBody.innerHTML = `<a class="cart__cruise-name" href="/cruise/${data.cruiseId}">${data.cruiseName}</a>
-            <div class="cart__information-about-cruise">
-                <span class="cart__direction-of-cruise">${stringRoutePoints}</span>
-                <div class="cart__wrap-for-date-and-time">
-                    <div class="cart__first-date-and-time">
-                        <span class="cart__date">
-                            ${data.startDate.day} ${data.startDate.month} ${data.startDate.year}
-                        </span>
-                        <span class="cart__day-of-week-and-time">
-                            ${data.startDate.weekday}, ${data.startDate.time}
-                        </span>
-                    </div>
-                    <div class="cart__wrap-for-number-of-days">
-                        <div class="cart__arrow">
-
+        cartBody.innerHTML = `
+            <div class="cart__wrap-for-information">
+                <a class="cart__cruise-name" href="/cruise/${data.cruiseId}">${data.cruiseName}</a>
+                <div class="cart__information-about-cruise">
+                    <span class="cart__direction-of-cruise">${stringRoutePoints}</span>
+                    <div class="cart__wrap-for-date-and-time">
+                        <div class="cart__first-date-and-time">
+                            <span class="cart__date">
+                                ${data.startDate.day} ${data.startDate.month} ${data.startDate.year}
+                            </span>
+                            <span class="cart__day-of-week-and-time">
+                                ${data.startDate.weekday}, ${data.startDate.time}
+                            </span>
                         </div>
-                        <span class="cart__number-of-days">
-                            ${data.durationDays} дней
-                        </span>
-                    </div>
-                    <div class="cart__second-date-and-time">
-                        <span class="cart__date">
-                            ${data.endDate.day} ${data.endDate.month} ${data.endDate.year}
-                        </span>
-                        <span class="cart__day-of-week-and-time">
-                            ${data.endDate.weekday}, ${data.endDate.time}
-                        </span>
+                        <div class="cart__wrap-for-number-of-days">
+                            <div class="cart__arrow">
+
+                            </div>
+                            <span class="cart__number-of-days">
+                                ${data.durationDays} дней
+                            </span>
+                        </div>
+                        <div class="cart__second-date-and-time">
+                            <span class="cart__date">
+                                ${data.endDate.day} ${data.endDate.month} ${data.endDate.year}
+                            </span>
+                            <span class="cart__day-of-week-and-time">
+                                ${data.endDate.weekday}, ${data.endDate.time}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="cart__wrap-for-cabins">
                 ${stringTickets}
+            </div>
+            <div class="cart__wrap-for-total">
+                <span class="cart__label-for-total">Итого</span>
+                <span class="cart__total">${data.total}</span>
             </div>`;
             const deleteCabinButtons = Array.from(cart.getElementsByClassName("cart__delete-button"));
             deleteCabinButtons.forEach(button => button.addEventListener("click", function(e){
@@ -319,7 +333,46 @@ function deleteTicketFromCart(ticketId){
     .then(data => {})
 }
 
+  const buttonForEntrance = document.getElementsByClassName("entrance__text")[0];
+  buttonForEntrance.addEventListener("click", buttonForEntranceForUnauthorizedUser)
 
+  function buttonForEntranceForUnauthorizedUser(e){
+    e.preventDefault()
+    const entrancePanel = document.getElementsByClassName("wrap-for-entrance-panel")[0];
+    entrancePanel.style.display ="flex";
+    entrancePanel.getElementsByClassName("entrance-panel__close-button")[0].addEventListener("click",function(){
+        entrancePanel.style.display = "none";
+    })
+  }
+
+  function buttonForEntranceForAuthorizedUser(e) {
+    e.preventDefault();
+    const menu = document.getElementsByClassName("menu-for-user")[0];
+    menu.style.display = "flex";
+  
+    // Откладываем добавление обработчика, чтобы не поймать текущий клик
+    setTimeout(() => {
+      document.addEventListener("click", closeMenuForUser);
+    }, 0);
+  }
+  
+  function closeMenuForUser(e) {
+    const menu = document.getElementsByClassName("menu-for-user")[0];
+    // const button = document.getElementsByClassName("entrance-button")[0]; // предполагаем имя кнопки
+  
+    // Проверка, чтобы не закрывать меню при повторном клике по кнопке
+    if (!menu.contains(e.target)) {
+      console.log("Клик вне меню");
+      menu.style.display = "none";
+      document.removeEventListener("click", closeMenuForUser);
+    }
+  }
+
+const buttonForCart = document.getElementsByClassName("lower-head__wrap-for-right-element")[0];
+buttonForCart.addEventListener("click", function (e){
+    const cart = document.getElementsByClassName("cart")[0];
+    cart.style.display = "flex";
+})
   
 
  
