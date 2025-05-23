@@ -1,56 +1,98 @@
 
-
-let open_panel;
-let interaction_container;
+fetch('/checkAuth', {
+    method: 'GET',
+    credentials: 'include', 
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.authenticated) {
+        getUserName();
+        refreshCart();
+        buttonForEntrance.removeEventListener("click", buttonForEntranceForUnauthorizedUser)
+        buttonForEntrance.addEventListener("pointerenter", buttonForEntranceForAuthorizedUser)
+        buttonForEntrance.addEventListener("pointerleave", closeMenuForUser)
+    } 
+    else{
+        refreshCartForUnauthorizedUser();
+        
+    }
+  });
+// let openPanel;
+let interactionContainer;
 let descendants_of_objects = ["navigation-panel__column", "navigation-panel__title", "navigation-panel__option", "navigation-panel__wrap-for-content", "categories-navigation__link"];
 let elements = document.getElementsByClassName('categories-navigation__option');
 let panels = document.getElementsByClassName('navigation-panel');
 for(let i = 0, a = 0; i<4; i++)
 {
-    elements[i].onmouseover= open_navigation_panel;
-    elements[i].panel_for_open = panels[a];
-    elements[i].onmouseout = close_navigation_panel;
-    elements[i].panel_for_open.onmouseout = close_navigation_panel;
-    a++;
+    elements[i].panelForOpen = panels[i];
+    elements[i].addEventListener("pointerenter", openNavigationPanel);
+    elements[i].addEventListener("pointerleave", scheduleClosePanel);
+    panels[i].addEventListener("pointerleave", scheduleClosePanel);
+    panels[i].addEventListener("pointerenter", cancelClosePanel);
 }
 
-function open_navigation_panel(event)
-{
-    if(open_panel!=undefined)
-        if(open_panel != event.currentTarget.panel_for_open)
-        {
-            for(let i = 0; i<panels.length; i++)
-            {
-                panels[i].style.display = "none";
-            }
-        }
-    event.currentTarget.panel_for_open.style.display = "flex";
-    open_panel = event.currentTarget.panel_for_open;
-    interaction_container = event.currentTarget;
+let navigationPanel = null;
+let closeTimeout = null;
+
+// Функция показа панели
+function openNavigationPanel(event) {
+  const panel = event.currentTarget.panelForOpen;
+
+  // Отмена отложенного закрытия
+  if (closeTimeout) {
+    clearTimeout(closeTimeout);
+    closeTimeout = null;
+  }
+
+  // Если уже открыта нужная панель — ничего не делать
+  if (navigationPanel === panel && panel.style.display === "flex") return;
+
+  // Закрываем предыдущую
+  if (navigationPanel && navigationPanel !== panel) {
+    navigationPanel.style.display = "none";
+  }
+
+  // Показываем новую панель
+  panel.style.display = "flex";
+  panel.animate([
+    { transform: "translateY(-100%)", opacity: 0 },
+    { transform: "translateY(0)", opacity: 1 }
+  ], {
+    duration: 600,
+    easing: "ease-out"
+  });
+
+  navigationPanel = panel;
 }
 
-function close_navigation_panel(event)
-{
-    let isAnotherObject=true;
-    let relatedTarget = event.relatedTarget;
-    if(relatedTarget==null||open_panel==undefined)
-    return;
-    for(let a of descendants_of_objects)
-    {
-        if (relatedTarget.className == a)
-        {
-            isAnotherObject = false;
-            return;
+// Функция отложенного скрытия
+function scheduleClosePanel() {
+  if (closeTimeout) clearTimeout(closeTimeout);
+
+  closeTimeout = setTimeout(() => {
+    if (navigationPanel) {
+      navigationPanel.animate([
+        { transform: "translateY(0)", opacity: 1 },
+        { transform: "translateY(-100%)", opacity: 0 }
+      ], {
+        duration: 600,
+        easing: "ease-out"
+      }).finished.then(() => {
+        if (navigationPanel) {
+          navigationPanel.style.display = "none";
+          navigationPanel = null;
         }
+      });
     }
+  }, 300); // задержка 300 мс
+}
 
-    if(relatedTarget==open_panel||relatedTarget==interaction_container)
-    {
-        isAnotherObject = false;
-    }
-
-    if(isAnotherObject)
-        open_panel.style.display = "none";
+// Отмена закрытия при повторном наведении
+function cancelClosePanel() {
+  if (closeTimeout) {
+    clearTimeout(closeTimeout);
+    closeTimeout = null;
+  }
 }
 
 function viewMenuNavigation()
@@ -121,7 +163,8 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
     getUserName();
     entrancePanel.style.display = "none";
     buttonForEntrance.removeEventListener("click", buttonForEntranceForUnauthorizedUser)
-    buttonForEntrance.addEventListener("click", buttonForEntranceForAuthorizedUser)
+    buttonForEntrance.addEventListener("pointerenter", buttonForEntranceForAuthorizedUser)
+    buttonForEntrance.addEventListener("pointerleave",closeMenuForUser)
 })   
 .catch(error => alert("Неправильный логин или пароль"));
   })
@@ -145,23 +188,7 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
   }
 
 
-fetch('/checkAuth', {
-    method: 'GET',
-    credentials: 'include', 
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.authenticated) {
-        getUserName();
-        refreshCart();
-        buttonForEntrance.removeEventListener("click", buttonForEntranceForUnauthorizedUser)
-        buttonForEntrance.addEventListener("click", buttonForEntranceForAuthorizedUser)
-    } 
-    else{
-        refreshCartForUnauthorizedUser();
-        
-    }
-  });
+
 
   function refreshCartForUnauthorizedUser(){
     const cart = document.getElementsByClassName("cart")[0];
@@ -333,7 +360,7 @@ function deleteTicketFromCart(ticketId){
     .then(data => {})
 }
 
-  const buttonForEntrance = document.getElementsByClassName("entrance__text")[0];
+  const buttonForEntrance = document.getElementsByClassName("information-and-entrance__wrap-for-entrance")[0];
   buttonForEntrance.addEventListener("click", buttonForEntranceForUnauthorizedUser)
 
   function buttonForEntranceForUnauthorizedUser(e){
@@ -349,23 +376,23 @@ function deleteTicketFromCart(ticketId){
     e.preventDefault();
     const menu = document.getElementsByClassName("menu-for-user")[0];
     menu.style.display = "flex";
-  
-    // Откладываем добавление обработчика, чтобы не поймать текущий клик
-    setTimeout(() => {
-      document.addEventListener("click", closeMenuForUser);
-    }, 0);
+    menu.animate([
+        { transform: "translateY(-100%)", opacity: 0 },
+        { transform: "translateY(0)", opacity: 1 }
+      ], {
+        duration: 600,
+        easing: "ease-out"
+      }).finished.then(() => {
+        if (menu) {
+          menu.style.display = "flex";
+        }
+      });
   }
   
   function closeMenuForUser(e) {
     const menu = document.getElementsByClassName("menu-for-user")[0];
-    // const button = document.getElementsByClassName("entrance-button")[0]; // предполагаем имя кнопки
-  
-    // Проверка, чтобы не закрывать меню при повторном клике по кнопке
-    if (!menu.contains(e.target)) {
-      console.log("Клик вне меню");
       menu.style.display = "none";
-      document.removeEventListener("click", closeMenuForUser);
-    }
+
   }
 
 const buttonForCart = document.getElementsByClassName("lower-head__wrap-for-right-element")[0];

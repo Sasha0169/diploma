@@ -117,20 +117,20 @@
     <div class="body page__body">
         <div class="cruise-page">
             <h1 class="cruise-page__cruise-name">
-                <%= cruise_name %>
+                Теплоход "Александр Радищев"
             </h1>
             <div class="cruise-page__content">
                 <div class="cruise-page__general-information">
                     <div class="block-of-images">
-                        <img src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/main.jpg"
+                        <img src="/photos/ships/1/main.jpg"
                             class="block-of-images__main-image">
                         <div class="block-of-images__images">
                             <img src="/left-arrow-for-images.png" class="block-of-images__left-arrow">
                             <div class="block-of-images__wrap-for-images">
-                                <% for(let i=1; i<=numberOfPhotos; i++){%>
-                                    <img class="block-of-images__image"
-                                        src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/gallery/<%= i %>.jpg">
-                                    <% } %>
+                                <img class="block-of-images__image" src="/photos/ships/1/main.jpg">
+                                <img class="block-of-images__image" src="/photos/ships/1/main.jpg">
+                                <img class="block-of-images__image" src="/photos/ships/1/main.jpg">
+                                <img class="block-of-images__image" src="/photos/ships/1/main.jpg">
                             </div>
                             <img src="/right-arrow-for-images.png" class="block-of-images__right-arrow">
                         </div>
@@ -649,9 +649,6 @@
             </div>
         </div>
     </div>
-    <div class="wrap-for-panel-for-booking">
-
-    </div>
     <div class="cart">
         <div class="cart__header">
             <div class="cart__title">
@@ -968,10 +965,6 @@
             <button type="submit" class="btn btn-primary entrance-panel__button">Отправить</button>
         </form>
     </div>
-    <div class="wrap-for-map">
-        <script type="text/javascript" charset="utf-8" async
-            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1ad551c77053aebe2f7b405973ac3ed8f6f9934eb29ff0b98dec41604d0528b1&amp;width=600&amp;height=600&amp;lang=ru_RU&amp;scroll=true"></script>
-    </div>
     <script src="/script.js"></script>
     <script src="/cruise-page.js"></script>
     <!-- Cleversite chat button -->
@@ -979,30 +972,3 @@
     <!-- / End of Cleversite chat button -->
 </body>
 </html>
-
-
-<div class="ship-card">
-    <img src="\photos\ships\1\main.jpg" alt="" class="ship-card__image">
-    <div class="ship-card__wrap-for-title-and-information">
-        <span class="ship-card__title">
-            Название теплохода
-        </span>
-        <div class="ship-card__wrap-for-information">
-            <span class="ship-card__renovation">
-                Год последней реновации: 1990
-            </span>
-            <span class="ship-card__year-of-construction">
-                Год постройки: 1990
-            </span>
-            <span class="ship-card__number-of-cabins">
-                Общее количество кают: 45
-            </span>
-            <span class="ship-card__capacity">
-                Вместимость (человек): 240
-            </span>
-            <button class="ship-card__button">
-                Подробнее
-            </button>
-        </div>
-    </div>
-</div>

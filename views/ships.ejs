@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/custom.css">
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <div class="header page__head">
         <div class="header__upper-head page_black upper-head">
             <div class="upper-head__wrap">
@@ -97,222 +97,37 @@
     </div>
     <div class="body page__body">
         <div class="main-page">
-            <h1 class="main-page__page-name">Поиск круизов</h1>
+            <h1 class="main-page__page-name">Теплоходы</h1>
             <div class="main-page__content">
-                <div class="section-for-cruise-search">
-                    <form class="section-for-cruise-search__form-for-search form-for-search">
-                        <div class="form-for-search__switching-cruise-type">
-                            <button class="form-for-search__button-to-switch-type">
-                                Речные круизы
-                            </button>
-                            <button class="form-for-search__button-to-switch-type">
-                                Морские круизы
-                            </button>
-                        </div>
-                        <div class="form-for-search__wrap-for-button">
-                            <span class="form-for-search__label-for-button">Место отправления</span>
-                            <div class="form-for-search__wrap-for-button-and-panel">
-                                <button class="form-for-search__button-for-selecting">
-                                    <span class="form-for-button__placeholder-for-button">Откуда</span>
-                                    <div class="form-for-button__arrow-for-button"></div>
-                                </button>
-                                <div class="form-for-button__the-selection-panel">
-                                    <div class="list-group">
-                                        <label class="list-group-item" >
-                                            <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="0" checked>
-                                            Все
-                                        </label>
-                                        <% 
-                                        cities.forEach(city => { %>
-                                        <label class="list-group-item" >
-                                            <input class="form-check-input me-1" type="radio" name="listGroupRadio" value='<%= city.city_id %>' >
-                                            <%= city.name %>
-                                        </label>
-                                        <% }); %>
-                                    </div>
+                <div class="wrap-for-ships">
+                    <div class="ship-card">
+                        <span class="ship-card__label-for-ship-class">Премиум</span>
+                        <img src="\photos\ships\1\main.jpg" alt="" class="ship-card__image">
+                        <div class="ship-card__wrap-for-title-and-information">
+                            <span class="ship-card__title">
+                                Александр Радищев
+                            </span>
+                            <div class="ship-card__wrap-for-information">
+                                <div class="ship-card__wrap-for-years">
+                                    <span class="ship-card__renovation">
+                                        Год реновации: 1990 
+                                    </span>
+                                    <span class="ship-card__year-of-construction">
+                                        Год постройки: 1990 
+                                    </span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-for-search__wrap-for-button">
-                            <span class="form-for-search__label-for-button">Направление</span>
-                            <div class="form-for-search__wrap-for-button-and-panel">
-                                
-                                <button class="form-for-search__button-for-selecting">
-                                <span class="form-for-button__placeholder-for-button">Куда</span>
-                                <div class="form-for-button__arrow-for-button"></div>
-                                </button>
-                                <div class="form-for-button__the-selection-panel">
-                                    <div class="list-group">
-                                        <% routes.forEach(route => { %>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value= '<%= route.route_id %>'>
-                                            <%= route.name %>
-                                        </label> 
-                                        <% }); %>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-for-search__wrap-for-button">
-                            <span class="form-for-search__label-for-button">Дата отправления</span>
-                            <input type="text" id="datepicker" class="form-for-search__datepicker">
-                            <script>
-                            var datepicker = new Datepicker('#datepicker',{ranged: true, min: (function(){
-                                var date = new Date();
-                                date.setDate(date.getDate());
-                                return date;
-                            })()});
-                            </script>
-                        </div>
-                        <div class="form-for-search__wrap-for-button">
-                            <span class="form-for-search__label-for-button">Дней в круизе</span>
-                            <div class="form-for-search__wrap-for-button-and-panel">
-                                
-                                <button class="form-for-search__button-for-selecting">
-                                <span class="form-for-button__placeholder-for-button">Как долго</span>
-                                <div class="form-for-button__arrow-for-button"></div>
-                                </button>
-                                <div class="form-for-button__the-selection-panel">
-                                    <div class="list-group">
-                                        <label class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="1">
-                                            1 - 4 дня
-                                        </label>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="2">
-                                            5 - 7 дней
-                                        </label>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="3">
-                                            8 - 10 дней
-                                        </label>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="4">
-                                            11 - 14 дней
-                                        </label>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="5">
-                                            более 14 дней
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-for-search__wrap-for-button">
-                            <span class="form-for-search__label-for-button">Теплоход</span>
-                            <div class="form-for-search__wrap-for-button-and-panel">
-                                
-                                <button class="form-for-search__button-for-selecting">
-                                <span class="form-for-button__placeholder-for-button">На чем</span>
-                                <div class="form-for-button__arrow-for-button"></div>
-                                </button>
-                                <div class="form-for-button__the-selection-panel">
-                                    <div class="list-group">
-                                        <% ships.forEach(ship => { %>
-                                        <label class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value= '<%= ship.ship_id %>'>
-                                            <%= ship.ship_name %>
-                                        </label> 
-                                        <% }); %>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <button id="1" class="form-for-search__button-for-selecting">
-                                <span class="form-for-button__placeholder-for-button">Откуда</span>
-                                <div class="form-for-button__arrow-for-button"></div>
-                            </button>
-                            <div class="form-for-button__the-selection-panel">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="1f" id="1f" checked>
-                                      <label class="form-check-label stretched-link" for="1f">First radio</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="2f" id="2f">
-                                      <label class="form-check-label stretched-link" for="2f">Second radio</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="3f" id="3f">
-                                      <label class="form-check-label stretched-link" for="3f">Third radio</label>
-                                    </li>
-                                  </ul>
-                            </div> -->
-                        </div>
-                        <div class="form-for-search__wrap-for-search-button">
-                            <button class="form-for-button__button">
-                                Поиск
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="wrap-for-cruise-cards">
-                    <!-- <% cruises.forEach(cruise => { %>
-                    <div class="cruise-card">
-                        <div class="cruise-card__wrap-for-image">
-                            <img class="cruise-card__image" src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/1645411086_WN22-DroneCadiz208R.jpg" alt="">
-                        </div>
-                        <div class="cruise-card__wrap-for-information">
-                            <a target="_blank" href="http://localhost:3000/cruise" class="cruise-card__name">
-                                <%= cruise.cruise_name %>
-                            </a>
-                            <div class="cruise-card__wrap-for-date-and-name-of-liner">
-                                <div class="cruise-card__wrap-for-date-and-time">
-                                    <div class="cruise-card__first-date-and-time">
-                                        <span class="cruise-card__date">
-                                            <%= cruise.start_date.day %> <%= cruise.start_date.month %> <%= cruise.start_date.year %>
-                                        </span>
-                                        <span class="cruise-card__day-of-week-and-time">
-                                            <%= cruise.start_date.weekday %>, <%= cruise.start_date.time %>
-                                        </span>
-                                    </div>
-                                    <div class="cruise-card__wrap-for-number-of-days">
-                                        <div class="cruise-card__arrow">
-            
-                                        </div>
-                                        <span class="cruise-card__number-of-days">
-                                            <%= cruise.duration_days %> дней
-                                        </span>
-                                    </div>
-                                    <div class="cruise-card__second-date-and-time">
-                                        <span class="cruise-card__date">
-                                            <%= cruise.end_date.day %> <%= cruise.end_date.month %> <%= cruise.end_date.year %>
-                                        </span>
-                                        <span class="cruise-card__day-of-week-and-time">
-                                            <%= cruise.end_date.weekday %>, <%= cruise.end_date.time %>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="cruise-card__wrap-for-name-of-liner">
-                                    <img class="cruise-card__liner-icon" src="/443890.png">
-                                    <a href="" class="cruise-card__name-of-liner"><%= cruise.ship_name %></a>
-                                </div>
-                            </div>
-                            <div class="cruise-card__direction">
-                                <% for(let i = 0; i<cruise.route_points.length; i++){%>
-                                <%= cruise.route_points[i] %><% if (i < cruise.route_points.length - 1) { %> &mdash; <% } %>
-                                <% } %>
-                            </div>
-                        </div>
-                        <div class="cruise-card__wrap-for-price-and-button">
-                            <div class="cruise-card__prices">
-                                <span class="cruise-card__new-price">
-                                    от <%= cruise.minimum_discounted_price %> &#8381;/чел
+                                <span class="ship-card__number-of-cabins">
+                                    Общее количество кают: 45
                                 </span>
-                                <span class="cruise-card__old-price">
-                                    <%= cruise.minimum_price  %> &#8381;
+                                <span class="ship-card__capacity">
+                                    Вместимость (человек): 240
                                 </span>
+                                <button class="ship-card__button">
+                                    Подробнее
+                                </button>
                             </div>
-                            <div class="cruise-card__wrap-for-remains">
-                                <span class="cruise-card__remains">
-                                    Осталось 40 мест!
-                                </span>
-                            </div>
-                            <button class="cruise-card__button">
-                                Выбрать
-                            </button>
                         </div>
                     </div>
-                    <% }); %> -->
                 </div>
             </div>
         </div>
@@ -719,17 +534,63 @@
             <button type="submit" class="btn btn-primary registration-panel__button">Отправить</button>
         </form>
     </div>
+    <div class="cart">
+        <div class="cart__header">
+            <div class="cart__title">
+                Корзина
+            </div>
+            <div class="cart__wrap-for-close-button">
+                <svg class="cart__close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="m16.042969 311.097656c-4.09375 0-8.191407-1.554687-11.304688-4.691406-6.25-6.25-6.25-16.386719 0-22.636719l279.058594-279.058593c6.253906-6.253907 16.386719-6.253907 22.636719 0 6.25 6.25 6.25 16.382812 0 22.632812l-279.0625 279.0625c-3.136719 3.136719-7.230469 4.691406-11.328125 4.691406zm0 0" />
+                    <path
+                        d="m295.125 311.097656c-4.09375 0-8.191406-1.554687-11.304688-4.691406l-279.082031-279.082031c-6.25-6.253907-6.25-16.386719 0-22.636719s16.382813-6.25 22.632813 0l279.0625 279.082031c6.25 6.25 6.25 16.386719 0 22.636719-3.136719 3.136719-7.230469 4.691406-11.308594 4.691406zm0 0" />
+                </svg>
+            </div>
+        </div>
+        <div class="cart__body">
+            <span class="cart__cruise-name">Восточная сказка</span>
+            <div class="cart__information-about-cruise">
+                <span class="cart__direction-of-cruise">Москва &mdash; Казань &mdash; Москва</span>
+                <div class="cart__wrap-for-date-and-time">
+                    <div class="cart__first-date-and-time">
+                        <span class="cart__date">
+                            25 апр 2025
+                        </span>
+                        <span class="cart__day-of-week-and-time">
+                            пт, 10:00
+                        </span>
+                    </div>
+                    <div class="cart__wrap-for-number-of-days">
+                        <div class="cart__arrow">
+
+                        </div>
+                        <span class="cart__number-of-days">
+                            100 дней
+                        </span>
+                    </div>
+                    <div class="cart__second-date-and-time">
+                        <span class="cart__date">
+                            25 апр 2025
+                        </span>
+                        <span class="cart__day-of-week-and-time">
+                            пт, 10:00
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="cart__wrap-for-cabins">
+            </div>
+            
+        </div>
+        <div class="cart__footer">
+            <div class="cart__total"></div>
+            <button class="cart__checkout">
+                Перейти к бронированию
+            </button>
+        </div>
+    </div>
     
     <script src="/script.js"></script> 
-    <script src="/index.js"></script> 
-    <!-- Cleversite chat button -->
-    <script src="//widget.cleversite.ru/widget/131209/203767/"></script>
-<!-- / End of Cleversite chat button -->
 </body>
 </html>
-
-
-
-
-
-                    

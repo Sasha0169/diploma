@@ -21,3 +21,13 @@ p {
     height: 250px;
     overflow: hidden;
 }
+
+.form-check{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-check-input{
+    border: 2px solid #000;
+}

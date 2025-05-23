@@ -164,6 +164,12 @@ body {
     display: inline;
 }
 
+.information-and-entrance__wrap-for-entrance{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .entrance {
     display: inline-flex;
     flex-direction: row;
@@ -172,6 +178,8 @@ body {
     font-size: 13px;
     color: #FFF;
     text-decoration: none;
+    cursor: pointer;
+    user-select: none;
 }
 
 .entrance__icon{
@@ -220,6 +228,7 @@ body {
     text-decoration: none;
     gap: 10px;
     cursor: pointer;
+    user-select: none;
 }
 
 .lower-head__cart-icon{
@@ -262,7 +271,7 @@ body {
     border-bottom: 3px solid #fff;
     display: flex;
     flex-direction: column;
-
+    cursor: pointer;
 }
 
 .categories-navigation__option:hover {
@@ -761,7 +770,7 @@ body {
 .cruise-page__sections{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 80px;
 }
 
 .page-navigation{
@@ -865,19 +874,17 @@ body {
     height: 170px;
     display: flex;
     flex-direction: column;
-    transition-duration: 2s;
+    /* transition-duration: 2s;
     transition-timing-function: ease;
-    transition-property: height;
+    transition-property: height; */
     overflow: hidden;
-    gap: 20px;
+    gap: 30px;
 }
 
-.route-point__wrap-for-place:hover{
-    height:50vh;
-    /* animation-name: slide;
-    animation-timing-function: linear;
-    animation-duration: 2s; */
-}
+/* .route-point__wrap-for-place:hover{
+    height:510px;
+} */
+
 /* .route-point__name-of-place:before{
     width: 20px;
     height: 20px;
@@ -900,7 +907,7 @@ body {
 .route-point__name-of-place{
     font-size: 20px;
     font-weight: bold;
-
+    height: 30px;
 }
 
 .route-point__wrapper-for-time{
@@ -908,7 +915,19 @@ body {
 }
 
 .route-point__description{
-    display: none;
+    display:flex;
+    gap: 10px;
+}
+
+.route-point__title-for-description, .route-point__label-before-excursions{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.route-point__description-wrap, .route-point__wrap-for-excursions{
+    display:flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .route-point__wrap-for-time{
@@ -936,6 +955,8 @@ body {
     color:#7D7D7D;
 }
 
+
+
 .route-point__place-image{
     /* width: 180px;
     height: 126px; */
@@ -951,8 +972,24 @@ body {
     gap: 20px;
 }
 
+.route-point__excursion{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding:20px 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+.route-point__description-of-excursion{
+    text-align: justify;
+}
+
 .cabin-prices{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .cabin-prices__deсk{
@@ -960,11 +997,13 @@ body {
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    padding: 0px 20px;
 }
 
 .cabin-prices__deck-name{
     font-size: 25px;
     font-weight: bold;
+
 }
 
 .cabin-prices__wrap-for-cabins{
@@ -973,6 +1012,7 @@ body {
     gap: 20px;
     width: 100%;
     justify-content: space-between;
+    
 }
 
 .cabin{
@@ -981,6 +1021,9 @@ body {
     border-radius: 20px;
     border: solid 1px #000;
     flex-direction: column;
+    gap:30px;
+    height: 282px;
+    overflow: hidden;
 }
 
 .cabin__upper-part{
@@ -1075,9 +1118,9 @@ body {
 
 .cabin__lower-part{
     /* display: flex; */
-    display: none;
+    display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 
@@ -1085,8 +1128,9 @@ body {
     display:grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 15px;
-    width: 80%;
+    /* width: 80%; */
     justify-items: center;
+    align-items: center;
 }
 
 .cabin__available-place{
@@ -1429,11 +1473,11 @@ body {
 
 /* Для страницы бронирования */
 
-.booking-page__title{
+.booking-page__title, .user-account__title{
     align-self:flex-start;
 }
 
-.booking-page{
+.booking-page, .user-account{
     width: 1250px;
     display: flex;
     flex-direction: column;
@@ -1442,7 +1486,7 @@ body {
     padding: 40px 0px 40px 0px;
 }
 
-.booking-page__content{
+.booking-page__content, .user-account__wrap-for-inputs{
     width: 100%;
 }
 
@@ -1466,12 +1510,36 @@ body {
 
 }
 
-.booking-section__content{
+.booking-section__content, .user-account__wrap-for-inputs{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
     flex-direction: column;
     gap: 30px;
+}
+
+.booking-section__wrap-for-gender, .user-account__wrap-for-gender{
+    display:flex;
+    gap: 30px;
+}
+
+.booking-section__wrap-for-checkboxes, .user-account__wrap-for-checkboxes{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-account__content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.user-account__button{
+    width: 300px;
+    padding:10px 20px;
+    align-self: flex-end;
 }
 
 .booking-section__content{
@@ -1482,7 +1550,7 @@ body {
    "G H I j";
 }
 
-.booking-section_first-section .booking-section__content{
+.booking-section_first-section .booking-section__content, .user-account__wrap-for-inputs{
      grid-template-areas:
     "A A A A "
     "B B B B "
@@ -1493,31 +1561,31 @@ body {
 
 
 
-.booking-section_first-section .mb-3:nth-child(6){
+.booking-section_first-section .mb-3:nth-child(6), .user-account__content .mb-3:nth-child(6){
     grid-area: C;
 }
 
-.booking-section_first-section .mb-3:nth-child(7){
+.booking-section_first-section .mb-3:nth-child(7), .user-account__content .mb-3:nth-child(7){
     grid-area: D;
 }
 
-.booking-section_first-section .mb-3:nth-child(8){
+.booking-section_first-section .mb-3:nth-child(8), .user-account__content .mb-3:nth-child(8){
     grid-area: E;
 }
 
-.booking-section_first-section .mb-3:nth-child(9){
+.booking-section_first-section .mb-3:nth-child(9), .user-account__content .mb-3:nth-child(9){
     grid-area: F;
 }
 
-.booking-section_first-section .mb-3:nth-child(10){
+.booking-section_first-section .mb-3:nth-child(10), .user-account__content .mb-3:nth-child(10){
     grid-area: G;
 }
 
-.booking-section_first-section .mb-3:nth-child(11){
+.booking-section_first-section .mb-3:nth-child(11), .user-account__content .mb-3:nth-child(11){
     grid-area: J;
 }
 
-.booking-section_first-section .mb-3:nth-child(12){
+.booking-section_first-section .mb-3:nth-child(12), .user-account__content .mb-3:nth-child(12){
     grid-area: K;
 }
 
@@ -1628,7 +1696,7 @@ body {
 .menu-for-user{
     /* display: flex; */
     flex-direction: column;
-    width: 300px;
+    width: 200px;
     background-color: #74c1fc;
     border-radius: 10px;
     position:fixed;
@@ -1664,6 +1732,139 @@ body {
     width: fit-content;
     align-self: center;
 }
+
+.ship-card{
+    display: flex;
+    background-color: #74c1fc;
+    border-radius: 20px;
+    padding: 15px 15px;
+    gap: 20px;
+}
+
+.ship-card__image{
+    height: 220px;
+    width: 330px;
+    border-radius: 5px;
+}
+
+.ship-card__title{
+    font-weight: bold;
+    font-size: 20px;
+    height: 60px;
+}
+
+.ship-card__wrap-for-title-and-information{
+    display:flex;
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+    width: 100%;
+}
+
+.ship-card__wrap-for-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.ship-card__button{
+    border-radius: 5px;
+}
+
+.wrap-for-ships{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    gap: 30px;
+}
+
+.ship-card__label-for-ship-class{
+    background-color:#DBCE81;
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.ship-card__wrap-for-years{
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+}
+
+.ship-card__renovation, .ship-card__number-of-cabins, .ship-card__capacity{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.ship-card__year-of-construction{
+    /* font-weight: bold; */
+    font-size: 14px;
+}
+
+.orders__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: sans-serif;
+  overflow: hidden;
+  border:#000 solid 2px;
+  border-radius: 20px;
+}
+
+.orders__row_header {
+  background-color: #f0f0f0;
+}
+
+.orders__cell {
+  padding: 12px;
+  border: 1px solid #7D7D7D;
+  text-align: center;
+  font-size: 14px;
+  background-color: #F1F1F1;
+}
+
+.orders__cell_header {
+  font-weight: bold;
+  background-color: #74c1fc;
+}
+
+.orders__cell_status {
+  font-weight: bold;
+}
+
+.orders__cell_status_paid {
+  color: green;
+}
+
+.orders__cell_status_unpaid {
+  color: red;
+}
+
+.orders{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.orders__wrap-for-radiobuttons{
+    display:flex;
+    gap: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.orders__wrap-radiobutton {
+  display: inline-block; /* или flex — не критично */
+}
+
+.orders__label-after-radiobutton, .orders__radiobutton {
+  cursor: pointer;
+}
+
+
 
 /* .sliders {
     display: flex;
@@ -2816,7 +3017,7 @@ body {
     animation: openNavigationPanel 0.5s ease-out;
 }
 
-@keyframes openNavigationPanel {
+/* @keyframes openNavigationPanel {
     from {
       transform: translateY(-100%);
     }
@@ -2824,6 +3025,15 @@ body {
       transform: translateY(0);
     }
 }
+
+@keyframes closeNavigationPanel {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+} */
 
 .navigation-panel__column {
     display: flex;
@@ -2857,6 +3067,10 @@ body {
     row-gap: 40px;
     flex-wrap: wrap;
 }
+
+
+
+
 
 /* .product {
     width: 100%;
