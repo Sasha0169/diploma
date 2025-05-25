@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const { Pool } = require("pg");
 
 app.use(express.static("css"));
 app.use(express.static("images"));
@@ -53,8 +54,8 @@ app.get("/orders", (req, res) => {
   res.render("orders", {})
 });
 
-app.get("/ship", (req, res) => {
-  getShip('6').then((ship)=>{console.log(ship); res.render("ship", {ship: ship})})
+app.get("/ship/:id", (req, res) => {
+  getShip(req.params.id).then((ship)=>{console.log(ship); res.render("ship", {ship: ship})})
 });
 
 app.get("/personal", (req, res) => {
@@ -75,9 +76,8 @@ app.post("/cruises", (req, res) => {
   getCruises(req.body).then((result) => res.json(result));
 });
 
-app.post("/getSchemes", (req, res) => {
-  console.log(req.body)
-})
+// app.post("/getSchemes", (req, res) => {
+// })
 
 app.post("/getInfoAboutPlace", (req, res) => {
   getInfoAboutPlace(req.body.numberOfTicket).then((result)=>res.json(result));
@@ -112,9 +112,7 @@ app.get("/cruise/:id", (req, res) => {
 let SECRET = "secret-key"
 
 app.post("/login", (req, res) => {
-  console.log(req.body);
   authenticationByEmail(req.body).then((user) => {
-    console.log(user)
     const token = jwt.sign( user , SECRET, { expiresIn: '1h' });
     res.cookie('token', token, {
       httpOnly: true,
@@ -131,7 +129,6 @@ app.post("/getUserName", authMiddleware, (req, res) => {
 });
 
 app.post("/addTicketCart", authMiddleware, (req, res) => {
-  console.log(req.body)
   const token = req.cookies.token;
   const userId = getUserIdByToken(token);
   const data = {userId: userId, ticketId: req.body.ticketId, values: req.body.values};
@@ -140,14 +137,12 @@ app.post("/addTicketCart", authMiddleware, (req, res) => {
 });
 
 app.get("/cart", authMiddleware, (req, res) => {
-  console.log(req.body)
   const token = req.cookies.token;
   const userId = getUserIdByToken(token);
   getCart(userId).then((result)=>res.json(result))
 });
 
 app.delete("/cart/:ticketId", authMiddleware, (req, res) => {
-  console.log(req.body)
   const ticketId = req.params.ticketId;
   const token = req.cookies.token;
   const userId = getUserIdByToken(token);
@@ -161,13 +156,9 @@ function getUserIdByToken(token){
 
 function authMiddleware(req, res, next) {
   const token = req.cookies.token;
-  console.log(token)
   if (!token) return res.status(401).json({ error: "Not authenticated" });
-  console.log(1)
   try {
     const user = jwt.verify(token, SECRET);
-    console.log(2)
-    console.log(user);
     next();
   } catch (err) {
     res.status(403).json({ error: "Invalid token" });
@@ -178,7 +169,7 @@ app.get("/booking-form", (req, res) => {
   res.render("booking form", {});
 });
 
-const { Pool } = require("pg");
+
 
 const pool = new Pool({
   user: "postgres", // Ваш пользователь PostgreSQL
@@ -661,7 +652,7 @@ async function getShip(shipId){
   for (let i = 0; i < ship.decks.length; i++) {
     ship.decks[i].cabins = await getCabinsInformation(ship.ship_id, ship.decks[i].deck_id);
   }
-  console.log(ship);
+  ship.technical_info = transformShipInfo(ship.technical_info);
   return ship;
 }
 
@@ -823,17 +814,12 @@ async function addTicketCart(data){
 	FROM public.tickets
 	WHERE ticket_id='${data.ticketId}'`;
   const result2 = await pool.query(query2);
-  console.log(result1.rows[0].cart);
-  console.log(result2.rows[0].cruise_id);
-  console.log(result1.rows[0].cart?.cruise_id);
   if(result1.rows[0].cart == null || result1.rows[0].cart.cruise_id != result2.rows[0].cruise_id)
   {
-    console.log("Вариант 1")
     let text = "";
     data.values.forEach((value, index)=>{
       text += `"${value}"${index==data.values.length-1?"":","}`
     })
-    console.log(text);
     const query3 = `
     UPDATE users
     SET cart = '{
@@ -849,12 +835,9 @@ async function addTicketCart(data){
   const result3 = await pool.query(query3);
     return;
   }
-  console.log("Вариант 2");
   let map = new Map();
   result1.rows[0].cart.tickets.forEach((ticket)=> map.set(Number(ticket.ticket_id), ticket.selected_tariffs))
-  console.log(map);
   map.set(Number(data.ticketId), data.values)
-  console.log(map);
   let text = "";
   let array = Array.from(map);
   array.forEach((value, index) => {
@@ -877,7 +860,6 @@ async function addTicketCart(data){
       ]
     }'::jsonb
     WHERE user_id = '${data.userId}';`;
-    console.log(query3);
   const result3 = await pool.query(query3);
 }
 
@@ -892,12 +874,9 @@ async function getCart(userId){
 	FROM public.users
 	WHERE user_id='${userId}'`;
   const result1 = await pool.query(query1);
-  console.log(result1.rows[0])
   if(isEmptyObject(result1.rows[0].cart))
     return{};
-  console.log(result1.rows[0])
   const result2 = await getInfoAboutCruiseForCart(result1.rows[0].cart.cruise_id)
-  console.log(result2)
   let tickets = [];
   const cart = result1.rows[0].cart;
   for (const ticket of cart.tickets) {
@@ -914,7 +893,6 @@ async function getCart(userId){
             cruiseId: cart.cruise_id,
             total
           }
-  console.log(result.tickets)
   return result;
 }
 
@@ -942,7 +920,6 @@ async function getInfoAboutTicketForCart(ticketId, arrayOfTariffs){
       realPrice = price.base_price;
     prices.set(price.category, realPrice)
   })
-  console.log(prices)
   let selectedTariffsWithPrice = [];
   arrayOfTariffs.forEach((tariff)=>{
     selectedTariffsWithPrice.push({tariff, price: prices.get(tariff)})
@@ -994,9 +971,7 @@ async function deleteTicketFromCart(userId, ticketId){
 	WHERE user_id='${userId}'`;
   const result1 = await pool.query(query1);
   const cart = result1.rows[0].cart;
-  console.log(cart);
   let tickets = cart.tickets;
-  console.log(ticketId, tickets[0].ticket_id)
   tickets = tickets.filter(item => item.ticket_id != ticketId);
   if(tickets.length == 0)
   {
@@ -1028,7 +1003,6 @@ async function deleteTicketFromCart(userId, ticketId){
   ]
   }'::jsonb
   WHERE user_id = ${userId};`;
-  console.log(query3);
   await pool.query(query3);
 }
 
@@ -1039,6 +1013,23 @@ function getTotalForCart(tickets){
       sum += Number(tickets[i].selectedTariffsWithPrice[j].price);
     }
   }
-  console.log("sum ",sum);
   return sum;
+}
+
+function transformShipInfo(data) {
+  const nameMap = {
+    Draft: "Осадка",
+    Width: "Ширина",
+    Length: "Длина",
+    Capacity: "Вместимость",
+    Max_speed: "Макс. скорость",
+    Renovation_year: "Год реконструкции",
+    Year_of_construction: "Год постройки",
+    Total_number_of_cabins: "Всего кают"
+  };
+
+  return Object.entries(data).map(([key, value]) => ({
+    name: nameMap[key] || key,
+    value: value
+  }));
 }

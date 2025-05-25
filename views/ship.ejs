@@ -138,18 +138,12 @@
                     <div class="ship-page__wrap-for-characteristics-panel characteristics-panel">
                         <span class="characteristics-panel__title">Основные характеристики</span>
                         <div class="characteristics-panel__wrap-for-characteristic">
-                            <div class="characteristics-panel__characteristic">
-                                <span class="characteristics-panel__characteristic-name">Длина</span>
-                                <span class="characteristics-panel__characteristic-value">17,5 м</span>
-                            </div>
-                            <div class="characteristics-panel__characteristic">
-                                <span class="characteristics-panel__characteristic-name">Длина</span>
-                                <span class="characteristics-panel__characteristic-value">17,5 м</span>
-                            </div>
-                            <div class="characteristics-panel__characteristic">
-                                <span class="characteristics-panel__characteristic-name">Длина</span>
-                                <span class="characteristics-panel__characteristic-value">17,5 м</span>
-                            </div>
+                            <% for(let i=0; i<ship.technical_info.length; i++){ %>
+                                <div class="characteristics-panel__characteristic">
+                                    <span class="characteristics-panel__characteristic-name"><%= ship.technical_info[i].name %></span>
+                                    <span class="characteristics-panel__characteristic-value"><%= ship.technical_info[i].value %></span>
+                                </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -181,11 +175,7 @@
                             Описание теплохода
                         </h2>
                         <div class="ship-page-section__content">
-                            Anim commodo excepteur esse id elit. Veniam minim laboris ipsum minim. Est exercitation qui magna dolore minim magna officia veniam nostrud sunt. Commodo labore tempor irure velit in minim culpa. Laboris anim et excepteur aliquip velit. Tempor magna do amet non adipisicing aliquip sint amet Lorem eiusmod sit.
-
-Sit enim nisi veniam qui deserunt tempor consequat esse deserunt voluptate anim anim ipsum. Irure non dolor ex deserunt nisi minim adipisicing nulla commodo. Incididunt cupidatat ad commodo officia enim cillum sit magna amet et ad do amet.
-
-Laborum est dolor aliquip cillum pariatur dolore ullamco. Culpa dolor quis velit in minim tempor laborum et. Et aute laboris ipsum labore occaecat culpa ipsum nulla exercitation quis eiusmod. Occaecat qui sit dolore enim nisi reprehenderit esse est nulla voluptate commodo. Anim excepteur nisi aute ea sit sit amet enim deserunt duis irure nostrud.
+                            <%- ship.ship_description.longDescription %>
                         </div>
                     </div>
                     <div id="section2" class="ship-page__section ship-page-section">
@@ -253,7 +243,9 @@ Laborum est dolor aliquip cillum pariatur dolore ullamco. Culpa dolor quis velit
                             Круизы
                         </h2>
                         <div class="ship-page-section__content">
+                            <div class="wrap-for-cruise-cards">
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -632,31 +624,8 @@ Laborum est dolor aliquip cillum pariatur dolore ullamco. Culpa dolor quis velit
             </div>
         </div>
     </div>
-    <div class="entrance-panel">
-        <span class="entrance-panel__header">
-            Вход
-        </span>
-        <form class="entrance-panel__form">
-            <div class="mb-3 entrance-panel__section">
-                <label for="exampleInputEmail1" class="form-label entrance-panel__label-for-section">Адрес электронной
-                    почты</label>
-                <input type="email" class="form-control entrance-panel__input-for-section" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" value="scfe@mail.ru">
-            </div>
-            <div class="mb-3 entrance-panel__section">
-                <label for="exampleInputPassword1" class="form-label entrance-panel__label-for-section">Пароль</label>
-                <input type="password" class="form-control entrance-panel__input-for-section" id="exampleInputPassword1"
-                    value="01gd4545df">
-            </div>
-            <div class="mb-3 form-check entrance-panel__section-for-checkbox">
-                <input type="checkbox" class="form-check-input entrance-panel__checkbox" id="exampleCheck1">
-                <label class="form-check-label entrance-panel__label-for-section" for="exampleCheck1">Запомнить
-                    меня</label>
-            </div>
-            <button type="submit" class="btn btn-primary entrance-panel__button">Отправить</button>
-        </form>
-    </div>
     <script src="/script.js"></script>
+    <script src="/ship.js"></script>
     <script src="//widget.cleversite.ru/widget/131209/203767/"></script>
     <!-- / End of Cleversite chat button -->
 </body>
