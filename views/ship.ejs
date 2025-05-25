@@ -184,22 +184,22 @@
                         </h2>
                         <div class="ship-page-section__content">
                             <div class="wrap-for-cabin-prices cabin-prices">
-                                <% for(let i=0; i<ship.decks.length; i++){ %>
+                                <% for(let i=0; i<ship.ship_decks.length; i++){ %>
                                     <div class="cabin-prices__deсk">
                                         <span class="cabin-prices__deck-name">
-                                            <%= ship.decks[i].deck_name %>
+                                            <%= ship.ship_decks[i].deck_name %>
                                         </span>
                                         <div class="cabin-prices__wrap-for-cabins">
-                                            <% for(let j=0; j<ship.decks[i].cabins.length; j++){ %>
+                                            <% for(let j=0; j<ship.ship_decks[i].cabins.length; j++){ %>
                                                 <div class="cabin-prices__cabin cabin cabin_for-ship">
                                                     <div class="cabin__upper-part">
                                                         <img src="/cabin.jpeg" alt="" class="cabin__image">
                                                         <div class="cabin__wrap-for-information">
                                                             <span class="cabin__name">
-                                                                <%= ship.decks[i].cabins[j].cabin_name %>
+                                                                <%= ship.ship_decks[i].cabins[j].cabin_name %>
                                                             </span>
                                                             <div class="cabin__describe">
-                                                                <%= ship.decks[i].cabins[j].cabin_description %>
+                                                                <%= ship.ship_decks[i].cabins[j].cabin_description %>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -208,13 +208,13 @@
                                                             Каюты
                                                         </span>
                                                         <div class="cabin__wrap-for-available-places">
-                                                            <% for(let k=0; k<ship.decks[i].cabins[j].cabin_numbers.length; k++){%>
+                                                            <% for(let k=0; k<ship.ship_decks[i].cabins[j].cabin_numbers.length; k++){%>
                                                                 <div class="cabin__available-place">
-                                                                    <%= ship.decks[i].cabins[j].cabin_numbers[k] %>
+                                                                    <%= ship.ship_decks[i].cabins[j].cabin_numbers[k] %>
                                                                 </div>
                                                             <% } %>        
                                                         </div>
-                                                        <%- ship.decks[i].deck_scheme %>
+                                                        <%- ship.ship_decks[i].deck_scheme %>
                                                     </div>
                                                 </div>
                                                 <% } %>

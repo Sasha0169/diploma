@@ -9,6 +9,15 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const { Pool } = require("pg");
+const { Sequelize } = require('sequelize');
+const initModels = require('./models/init-models');
+
+const sequelize = new Sequelize('MorTur', 'postgres', '010669s', {
+  host: 'localhost',
+  dialect: 'postgres',
+});
+
+const {Cabin, City, Cruise, Customer, Deck, Order, OrderedTicket, Route, Ship, Ticket, User} = initModels(sequelize);
 
 app.use(express.static("css"));
 app.use(express.static("images"));
@@ -641,19 +650,49 @@ async function getShortShipDescription(shipId) {
 }
 
 async function getShip(shipId){
-  let query = `
-    SELECT *
-	  FROM public.ships
-    WHERE ship_id=${shipId}`;
-  let result = await pool.query(query);
-  const ship = result.rows[0];
+  // let query = `
+  //   SELECT *
+	//   FROM public.ships
+  //   WHERE ship_id=${shipId}`;
+  // let result = await pool.query(query);
+  // const ship = result.rows[0];
   
-  ship.decks = await getDecksInformation(ship.ship_id);
-  for (let i = 0; i < ship.decks.length; i++) {
-    ship.decks[i].cabins = await getCabinsInformation(ship.ship_id, ship.decks[i].deck_id);
+  // ship.decks = await getDecksInformation(ship.ship_id);
+  // for (let i = 0; i < ship.decks.length; i++) {
+  //   ship.decks[i].cabins = await getCabinsInformation(ship.ship_id, ship.decks[i].deck_id);
+  // }
+  // ship.technical_info = transformShipInfo(ship.technical_info);
+  // return ship;
+  try {
+    const ship = await Ship.findByPk(shipId, {
+      include: [
+        {
+          model: Deck,
+          as: 'ship_decks',
+          include: [
+            {
+              model: Cabin,
+              as: 'cabins'
+            }
+          ]
+        }
+      ]
+    });
+
+    if (!ship) {
+      throw new Error('Ship not found');
+    }
+
+    // Трансформация технической информации
+    ship.technical_info = transformShipInfo(ship.technical_info);
+
+    // Вернуть plain JS объект (если нужно)
+    return ship.toJSON();
+
+  } catch (error) {
+    console.error('Error fetching ship:', error);
+    throw error;
   }
-  ship.technical_info = transformShipInfo(ship.technical_info);
-  return ship;
 }
 
 async function changingUserData(changedData, userId) {}
