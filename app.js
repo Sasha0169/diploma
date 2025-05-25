@@ -54,7 +54,7 @@ app.get("/orders", (req, res) => {
 });
 
 app.get("/ship", (req, res) => {
-  res.render("ship", {})
+  getShip('6').then((ship)=>{console.log(ship); res.render("ship", {ship: ship})})
 });
 
 app.get("/personal", (req, res) => {
@@ -246,7 +246,7 @@ pool
   .connect()
   .then(() => {
     console.log("✅ Успешное подключение к PostgreSQL");
-    sendVerificationEmail("sasha0169s@mail.ru", "010101");
+    // sendVerificationEmail("sasha0169s@mail.ru", "010101");
     // addTicketCart({ticketId: 45, values:["child", "adult"], userId: 3});
     // getCruises("Красноярск", ["По Енисею", "По Волге"], {startDate:"21.03.2025", endDate:"30.03.2025"}, ["1 - 4", "8 - 10"], ["Максим Горький", "Бирюса (СВП)"], "Речной").then(result => console.log(result));
     // getCruise(3).then(result => console.log(result));
@@ -476,7 +476,7 @@ async function getDecksInformation(shipId){
 
 async function getCabinsInformation(shipId, deckId){
   let query1 = `
-    SELECT cabin_id, deck_id, cabin_description, cabin_name
+    SELECT cabin_id, deck_id, cabin_description, cabin_name, cabin_numbers
 	  FROM public.cabins
 	  WHERE ship_id=${shipId} AND deck_id=${deckId};`;
   let result1 = await pool.query(query1);
@@ -647,6 +647,22 @@ async function getShortShipDescription(shipId) {
     WHERE ship_id=${shipId}`;
   let result = await pool.query(query);
   return result.rows[0].ship_description.shortDescription;
+}
+
+async function getShip(shipId){
+  let query = `
+    SELECT *
+	  FROM public.ships
+    WHERE ship_id=${shipId}`;
+  let result = await pool.query(query);
+  const ship = result.rows[0];
+  
+  ship.decks = await getDecksInformation(ship.ship_id);
+  for (let i = 0; i < ship.decks.length; i++) {
+    ship.decks[i].cabins = await getCabinsInformation(ship.ship_id, ship.decks[i].deck_id);
+  }
+  console.log(ship);
+  return ship;
 }
 
 async function changingUserData(changedData, userId) {}

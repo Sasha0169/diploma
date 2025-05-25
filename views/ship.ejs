@@ -115,12 +115,12 @@
         </div>
     </div>
     <div class="body page__body">
-        <div class="cruise-page">
-            <h1 class="cruise-page__cruise-name">
+        <div class="ship-page">
+            <h1 class="ship-page__ship-name">
                 Теплоход "Александр Радищев"
             </h1>
-            <div class="cruise-page__content">
-                <div class="cruise-page__general-information">
+            <div class="ship-page__content">
+                <div class="ship-page__general-information">
                     <div class="block-of-images">
                         <img src="/photos/ships/1/main.jpg"
                             class="block-of-images__main-image">
@@ -135,427 +135,96 @@
                             <img src="/right-arrow-for-images.png" class="block-of-images__right-arrow">
                         </div>
                     </div>
-                    <div class="cruise-page__wrap-for-price-panel price-panel">
-                        <div class="price-panel__wrap-for-prices">
-                            <div class="price-panel__price">
-                                от <%= minimum_discounted_price %> &#8381;/чел
+                    <div class="ship-page__wrap-for-characteristics-panel characteristics-panel">
+                        <span class="characteristics-panel__title">Основные характеристики</span>
+                        <div class="characteristics-panel__wrap-for-characteristic">
+                            <div class="characteristics-panel__characteristic">
+                                <span class="characteristics-panel__characteristic-name">Длина</span>
+                                <span class="characteristics-panel__characteristic-value">17,5 м</span>
                             </div>
-                            <div class="price-panel__old-price">
-                                <%= minimum_price %> &#8381;
+                            <div class="characteristics-panel__characteristic">
+                                <span class="characteristics-panel__characteristic-name">Длина</span>
+                                <span class="characteristics-panel__characteristic-value">17,5 м</span>
                             </div>
-                        </div>
-                        <div class="price-panel__wrap-for-liner">
-                            <img class="price-panel__liner-icon" src="/443890.png">
-                            <span class="price-panel__name-of-liner">
-                                <%= ship_name %>
-                            </span>
-                        </div>
-                        <div class="price-panel__direction">
-                            <% for(let i=0; i<route_points.length; i++){%>
-                                <%= route_points[i] %>
-                                    <% if (i < route_points.length - 1) { %> &mdash; <% } %>
-                                            <% } %>
-                        </div>
-                        <div class="price-panel__wrap-for-date-and-time">
-                            <div class="price-panel__first-date-and-time">
-                                <span class="price-panel__date">
-                                    <%= start_date.day %>
-                                        <%= start_date.month %>
-                                            <%= start_date.year %>
-                                </span>
-                                <span class="price-panel__day-of-week-and-time">
-                                    <%= start_date.weekday %>, <%= start_date.time %>
-                                </span>
-                            </div>
-                            <div class="price-panel__wrap-for-number-of-days">
-                                <div class="price-panel__arrow">
-
-                                </div>
-                                <span class="price-panel__number-of-days">
-                                    <%= duration_days %> дней
-                                </span>
-                            </div>
-                            <div class="price-panel__second-date-and-time">
-                                <span class="price-panel__date">
-                                    <%= end_date.day %>
-                                        <%= end_date.month %>
-                                            <%= end_date.year %>
-                                </span>
-                                <span class="price-panel__day-of-week-and-time">
-                                    <%= end_date.weekday %>, <%= end_date.time %>
-                                </span>
+                            <div class="characteristics-panel__characteristic">
+                                <span class="characteristics-panel__characteristic-name">Длина</span>
+                                <span class="characteristics-panel__characteristic-value">17,5 м</span>
                             </div>
                         </div>
-                        <button class="price-panel__button-for-booking">
-                            Выбрать каюту
-                        </button>
                     </div>
                 </div>
-                <div class="cruise-page__sections">
+                <div class="ship-page__sections">
                     <div class="page-navigation">
                         <a href="#section1" class="page-navigation__section">
                             <div class="page-navigation__name-of-section">
-                                Описание круиза
+                                Описание теплохода
                             </div>
                         </a>
                         <a href="#section2" class="page-navigation__section">
                             <div class="page-navigation__name-of-section">
-                                Маршрут
+                                Каюты
                             </div>
                         </a>
                         <a href="#section3" class="page-navigation__section">
                             <div class="page-navigation__name-of-section">
-                                О теплоходе
+                                Удобства на борту
                             </div>
                         </a>
                         <a href="#section4" class="page-navigation__section">
                             <div class="page-navigation__name-of-section">
-                                Цены
+                                Круизы
                             </div>
                         </a>
                     </div>
-                    <div id="section1" class="cruise-page__section cruise-page-section">
-                        <h2 class="cruise-page-section__name-of-section">
-                            Описание круиза
+                    <div id="section1" class="ship-page__section ship-page-section">
+                        <h2 class="ship-page-section__name-of-section">
+                            Описание теплохода
                         </h2>
-                        <div class="cruise-page-section__content">
-                            <%- cruise_description %>
-                        </div>
-                    </div>
-                    <div id="section2" class="cruise-page__section cruise-page-section">
-                        <h2 class="cruise-page-section__name-of-section">
-                            Маршрут
-                        </h2>
-                        <div class="cruise-page-section__content">
-                            <% let k=1; for(let i=0; i<day_by_day_info.length; i++){ %>
-                                <div class="route-point">
-                                    <div class="route-point__header">
-                                        <div class="route-point__wrap-for-date">
-                                            <div class="route-point__number-of-day">День <%= day_by_day_info[i].day %>
-                                            </div>
-                                            <div class="route-point__date-and-day-of-week">
-                                                <%= day_by_day_info[i].date.date %>, <%= day_by_day_info[i].date.weekday
-                                                        %>
-                                            </div>
-                                        </div>
-                                        <div class="route-point__places">
-                                            <% for(let j=0; j<day_by_day_info[i].cities.length; j++){ %>
-                                                <% if((i==0)&&(j==0)){ %>
-                                                    <div class="route-point__wrap-for-place">
-                                                        <div class="route-point__place">
-                                                            <div class="route-point__wrap-for-name-of-place">
-                                                                <img class="route-point__arrow"
-                                                                    src="/arrow-right-for-place.png">
-                                                                <div class="route-point__name-of-place">
-                                                                    <%= day_by_day_info[i].cities[j].city %>
-                                                                </div>
-                                                            </div>
-                                                            <div class="route-point__wrapper-for-time">
-                                                                <div class="route-point__wrap-for-time">
-                                                                    <div class="route-point__registration-start-time">
-                                                                        <div class="route-point__name-of-time">Начало
-                                                                            регистрации:</div>
-                                                                        <div class="route-point__time">
-                                                                            <%= day_by_day_info[i].cities[j].arrival_time
-                                                                                %>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="route-point__departure-time">
-                                                                        <div class="route-point__name-of-time">
-                                                                            Отправление:</div>
-                                                                        <div class="route-point__time">
-                                                                            <%= day_by_day_info[i].cities[j].departure_time
-                                                                                %>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <img class="route-point__place-image"
-                                                                src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/cities/<%= k++  %>.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="route-point__description-wrap">
-                                                            <span
-                                                                class="route-point__title-for-description">Описание</span>
-                                                            <div class="route-point__description">
-                                                                <%= day_by_day_info[i].cities[j].description %>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <% continue; %>
-                                                        <% } %>
-                                                            <% if((i==day_by_day_info.length-1)&&(j==day_by_day_info[i].cities.length-1)){
-                                                                %>
-                                                                <div class="route-point__wrap-for-place">
-                                                                    <div class="route-point__place">
-                                                                        <div
-                                                                            class="route-point__wrap-for-name-of-place">
-                                                                            <img class="route-point__arrow"
-                                                                                src="/arrow-right-for-place.png">
-                                                                            <div class="route-point__name-of-place">
-                                                                                <%= day_by_day_info[i].cities[j].city %>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="route-point__wrapper-for-time">
-                                                                            <div class="route-point__wrap-for-time">
-                                                                                <div
-                                                                                    class="route-point__registration-start-time">
-                                                                                    <div
-                                                                                        class="route-point__name-of-time">
-                                                                                        Прибытие:</div>
-                                                                                    <div class="route-point__time">
-                                                                                        <%= day_by_day_info[i].cities[j].arrival_time
-                                                                                            %>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- <div class="route-point__departure-time">
-                                                                    <div class="route-point__name-of-time">Отправление:</div>
-                                                                    <div class="route-point__time">00:00</div>
-                                                                </div> -->
-                                                                            </div>
-                                                                        </div>
-                                                                        <img class="route-point__place-image"
-                                                                            src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/cities/<%= k++  %>.jpg"
-                                                                            alt="">
-                                                                    </div>
-                                                                    <div class="route-point__description-wrap">
-                                                                        <span
-                                                                            class="route-point__title-for-description">Описание</span>
-                                                                        <div class="route-point__description">
-                                                                            <%= day_by_day_info[i].cities[j].description
-                                                                                %>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <% continue; %>
-                                                                    <% } %>
-                                                                        <div class="route-point__wrap-for-place">
-                                                                            <div class="route-point__place">
-                                                                                <div
-                                                                                    class="route-point__wrap-for-name-of-place">
-                                                                                    <img class="route-point__arrow"
-                                                                                        src="/arrow-right-for-place.png">
-                                                                                    <div
-                                                                                        class="route-point__name-of-place">
-                                                                                        <%= day_by_day_info[i].cities[j].city
-                                                                                            %>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="route-point__wrapper-for-time">
-                                                                                    <div
-                                                                                        class="route-point__wrap-for-time">
-                                                                                        <div
-                                                                                            class="route-point__arrival-time">
-                                                                                            <div
-                                                                                                class="route-point__name-of-time">
-                                                                                                Прибытие:</div>
-                                                                                            <div
-                                                                                                class="route-point__time">
-                                                                                                <%= day_by_day_info[i].cities[j].arrival_time
-                                                                                                    %>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="route-point__parking-time">
-                                                                                            <div
-                                                                                                class="route-point__name-of-time">
-                                                                                                Стоянка:</div>
-                                                                                            <div
-                                                                                                class="route-point__time">
-                                                                                                <%= day_by_day_info[i].cities[j].stop_time
-                                                                                                    %>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="route-point__departure-time">
-                                                                                            <div
-                                                                                                class="route-point__name-of-time">
-                                                                                                Отправление:</div>
-                                                                                            <div
-                                                                                                class="route-point__time">
-                                                                                                <%= day_by_day_info[i].cities[j].departure_time
-                                                                                                    %>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <img class="route-point__place-image"
-                                                                                    src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/<%= cruise_id %>/cities/<%= k++  %>.jpg"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <div class="route-point__description-wrap">
-                                                                                <span
-                                                                                    class="route-point__title-for-description">Описание</span>
-                                                                                <div class="route-point__description">
-                                                                                    <%= day_by_day_info[i].cities[j].description
-                                                                                        %>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="route-point__wrap-for-excursions">
-                                                                                <span
-                                                                                    class="route-point__label-before-excursions">
-                                                                                    Экскурсии входящие в стоимость:
-                                                                                </span>
-                                                                                <div class="route-point__excursions">
-                                                                                    <% for(let k=0;
-                                                                                        k<day_by_day_info[i].cities[j].excursions.length;
-                                                                                        k++){ %>
-                                                                                        <div
-                                                                                            class="route-point__excursion">
-                                                                                            <div
-                                                                                                class="route-point__description-of-excursion">
-                                                                                                <%= day_by_day_info[i].cities[j].excursions[k].description
-                                                                                                    %>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="excursion-duration">
-                                                                                                Длительность: <%=
-                                                                                                    day_by_day_info[i].cities[j].excursions[k].duration
-                                                                                                    %> ч
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <% } %>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <% } %>
+                        <div class="ship-page-section__content">
+                            Anim commodo excepteur esse id elit. Veniam minim laboris ipsum minim. Est exercitation qui magna dolore minim magna officia veniam nostrud sunt. Commodo labore tempor irure velit in minim culpa. Laboris anim et excepteur aliquip velit. Tempor magna do amet non adipisicing aliquip sint amet Lorem eiusmod sit.
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <% } %>
-                        </div>
-                        <div class="cruise-page-section__wrap-for-cruise-map">
-                            <span class="cruise-page-section__header-for-cruise-map">Карта круиза</span>
-                            <div class="cruise-page-section__cruise-map">
-                                <script type="text/javascript" charset="utf-8" async
-                                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1ad551c77053aebe2f7b405973ac3ed8f6f9934eb29ff0b98dec41604d0528b1&amp;width=1210&amp;height=600&amp;lang=ru_RU&amp;scroll=true"></script>
-                            </div>
+Sit enim nisi veniam qui deserunt tempor consequat esse deserunt voluptate anim anim ipsum. Irure non dolor ex deserunt nisi minim adipisicing nulla commodo. Incididunt cupidatat ad commodo officia enim cillum sit magna amet et ad do amet.
+
+Laborum est dolor aliquip cillum pariatur dolore ullamco. Culpa dolor quis velit in minim tempor laborum et. Et aute laboris ipsum labore occaecat culpa ipsum nulla exercitation quis eiusmod. Occaecat qui sit dolore enim nisi reprehenderit esse est nulla voluptate commodo. Anim excepteur nisi aute ea sit sit amet enim deserunt duis irure nostrud.
                         </div>
                     </div>
-                    <div id="section3" class="cruise-page__section cruise-page-section">
-                        <h2 class="cruise-page-section__name-of-section">
-                            О теплоходе
+                    <div id="section2" class="ship-page__section ship-page-section">
+                        <h2 class="ship-page-section__name-of-section">
+                            Каюты
                         </h2>
-                        <div class="cruise-page-section__content">
-                            <p class="cruise-page-section__text-of-section">
-                                Название: <a href="">"<%= ship_name %>"</a>
-                            </p>
-                            <!-- <p class="cruise-page-section__text-of-section">
-                                Cupidatat officia voluptate velit sint eiusmod quis quis culpa nisi enim sit. Mollit consectetur et occaecat commodo consequat esse consectetur elit ut anim qui aliquip proident dolore. Reprehenderit non amet pariatur duis reprehenderit aute mollit. Fugiat dolore cupidatat aliquip in occaecat sit adipisicing.
-                                Ipsum fugiat reprehenderit mollit dolore duis consectetur adipisicing anim magna nostrud voluptate reprehenderit. Velit qui incididunt dolor aute ex. Aliquip consequat officia aliqua minim veniam exercitation exercitation dolore cupidatat dolor eiusmod anim magna dolor. Commodo consequat in eu magna aute in deserunt consectetur sint consectetur do consequat laboris. Nostrud minim magna tempor culpa. Sunt enim aliqua esse tempor quis. Laboris eiusmod incididunt laborum magna fugiat magna labore nulla voluptate officia deserunt excepteur mollit.
-                            </p>
-                            <p class="cruise-page-section__text-of-section">
-                                Cupidatat officia voluptate velit sint eiusmod quis quis culpa nisi enim sit. Mollit consectetur et occaecat commodo consequat esse consectetur elit ut anim qui aliquip proident dolore. Reprehenderit non amet pariatur duis reprehenderit aute mollit. Fugiat dolore cupidatat aliquip in occaecat sit adipisicing.
-                            </p> -->
-                            <%- shipDescription %>
-                        </div>
-                    </div>
-                    <div id="section4" class="cruise-page__section cruise-page-section">
-                        <h2 class="cruise-page-section__name-of-section">
-                            Цены
-                        </h2>
-                        <div class="cruise-page-section__content">
+                        <div class="ship-page-section__content">
                             <div class="wrap-for-cabin-prices cabin-prices">
-                                <% for(let i=0; i<decks.length; i++){ %>
+                                <% for(let i=0; i<ship.decks.length; i++){ %>
                                     <div class="cabin-prices__deсk">
                                         <span class="cabin-prices__deck-name">
-                                            <%= decks[i].deck_name %>
+                                            <%= ship.decks[i].deck_name %>
                                         </span>
                                         <div class="cabin-prices__wrap-for-cabins">
-                                            <% for(let j=0; j<decks[i].cabins.length; j++){ %>
-                                                <div class="cabin-prices__cabin cabin">
+                                            <% for(let j=0; j<ship.decks[i].cabins.length; j++){ %>
+                                                <div class="cabin-prices__cabin cabin cabin_for-ship">
                                                     <div class="cabin__upper-part">
                                                         <img src="/cabin.jpeg" alt="" class="cabin__image">
                                                         <div class="cabin__wrap-for-information">
                                                             <span class="cabin__name">
-                                                                <%= decks[i].cabins[j].cabin_name %>
+                                                                <%= ship.decks[i].cabins[j].cabin_name %>
                                                             </span>
-                                                            <!-- <span class="cabin__description">
-                                                        <%= decks[i].cabins[j].cabin_description %>
-                                                    </span> -->
-                                                            <div class="cabin__wrap-for-rates">
-                                                                <div class="cabin__wrap-for-rate">
-                                                                    <div class="rate">
-                                                                        <span class="rate__name-of-rate">Тариф
-                                                                            Взрослый:</span>
-                                                                        <span class="rate__price">
-                                                                            <%= decks[i].cabins[j].tickets[0].prices[0].base_price
-                                                                                %> &#8381;/чел
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="cabin__wrap-for-rate">
-                                                                    <div class="rate">
-                                                                        <span class="rate__name-of-rate">Тариф
-                                                                            Детский:</span>
-                                                                        <% if(decks[i].cabins[j].tickets[0].prices[2]
-                                                                            !=undefined) {%>
-                                                                            <span class="rate__price">
-                                                                                <%= decks[i].cabins[j].tickets[0].prices[2].base_price
-                                                                                    %> &#8381;/чел
-                                                                            </span>
-                                                                            <% } %>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="cabin__wrap-for-rate">
-                                                                    <div class="rate">
-                                                                        <span class="rate__name-of-rate">Тариф
-                                                                            Пенсионный:</span>
-
-                                                                        <span class="rate__price">
-                                                                            <%= decks[i].cabins[j].tickets[0].prices[1].base_price
-                                                                                %> &#8381;/чел
-                                                                        </span>
-
-                                                                    </div>
-                                                                </div>
+                                                            <div class="cabin__describe">
+                                                                <%= ship.decks[i].cabins[j].cabin_description %>
                                                             </div>
-                                                            <div class="cabin__wrap-for-quantity-and-button">
-                                                                <span class="cabin__quantity">Свободных кают: <%=
-                                                                        decks[i].cabins[j].numberOfFreeTickets %></span>
-                                                                <% if(decks[i].cabins[j].numberOfFreeTickets==0){ %>
-                                                                    <button
-                                                                        class="cabin__button cabin__button_not-working"
-                                                                        cabin_id="<%= decks[i].cabins[j].cabin_id %>">
-                                                                        Забронировать
-                                                                    </button>
-                                                                    <% } else {%>
-                                                                        <button class="cabin__button"
-                                                                            cabin_id="<%= decks[i].cabins[j].cabin_id %>">
-                                                                            Забронировать
-                                                                        </button>
-                                                                        <% } %>
-                                                            </div>
-
                                                         </div>
                                                     </div>
                                                     <div class="cabin__lower-part">
                                                         <span class="cabin__label-under-available-places">
-                                                            Доступные каюты
+                                                            Каюты
                                                         </span>
                                                         <div class="cabin__wrap-for-available-places">
-                                                            <% for(let k=0; k<decks[i].cabins[j].tickets.length; k++){
-                                                                %>
-                                                                <% if(decks[i].cabins[j].tickets[k].status=="free" ) {%>
-                                                                    <div class="cabin__available-place"
-                                                                        ticket_id="<%= decks[i].cabins[j].tickets[k].ticket_id %>">
-                                                                        <%= decks[i].cabins[j].tickets[k].place %>
-                                                                    </div>
-                                                                    <% } %>
-                                                                        <% if(decks[i].cabins[j].tickets[k].status=="occupied"
-                                                                            ) {%>
-                                                                            <div
-                                                                                class="cabin__available-place_occupied">
-                                                                                <%= decks[i].cabins[j].tickets[k].place
-                                                                                    %>
-                                                                            </div>
-                                                                            <% } %>
-                                                                                <% } %>
+                                                            <% for(let k=0; k<ship.decks[i].cabins[j].cabin_numbers.length; k++){%>
+                                                                <div class="cabin__available-place">
+                                                                    <%= ship.decks[i].cabins[j].cabin_numbers[k] %>
+                                                                </div>
+                                                            <% } %>        
                                                         </div>
-                                                        <%- decks[i].deck_scheme %>
+                                                        <%- ship.decks[i].deck_scheme %>
                                                     </div>
                                                 </div>
                                                 <% } %>
@@ -563,6 +232,28 @@
                                     </div>
                                     <% } %>
                             </div>
+                        </div>
+                    </div>
+                    <div id="section3" class="ship-page__section ship-page-section">
+                        <h2 class="ship-page-section__name-of-section">
+                            Удобства на борту
+                        </h2>
+                        <div class="ship-page-section__content">
+                            <ul class="ship-page-section list">
+                                <% for(let k=0; k<ship.services.length; k++){%>
+                                    <li class="list__item">
+                                        <%= ship.services[k].replaceAll("'", "") %>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="section4" class="ship-page__section ship-page-section">
+                        <h2 class="ship-page-section__name-of-section">
+                            Круизы
+                        </h2>
+                        <div class="ship-page-section__content">
+
                         </div>
                     </div>
                 </div>
@@ -664,9 +355,9 @@
             </div>
         </div>
         <div class="cart__body">
-            <span class="cart__cruise-name">Восточная сказка</span>
-            <div class="cart__information-about-cruise">
-                <span class="cart__direction-of-cruise">Москва &mdash; Казань &mdash; Москва</span>
+            <span class="cart__ship-name">Восточная сказка</span>
+            <div class="cart__information-about-ship">
+                <span class="cart__direction-of-ship">Москва &mdash; Казань &mdash; Москва</span>
                 <div class="cart__wrap-for-date-and-time">
                     <div class="cart__first-date-and-time">
                         <span class="cart__date">
@@ -966,8 +657,6 @@
         </form>
     </div>
     <script src="/script.js"></script>
-    <script src="/cruise-page.js"></script>
-    <!-- Cleversite chat button -->
     <script src="//widget.cleversite.ru/widget/131209/203767/"></script>
     <!-- / End of Cleversite chat button -->
 </body>

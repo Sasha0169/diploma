@@ -636,7 +636,7 @@ body {
 
 /* Для страницы круиза */
 
-.cruise-page{
+.cruise-page, .ship-page{
     width: 1250px;
     display: flex;
     flex-direction: column;
@@ -645,18 +645,18 @@ body {
     padding: 40px 0px 40px 0px;
 }
 
-.cruise-page__cruise-name{
+.cruise-page__cruise-name, .ship-page__ship-name{
     align-self:flex-start;
 }
 
-.cruise-page__content{
+.cruise-page__content, .ship-page__content{
     display: flex;
     flex-direction: column;
     gap: 40px;
     width: 100%;
 }
 
-.cruise-page__general-information{
+.cruise-page__general-information, .ship-page__general-information{
     display:flex;
     justify-content: space-between;
     width: 100%;
@@ -703,7 +703,7 @@ body {
     justify-content: space-between;
 }
 
-.price-panel{
+.price-panel, .characteristics-panel{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -767,7 +767,7 @@ body {
     font-size: 14px;
 }
 
-.cruise-page__sections{
+.cruise-page__sections, .ship-page__sections{
     display: flex;
     flex-direction: column;
     gap: 80px;
@@ -777,7 +777,6 @@ body {
     display: flex;
     width: 800px;
     justify-content: space-between;
-    
 }
 
 .page-navigation__section{
@@ -1024,6 +1023,15 @@ body {
     gap:30px;
     height: 282px;
     overflow: hidden;
+}
+
+.cabin_for-ship{
+    height: auto;
+}
+
+.cabin_for-ship .cabin__wrap-for-information{
+    gap:20px;
+    justify-content: flex-start;
 }
 
 .cabin__upper-part{
@@ -1864,7 +1872,32 @@ body {
   cursor: pointer;
 }
 
+.characteristics-panel__title{
+    font-size: 20px;
+    font-weight: bold;
+}
 
+.characteristics-panel__wrap-for-characteristic{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.characteristics-panel__characteristic{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px;
+}
+
+.list{
+    column-count: 3;
+    flex-grow: 1;
+    list-style-type: disc;
+}
+
+.list__item::marker{
+    color: #0094DA;
+}
 
 /* .sliders {
     display: flex;

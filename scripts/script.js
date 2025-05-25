@@ -189,6 +189,12 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
 
 
 
+  const buttonForEntrance = document.getElementsByClassName("entrance__text")[0];
+  buttonForEntrance.addEventListener("click", function(e){
+    e.preventDefault()
+    document.getElementsByClassName("wrap-for-entrance-panel")[0].style.display ="flex";
+  })
+
 
   function refreshCartForUnauthorizedUser(){
     const cart = document.getElementsByClassName("cart")[0];
