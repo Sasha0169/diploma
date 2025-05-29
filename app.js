@@ -1,7 +1,8 @@
-const fs = require("fs");
 const express = require("express");
 const app = express();
+
 const path = require("path");
+const fs = require("fs");
 const bodyParser = require("body-parser");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
@@ -11,6 +12,7 @@ const nodemailer = require('nodemailer');
 const { Pool } = require("pg");
 const { Sequelize } = require('sequelize');
 const initModels = require('./models/init-models');
+
 
 const sequelize = new Sequelize('MorTur', 'postgres', '010669s', {
   host: 'localhost',
@@ -34,9 +36,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.listen(3000, () => {
-  console.log(`Сервер запущен на http://localhost:3000`);
-});
+
 
 app.get("/", (req, res) => {
   getDepartureCities().then((cities) => {
@@ -53,6 +53,15 @@ app.get("/", (req, res) => {
       });
     });
   });
+});
+
+app.post('/logout', (req, res) => {
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,   // обязательно, если работаете по HTTPS
+    sameSite: 'strict' // или 'lax', в зависимости от настроек
+  });
+  res.status(200).json({ message: 'Logged out successfully' });
 });
 
 app.get("/ships", (req, res) => {
@@ -122,7 +131,7 @@ let SECRET = "secret-key"
 
 app.post("/login", (req, res) => {
   authenticationByEmail(req.body).then((user) => {
-    const token = jwt.sign( user , SECRET, { expiresIn: '1h' });
+    const token = jwt.sign( user , SECRET, { expiresIn: '24h' });
     res.cookie('token', token, {
       httpOnly: true,
       sameSite: 'Lax',
@@ -175,7 +184,7 @@ function authMiddleware(req, res, next) {
 }
 
 app.get("/booking-form", (req, res) => {
-  res.render("booking form", {});
+  getInfoAboutUser(2).then((user)=>{res.render("booking form", user);})
 });
 
 
@@ -600,11 +609,60 @@ async function getUserOrders(userId) {
 
 async function getInfoAboutUser(userId) {
   let query1 = `
-    SELECT *
+    SELECT last_name, first_name, middle_name, birth_date, phone_number, email, gender, citizenship, document
 	  FROM public.users
 	  WHERE user_id=${userId};`;
   let result1 = await pool.query(query1);
-  return result1.rows[0];
+  let user = result1.rows[0]
+  user.cart = await getCart(userId);
+  user.birth_date = formatDate(user.birth_date).date;
+  user.phone_number = formatPhoneNumber(user.phone_number);
+  if(user.document.type == "passport")
+    user.document.typeNumber = 0;
+  if(user.document.type == "foreign_passport")
+    user.document.typeNumber = 1;
+  if(user.document.type == "birth_certificate")
+    user.document.typeNumber = 2;
+  if(user.citizenship == "Россия")
+    user.typeCitizenship = 0;
+  if(user.citizenship == "США")
+    user.typeCitizenship = 1;
+  if(user.citizenship == "Англия")
+    user.typeCitizenship = 2;
+  if(user.citizenship == "Польша")
+    user.typeCitizenship = 3;
+  for(let i=0; i<user.cart.tickets.length; i++){
+    for(let j=0; j<user.cart.tickets[i].selectedTariffsWithPrice.length; j++){
+      const tariff = user.cart.tickets[i].selectedTariffsWithPrice[j];
+      if(tariff.tariff == "adult")
+        tariff.tariffName = "Тариф Взрослый"
+      if(tariff.tariff == "child")
+        tariff.tariffName = "Тариф Детский"
+      if(tariff.tariff == "pensioner")
+        tariff.tariffName = "Тариф Пенсионный"
+      console.log(tariff)
+    }
+  }
+  console.log(user.cart.tickets[0].selectedTariffsWithPrice[0])
+  console.log(user.cart.tickets[0].selectedTariffsWithPrice[1])
+  return user;
+}
+
+function formatPhoneNumber(rawNumber) {
+  // Удаляем все нецифровые символы
+  const cleaned = rawNumber.replace(/\D/g, '');
+  // Проверяем, что номер начинается с 7 и содержит 11 цифр
+  if (cleaned.length !== 11 || cleaned[0] !== '7') {
+    throw new Error('Неверный формат номера. Ожидается 11 цифр, начинающихся с 7.');
+  }
+  // Отделяем части номера
+  const country = '+7';
+  const code = cleaned.slice(1, 4);
+  const part1 = cleaned.slice(4, 7);
+  const part2 = cleaned.slice(7, 9);
+  const part3 = cleaned.slice(9);
+
+  return `${country} (${code}) ${part1}-${part2}${part3}`;
 }
 
 async function getDepartureCities() {
@@ -1072,3 +1130,7 @@ function transformShipInfo(data) {
     value: value
   }));
 }
+
+app.listen(3000, () => {
+  console.log(`Сервер запущен на http://localhost:3000`);
+});

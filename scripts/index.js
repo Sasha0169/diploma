@@ -110,7 +110,9 @@ buttonsForChangeType[1].value="Морской";
 buttonsForChangeType.forEach(a => a.addEventListener("click", function (e) {
     e.preventDefault();
     e.currentTarget.style.backgroundColor = "#0094DA";
-    e.currentTarget.secondButton.style.backgroundColor = "#74c1fc";
+    e.currentTarget.style.color = "#fff";
+    e.currentTarget.secondButton.style.backgroundColor = "#fff";
+    e.currentTarget.secondButton.style.color = "#0094DA";
     selectedType = e.currentTarget.value;
 }))
 
@@ -211,7 +213,7 @@ function createCruiseCard(cruise) {
             от ${cruise.minimum_discounted_price} &#8381;/чел
           </span>
           <span class="cruise-card__old-price">
-            ${cruise.minimum_price} &#8381;
+            ${cruise.minimum_price} &#8381;/чел
           </span>
         </div>
         <div class="cruise-card__wrap-for-remains">
@@ -237,6 +239,26 @@ function createCruiseCard(cruise) {
       cruiseCard.cruiseId = cruise.cruise_id;
       
     });
+  }
+
+  const cart = document.getElementsByClassName("cart")[0];
+  const closeCartButton = document.getElementsByClassName("cart__close-button")[0];
+  closeCartButton.addEventListener("click", function(e){
+      cart.style.display = "none";
+  })
+
+
+  function checkCabinsExist(){
+      const arrayCabins = cart.getElementsByClassName("cart__cabin");
+      if(arrayCabins.length==0){
+          const body = cart.getElementsByClassName("cart__body")[0];
+          const buttonForBook = cart.getElementsByClassName("cart__checkout")[0];
+          body.innerHTML = `<span class="cart__empty-cart-message">
+              Ваша корзина пуста
+          </span>`;
+          body.style.justifyContent="center";        
+          buttonForBook.style.display = "none";
+      }
   }
 
 //   document.getElementsByClassName("entrance-panel__button")[0].addEventListener("click", function(e){

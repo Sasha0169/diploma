@@ -114,7 +114,9 @@
                             <div class="form-for-search__wrap-for-button-and-panel">
                                 <button class="form-for-search__button-for-selecting">
                                     <span class="form-for-button__placeholder-for-button">Откуда</span>
-                                    <div class="form-for-button__arrow-for-button"></div>
+                                    <svg class="form-for-button__arrow-for-button" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17 9.5L12 14.5L7 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </button>
                                 <div class="form-for-button__the-selection-panel">
                                     <div class="list-group">
@@ -139,7 +141,9 @@
                                 
                                 <button class="form-for-search__button-for-selecting">
                                 <span class="form-for-button__placeholder-for-button">Куда</span>
-                                <div class="form-for-button__arrow-for-button"></div>
+                                <svg class="form-for-button__arrow-for-button" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 9.5L12 14.5L7 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                                 </button>
                                 <div class="form-for-button__the-selection-panel">
                                     <div class="list-group">
@@ -170,7 +174,9 @@
                                 
                                 <button class="form-for-search__button-for-selecting">
                                 <span class="form-for-button__placeholder-for-button">Как долго</span>
-                                <div class="form-for-button__arrow-for-button"></div>
+                                <svg class="form-for-button__arrow-for-button" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 9.5L12 14.5L7 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                                 </button>
                                 <div class="form-for-button__the-selection-panel">
                                     <div class="list-group">
@@ -204,7 +210,9 @@
                                 
                                 <button class="form-for-search__button-for-selecting">
                                 <span class="form-for-button__placeholder-for-button">На чем</span>
-                                <div class="form-for-button__arrow-for-button"></div>
+                                <svg class="form-for-button__arrow-for-button" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 9.5L12 14.5L7 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                                 </button>
                                 <div class="form-for-button__the-selection-panel">
                                     <div class="list-group">
@@ -652,7 +660,7 @@
             </form>
         </div>
     </div>
-    <div class="registration-panel>
+    <div class="registration-panel">
         <span class="registration-panel__header">
             Регистрация
         </span>
@@ -718,6 +726,62 @@
             </div>
             <button type="submit" class="btn btn-primary registration-panel__button">Отправить</button>
         </form>
+    </div>
+    <div class="cart">
+        <div class="cart__header">
+            <div class="cart__title">
+                Корзина
+            </div>
+            <div class="cart__wrap-for-close-button">
+                <svg class="cart__close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="m16.042969 311.097656c-4.09375 0-8.191407-1.554687-11.304688-4.691406-6.25-6.25-6.25-16.386719 0-22.636719l279.058594-279.058593c6.253906-6.253907 16.386719-6.253907 22.636719 0 6.25 6.25 6.25 16.382812 0 22.632812l-279.0625 279.0625c-3.136719 3.136719-7.230469 4.691406-11.328125 4.691406zm0 0" />
+                    <path
+                        d="m295.125 311.097656c-4.09375 0-8.191406-1.554687-11.304688-4.691406l-279.082031-279.082031c-6.25-6.253907-6.25-16.386719 0-22.636719s16.382813-6.25 22.632813 0l279.0625 279.082031c6.25 6.25 6.25 16.386719 0 22.636719-3.136719 3.136719-7.230469 4.691406-11.308594 4.691406zm0 0" />
+                </svg>
+            </div>
+        </div>
+        <div class="cart__body">
+            <span class="cart__cruise-name">Восточная сказка</span>
+            <div class="cart__information-about-cruise">
+                <span class="cart__direction-of-cruise">Москва &mdash; Казань &mdash; Москва</span>
+                <div class="cart__wrap-for-date-and-time">
+                    <div class="cart__first-date-and-time">
+                        <span class="cart__date">
+                            25 апр 2025
+                        </span>
+                        <span class="cart__day-of-week-and-time">
+                            пт, 10:00
+                        </span>
+                    </div>
+                    <div class="cart__wrap-for-number-of-days">
+                        <div class="cart__arrow">
+
+                        </div>
+                        <span class="cart__number-of-days">
+                            100 дней
+                        </span>
+                    </div>
+                    <div class="cart__second-date-and-time">
+                        <span class="cart__date">
+                            25 апр 2025
+                        </span>
+                        <span class="cart__day-of-week-and-time">
+                            пт, 10:00
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="cart__wrap-for-cabins">
+            </div>
+
+        </div>
+        <div class="cart__footer">
+            <div class="cart__total"></div>
+            <button class="cart__checkout">
+                Перейти к бронированию
+            </button>
+        </div>
     </div>
     
     <script src="/script.js"></script> 

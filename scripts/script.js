@@ -9,7 +9,7 @@ fetch('/checkAuth', {
         getUserName();
         refreshCart();
         buttonForEntrance.removeEventListener("click", buttonForEntranceForUnauthorizedUser)
-        buttonForEntrance.addEventListener("pointerenter", buttonForEntranceForAuthorizedUser)
+        buttonForEntrance.addEventListener("pointerenter", openMenuForUser)
         buttonForEntrance.addEventListener("pointerleave", closeMenuForUser)
     } 
     else{
@@ -18,10 +18,12 @@ fetch('/checkAuth', {
     }
   });
 // let openPanel;
+
 let interactionContainer;
 let descendants_of_objects = ["navigation-panel__column", "navigation-panel__title", "navigation-panel__option", "navigation-panel__wrap-for-content", "categories-navigation__link"];
 let elements = document.getElementsByClassName('categories-navigation__option');
 let panels = document.getElementsByClassName('navigation-panel');
+const menu = document.getElementsByClassName("menu-for-user")[0];
 for(let i = 0, a = 0; i<4; i++)
 {
     elements[i].panelForOpen = panels[i];
@@ -162,9 +164,10 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
   .then(data => {
     getUserName();
     entrancePanel.style.display = "none";
+    const wrapForEntrance = document.getElementsByClassName("information-and-entrance__wrap-for-entrance")[0];
     buttonForEntrance.removeEventListener("click", buttonForEntranceForUnauthorizedUser)
-    buttonForEntrance.addEventListener("pointerenter", buttonForEntranceForAuthorizedUser)
-    buttonForEntrance.addEventListener("pointerleave",closeMenuForUser)
+    wrapForEntrance.addEventListener("pointerenter", openMenuForUser)
+    wrapForEntrance.addEventListener("pointerleave",closeMenuForUser)
 })   
 .catch(error => alert("Неправильный логин или пароль"));
   })
@@ -189,11 +192,11 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
 
 
 
-  const buttonForEntrance = document.getElementsByClassName("entrance__text")[0];
-  buttonForEntrance.addEventListener("click", function(e){
-    e.preventDefault()
-    document.getElementsByClassName("wrap-for-entrance-panel")[0].style.display ="flex";
-  })
+  // const buttonForEntrance = document.getElementsByClassName("entrance__text")[0];
+  // buttonForEntrance.addEventListener("click", function(e){
+  //   e.preventDefault()
+  //   document.getElementsByClassName("wrap-for-entrance-panel")[0].style.display ="flex";
+  // })
 
 
   function refreshCartForUnauthorizedUser(){
@@ -220,6 +223,7 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data)
         if(isEmptyObject(data)){
             checkCabinsExist();
             return;
@@ -378,9 +382,8 @@ function deleteTicketFromCart(ticketId){
     })
   }
 
-  function buttonForEntranceForAuthorizedUser(e) {
+  function openMenuForUser(e) {
     e.preventDefault();
-    const menu = document.getElementsByClassName("menu-for-user")[0];
     menu.style.display = "flex";
     menu.animate([
         { transform: "translateY(-100%)", opacity: 0 },
@@ -396,9 +399,18 @@ function deleteTicketFromCart(ticketId){
   }
   
   function closeMenuForUser(e) {
-    const menu = document.getElementsByClassName("menu-for-user")[0];
-      menu.style.display = "none";
-
+    menu.animate([
+        { transform: "translateY(0)", opacity: 1 },
+        { transform: "translateY(-100%)", opacity: 0 }
+      ], {
+        duration: 600,
+        easing: "ease-out"
+      }).finished.then(() => {
+        if (menu) {
+          menu.style.display = "none";
+        }
+      });
+    // menu.style.display = "none";
   }
 
 const buttonForCart = document.getElementsByClassName("lower-head__wrap-for-right-element")[0];
@@ -406,6 +418,20 @@ buttonForCart.addEventListener("click", function (e){
     const cart = document.getElementsByClassName("cart")[0];
     cart.style.display = "flex";
 })
-  
 
+const arrayButtonsOfMenuForUser = menu.getElementsByClassName("menu-for-user__wrap-for-section");
+arrayButtonsOfMenuForUser[0].addEventListener("click", ()=>window.open(`http://localhost:3000/personal`, "_blank"));
+arrayButtonsOfMenuForUser[1].addEventListener("click", ()=>window.open(`http://localhost:3000/orders`, "_blank"));
+arrayButtonsOfMenuForUser[2].addEventListener("click", ()=>{fetch("http://localhost:3000/logout", {
+      method: "POST",
+      headers: {
+        credentials: 'include',
+          "Content-Type": "application/json" 
+        }
+  })
+  .then(response => response.json()) // Парсим JSON
+  .then(() => {
+    window.location.reload();
+  })   
+  .catch(error => console.error("Ошибка:", error));});
  

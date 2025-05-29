@@ -35,7 +35,7 @@
   position: relative;
   z-index: 1;
   background: white;
-  border: 1px solid #2196F3;
+  border: 1px solid #0094DA;
   width: 16rem;
   width: 200px;
 }
@@ -54,7 +54,7 @@
 .datepicker__header {
   position: relative;
   text-align: center;
-  background: #2196F3;
+  background: #0094DA;
   padding: 0.25rem;
   margin: -0.5rem -0.5rem 0;
 }
@@ -174,7 +174,7 @@
 }
 
 .datepicker__day.is-selected div {
-  background: #2196F3;
+  background: #0094DA;
 }
 
 .datepicker__day.is-selected:hover div::after {

@@ -236,25 +236,7 @@ buttonsForTickets.forEach(button => button.addEventListener("click", function(e)
         })   
         .catch(error => console.error("Ошибка:", error));
 }))
-const cart = document.getElementsByClassName("cart")[0];
-const closeCartButton = document.getElementsByClassName("cart__close-button")[0];
-closeCartButton.addEventListener("click", function(e){
-    cart.style.display = "none";
-})
 
-
-function checkCabinsExist(){
-    const arrayCabins = cart.getElementsByClassName("cart__cabin");
-    if(arrayCabins.length==0){
-        const body = cart.getElementsByClassName("cart__body")[0];
-        const buttonForBook = cart.getElementsByClassName("cart__checkout")[0];
-        body.innerHTML = `<span class="cart__empty-cart-message">
-            Ваша корзина пуста
-        </span>`;
-        body.style.justifyContent="center";        
-        buttonForBook.style.display = "none";
-    }
-}
 
 function addTicketCart(e){
     e.preventDefault;

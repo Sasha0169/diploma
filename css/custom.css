@@ -31,3 +31,12 @@ p {
 .form-check-input{
     border: 2px solid #000;
 }
+
+.form-check-input:disabled~.form-check-label, .form-check-input[disabled]~.form-check-label{
+    opacity: 1;
+}
+
+.form-check-input:checked{
+    background-color: #0094DA;
+    border-color: #0094DA;
+}
