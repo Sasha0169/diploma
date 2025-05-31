@@ -55,6 +55,12 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/contact", (req, res) => {
+  res.render("contact")
+});
+
+
+
 app.post('/logout', (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
@@ -98,7 +104,7 @@ app.post("/cruises", (req, res) => {
 // })
 
 app.post("/getInfoAboutPlace", (req, res) => {
-  getInfoAboutPlace(req.body.numberOfTicket).then((result)=>res.json(result));
+  getInfoAboutPlace(req.body.numberOfTicket).then((result)=>{console.log(result); res.json(result)});
 });
 
 app.get("/checkAuth", (req, res) => {
@@ -386,6 +392,33 @@ app.get("/users", async (req, res) => {
 });
 
 const TOKEN = ""
+
+app.post('/send', async (req, res) => {
+  const { email, phone, message } = req.body;
+  console.log(email, phone, message);
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'info.mortur@gmail.com',        // замените на ваш email
+      pass: 'fjcp dguh ijev rsdp'            // замените на ваш app password
+    }
+  });
+
+  const mailOptions = {
+    from: email,
+    to: 'info.mortur@gmail.com',
+    subject: 'Новое сообщение с сайта',
+    text: `Email: ${email}\nТелефон: ${phone}\nСообщение: ${message}`
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.send('Сообщение отправлено!');
+  } catch (error) {
+    console.error('Ошибка при отправке почты:', error);
+    res.status(500).send('Ошибка при отправке сообщения.');
+  }
+});
 
 async function getCruise(cruiseID) {
   try {

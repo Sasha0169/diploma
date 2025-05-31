@@ -1,0 +1,54 @@
+{
+  "id": "2306",
+  "meta": {
+    "name": "Admin Panel",
+    "icon": "https://web.kottster.app/icon.png"
+  },
+  "navItems": [
+    {
+      "id": "cabins",
+      "name": "Каюты",
+      "icon": "file"
+    },
+    {
+      "id": "cities",
+      "name": "Города",
+      "icon": "file"
+    },
+    {
+      "id": "users",
+      "name": "Пользователи",
+      "icon": "file"
+    },
+    {
+      "id": "cruises",
+      "name": "Круизы",
+      "icon": "file"
+    },
+    {
+      "id": "customers",
+      "name": "Клиенты",
+      "icon": "file"
+    },
+    {
+      "id": "decks",
+      "name": "Палубы",
+      "icon": "file"
+    },
+    {
+      "id": "routes",
+      "name": "Направления",
+      "icon": "file"
+    },
+    {
+      "id": "orders",
+      "name": "Заказы",
+      "icon": "file"
+    },
+    {
+      "id": "tickets",
+      "name": "Билеты",
+      "icon": "file"
+    }
+  ]
+}
