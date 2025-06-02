@@ -1,4 +1,4 @@
-
+// const cart = document.getElementsByClassName("cart")[0];
 fetch('/checkAuth', {
     method: 'GET',
     credentials: 'include', 
@@ -24,7 +24,7 @@ let descendants_of_objects = ["navigation-panel__column", "navigation-panel__tit
 let elements = document.getElementsByClassName('categories-navigation__option');
 let panels = document.getElementsByClassName('navigation-panel');
 const menu = document.getElementsByClassName("menu-for-user")[0];
-for(let i = 0, a = 0; i<4; i++)
+for(let i = 0, a = 0; i<2; i++)
 {
     elements[i].panelForOpen = panels[i];
     elements[i].addEventListener("pointerenter", openNavigationPanel);
@@ -118,9 +118,10 @@ function closeMenuNavigation()
 
 
 
-let inputForEmail = document.getElementsByClassName("entrance-panel__input-for-section")[0];
-let inputForPassword = document.getElementsByClassName("entrance-panel__input-for-section")[1];
-let entrancePanel = document.getElementsByClassName("wrap-for-entrance-panel")[0];
+const inputForEmail = document.getElementsByClassName("entrance-panel__input-for-section")[0];
+const inputForPassword = document.getElementsByClassName("entrance-panel__input-for-section")[1];
+const entrancePanel = document.getElementsByClassName("wrap-for-entrance-panel")[0];
+const registrationPanel = document.getElementsByClassName("wrap-for-registration-panel")[0];
 // let buttonForEntrance = entrancePanel.getElementsByClassName("btn")[0];
 
 // buttonForEntrance.addEventListener("click", function(e){
@@ -200,7 +201,6 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
 
 
   function refreshCartForUnauthorizedUser(){
-    const cart = document.getElementsByClassName("cart")[0];
     const body = cart.getElementsByClassName("cart__body")[0];
     const buttonForBook = cart.getElementsByClassName("cart__checkout")[0];
     body.innerHTML = `<span class="cart__empty-cart-message">
@@ -434,4 +434,11 @@ arrayButtonsOfMenuForUser[2].addEventListener("click", ()=>{fetch("http://localh
     window.location.reload();
   })   
   .catch(error => console.error("Ошибка:", error));});
+
+  const buttonForOpenRegisterPanel = document.getElementsByClassName("entrance-panel__label-for-register")[0];
+  buttonForOpenRegisterPanel.addEventListener("click", function(){
+    // e.preventDefault();
+    entrancePanel.style.display = "none";
+    registrationPanel.style.display = "flex";
+  })
  

@@ -17,9 +17,10 @@ p {
 }
 
 .carousel{
-    width: 400px;
-    height: 250px;
+    width: 500px;
+    height: 312px;
     overflow: hidden;
+    border-radius: 5px;
 }
 
 .form-check{
@@ -28,8 +29,8 @@ p {
     gap: 15px;
 }
 
-.form-check-input{
-    border: 2px solid #000;
+.form-check-input[type=radio]{
+    border: 1px solid #000;
 }
 
 .form-check-input:disabled~.form-check-label, .form-check-input[disabled]~.form-check-label{
@@ -40,3 +41,5 @@ p {
     background-color: #0094DA;
     border-color: #0094DA;
 }
+
+.

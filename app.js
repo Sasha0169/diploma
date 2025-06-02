@@ -64,8 +64,8 @@ app.get("/contact", (req, res) => {
 app.post('/logout', (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: true,   // обязательно, если работаете по HTTPS
-    sameSite: 'strict' // или 'lax', в зависимости от настроек
+    secure: true, 
+    sameSite: 'strict' 
   });
   res.status(200).json({ message: 'Logged out successfully' });
 });
@@ -196,11 +196,11 @@ app.get("/booking-form", (req, res) => {
 
 
 const pool = new Pool({
-  user: "postgres", // Ваш пользователь PostgreSQL
-  host: "localhost", // Хост базы данных (или IP-адрес)
-  database: "MorTur", // Имя базы данных
-  password: "010669s", // Пароль пользователя
-  port: 5432, // Порт PostgreSQL (по умолчанию 5432)
+  user: "postgres", 
+  host: "localhost", 
+  database: "MorTur", 
+  password: "010669s", 
+  port: 5432, 
 });
 
 app.get('/protected', (req, res) => {
@@ -261,121 +261,6 @@ pool
   .connect()
   .then(() => {
     console.log("✅ Успешное подключение к PostgreSQL");
-    // sendVerificationEmail("sasha0169s@mail.ru", "010101");
-    // addTicketCart({ticketId: 45, values:["child", "adult"], userId: 3});
-    // getCruises("Красноярск", ["По Енисею", "По Волге"], {startDate:"21.03.2025", endDate:"30.03.2025"}, ["1 - 4", "8 - 10"], ["Максим Горький", "Бирюса (СВП)"], "Речной").then(result => console.log(result));
-    // getCruise(3).then(result => console.log(result));
-    // authenticationByEmail("scfe@mail.ru", "01gd4545df").then(result=> console.log(result));
-    // authenticationByPhoneNumber("79856810350", "01gd4545df").then(result=> console.log(result));
-    // registerUser({password: "jaaha0169",
-    //   firstName: "Александр",
-    //   lastName: "Иванов",
-    //   middleName: "Иваныч",
-    //   birthDate: "23-07-2000",
-    //   gender: "Мужской",
-    //   citizenship: "Россия",
-    //   email: "sdkll@gmail.ru",
-    //   phoneNumber: "73493293935",
-    //   documentData: {
-    //     type:"pasport",
-    //     passport_series: "4509",
-    //     passport_number: "123456",
-    //     issue_date: "2010-07-20",
-    //     issued_by: "Отделение УФМС России по г. Москве"
-    //   }
-    // })
-    // registerCustomer({
-    //   firstName: "Александр",
-    //   lastName: "Иванов",
-    //   middleName: "Иваныч",
-    //   birthDate: "23-07-2000",
-    //   gender: "Мужской",
-    //   citizenship: "Россия",
-    //   email: "sdkll@gmail.ru",
-    //   phoneNumber: "73493293935",
-    //   documentData: {
-    //     type:"pasport",
-    //     passport_series: "4509",
-    //     passport_number: "123456",
-    //     issue_date: "2010-07-20",
-    //     issued_by: "Отделение УФМС России по г. Москве"
-    //   }
-    // })
-    // createOrder({
-    //   cruiseId: 3,
-    //   orderInformation: [{
-    //     ticketId: 2,
-    //     passengers: [
-    //       {
-    //         firstName: "Александр",
-    //         lastName: "Иванов",
-    //         middleName: "Иваныч",
-    //         birthDate: "23-07-2000",
-    //         gender: "Мужской",
-    //         citizenship: "Россия",
-    //         email: "sdkll@gmail.ru",
-    //         phoneNumber: "73493293935",
-    //         documentData: {
-    //           type:"pasport",
-    //           passport_series: "4509",
-    //           passport_number: "123456",
-    //           issue_date: "2010-07-20",
-    //           issued_by: "Отделение УФМС России по г. Москве"
-    //         }},
-    //         {firstName: "Александр",
-    //           lastName: "Иванов",
-    //           middleName: "Иваныч",
-    //           birthDate: "23-07-2000",
-    //           gender: "Мужской",
-    //           citizenship: "Россия",
-    //           email: "sdkll@gmail.ru",
-    //           phoneNumber: "73493293935",
-    //           documentData: {
-    //             type:"pasport",
-    //             passport_series: "4509",
-    //             passport_number: "123456",
-    //             issue_date: "2010-07-20",
-    //             issued_by: "Отделение УФМС России по г. Москве"
-    //           }}
-    //     ]
-    //   },{ticketId: 3,
-    //     passengers: [
-    //       {
-    //         firstName: "Александр",
-    //         lastName: "Иванов",
-    //         middleName: "Иваныч",
-    //         birthDate: "23-07-2000",
-    //         gender: "Мужской",
-    //         citizenship: "Россия",
-    //         email: "sdkll@gmail.ru",
-    //         phoneNumber: "73493293935",
-    //         documentData: {
-    //           type:"pasport",
-    //           passport_series: "4509",
-    //           passport_number: "123456",
-    //           issue_date: "2010-07-20",
-    //           issued_by: "Отделение УФМС России по г. Москве"
-    //         }}
-    //     ]}],
-    //   customer: {
-    //     userId: 10,
-    //     firstName: "Александр",
-    //     lastName: "Иванов",
-    //     middleName: "Иваныч",
-    //     birthDate: "23-07-2000",
-    //     gender: "Мужской",
-    //     citizenship: "Россия",
-    //     email: "sdkll@gmail.ru",
-    //     phoneNumber: "73493293935",
-    //     documentData: {
-    //       type:"pasport",
-    //       passport_series: "4509",
-    //       passport_number: "123456",
-    //       issue_date: "2010-07-20",
-    //       issued_by: "Отделение УФМС России по г. Москве"
-    //     }
-    //   }
-    // })
   })
   .catch((err) => console.error("❌ Ошибка подключения к PostgreSQL:", err));
 

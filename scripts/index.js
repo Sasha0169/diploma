@@ -167,7 +167,7 @@ function createCruiseCard(cruise) {
   
     card.innerHTML = `
       <div class="cruise-card__wrap-for-image">
-        <img class="cruise-card__image" src="https://raw.githubusercontent.com/Sasha0169/diploma/master/images/photos/cruises/${cruise.cruise_id}/main.jpg" alt="">
+        <img class="cruise-card__image" src="/photos/cruises/${cruise.cruise_id}/main.jpg" alt="">
       </div>
       <div class="cruise-card__wrap-for-information">
         <span target="_blank" class="cruise-card__name">${cruise.cruise_name}</span>

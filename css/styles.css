@@ -69,7 +69,7 @@ body {
     color:#F1F1F1;
     background-color: #94d0fe;
     /* background-color: #0c7ca4; */
-
+    z-index: 101;
     justify-content:center;
     display:inline-flex;
     flex-direction: row;
@@ -143,11 +143,10 @@ body {
 
 .information-and-entrance {
     display:inline-flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 400px;
     flex-direction: row;
-    align-items:center;
-    justify-content: space-between;
+    align-items: center;
 }
 
 .information-and-entrance__information {
@@ -163,6 +162,8 @@ body {
 .information-and-entrance__number {
     font-size: 20px;
     display: inline;
+    color:#0094DA;
+    display: none;
 }
 
 .information-and-entrance__wrap-for-entrance{
@@ -222,6 +223,10 @@ body {
 .lower-head__wrap-for-right-element {
     display: flex;
     gap: 10px;
+}
+
+.lower-head__wrap-for-right-element:hover{
+
 }
 
 .lower-head__cart{
@@ -772,6 +777,7 @@ body {
 .price-panel__price{
     font-size: 23px;
     font-weight: bold;
+    color:#0094DA;
 }
 
 .price-panel__old-price{
@@ -790,6 +796,7 @@ body {
     font-weight: bold;
     color:#0094DA;
     border: 1px solid #0094DA;
+    transition: color 0.5s ease, background-color 0.5s ease;
 }
 
 .price-panel__button-for-booking:hover{
@@ -885,6 +892,7 @@ body {
     color: black;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .page-navigation__section:hover{
@@ -897,7 +905,11 @@ body {
     border-bottom: solid 2px #000;
 }
 
-.cruise-page-section{
+.page-navigation__name-of-section{
+    text-align: center;
+}
+
+.cruise-page-section, .ship-page-section{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -1094,7 +1106,7 @@ body {
     text-align: justify;
 }
 
-.cabin-prices{
+.cabin-prices, .cabin-prices__wrap-for-cabins{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1169,6 +1181,7 @@ body {
 .cabin__name{
     font-size: 23px;
     font-weight: bold;
+    color:#0094DA
 }
 
 .cabin__price{
@@ -1208,12 +1221,12 @@ body {
 
 .rate__name-of-rate{
     font-weight: bold;
-    color:#0094DA;
+    color:#000;
 }
 
 .rate__price{
     font-weight: bold;
-    
+    color:#777777
 }
 
 /* .rate:not(:first-child) {
@@ -1237,7 +1250,7 @@ body {
     font-weight: bold;
 }
 
-.cabin__button, .cabin__button_not-working{
+.cabin__button, .cabin__button_not-working, .panel-for-booking__button{
     height: 35px;
     width: 250px;
     border-radius: 5px;
@@ -1247,7 +1260,7 @@ body {
     font-weight: bold;
 }
 
-.cabin__button:hover{
+.cabin__button:hover, .panel-for-booking__button:hover{
     color: #fff;
     background-color: #0094DA;
 }
@@ -1349,7 +1362,8 @@ body {
 
 .panel-for-booking{
     width: 1000px;
-    position: fixed;
+    display: flex;
+    flex-direction: column;
     background-color: white;
     justify-content: center;
     align-items: center;
@@ -1357,10 +1371,35 @@ body {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     padding: 15px;
+    gap: 20px;
+}
+
+.panel-for-booking__wrap-for-name{
+    display:flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.panel-for-booking__cabin-name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.panel-for-booking__deck-name{
+    font-size: 18px;
+    color:#777777;
+    font-weight: bold;
 }
 
 .panel-for-booking__wrap-for-description{
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-for-booking__description{
+    text-align: justify;
 }
 
 .panel-for-booking__wrap-for-close-button{
@@ -1369,20 +1408,37 @@ body {
 
 .panel-for-booking__upper-part{
     display: flex;
+    gap: 20px;
 }
 
 .panel-for-booking__lower-part{
     display: flex;
     flex-direction: column;
+    gap: 40px;
+    width: 100%;
 }
 
 .panel-for-booking__wrap-for-checkbox{
-    display: flex;
+    display: none;
+    gap: 20px;
 }
+
+.panel-for-booking__passenger-number{
+    font-weight: bold;
+}
+
+.panel-for-booking__wrap-for-rate-of-passenger{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 
 .panel-for-booking__wrap-for-rate-selection{
     display: grid;
-    grid-template-columns: 40% 40%;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     align-items: center;
     justify-content: center;
 }
@@ -1391,6 +1447,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.panel-for-booking__total{
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 10px;
 }
 
 @keyframes slideRight {
@@ -1406,7 +1468,7 @@ body {
     display: none;
     flex-direction: column;
     width: 400px;
-    background-color: #DBCE81;
+    background-color: #94d0fe;
     position: fixed;
     top:0px;
     right: 0px;
@@ -1426,6 +1488,7 @@ body {
 
 .cart__title{
     font-size: 23px;
+    font-weight: bold;
 
 }
 
@@ -1633,8 +1696,28 @@ body {
     /* padding: 40px 0px 40px 0px; */
 }
 
+.booking-page__button, .user-account__button, .entrance-panel__button{
+    height: 35px;
+    align-self: flex-end;
+    width: 30%;
+    border-radius: 5px;
+    color: #0094DA;
+    border: 1px solid #0094DA;
+    background-color: #fff;
+    font-weight: bold;
+    transition: color 0.3 ease, background-color 0.3 ease;
+}
+
+.booking-page__button:hover, .user-account__button:hover, .entrance-panel__button:hover{
+    color: #fff;
+    background-color: #0094DA;
+}
+
 .booking-page__content, .user-account__wrap-for-inputs{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .booking-section{
@@ -1686,7 +1769,7 @@ body {
 
 .user-account__button{
     width: 300px;
-    padding:10px 20px;
+    /* padding:10px 20px; */
     align-self: flex-end;
 }
 
@@ -1699,7 +1782,8 @@ body {
 .booking-section__cabin{
     display:flex;
     flex-direction: column;
-    gap:20px;
+    gap:30px;
+    padding: 0px 20px;
 }
 
 .booking-section__wrap-for-cabin-name{
@@ -1714,7 +1798,7 @@ body {
 }
 
 .booking-section__deck-name{
-    font-size: 20px;
+    font-size: 23px;
     color: #7D7D7D;
     font-weight: bold;
 }
@@ -1722,13 +1806,13 @@ body {
 .booking-section__wrap-for-passengers{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
 }
 
 .booking-section__passenger{
     display:flex;
     flex-direction: column;
-    gap:20px;
+    gap:30px;
 }
 
 .booking-section__wrap-for-passenger-tariff{
@@ -1738,13 +1822,14 @@ body {
 }
 
 .booking-section__passenger-number{
-    font-size: 20px;
+    font-size: 23px;
     font-weight: bold;
 }
 
 .booking-section__tariff{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
+    color:#7D7D7D;
 }
 
 .booking-section__passenger-form{
@@ -1822,7 +1907,7 @@ body {
 
 }
 
-.wrap-for-entrance-panel{
+.wrap-for-entrance-panel, .wrap-for-registration-panel{
     position: fixed;
     top: 0;
     left: 0;
@@ -1836,7 +1921,7 @@ body {
 }
 
 .entrance-panel{
-    background-color: #74c1fc;
+    background-color: #94d0fe;
     width: 500px;
     padding: 30px;
     border-radius: 15px;
@@ -1850,28 +1935,62 @@ body {
     justify-content: space-between;
 }
 
-.entrance-panel__wrap-for-close-button{
+.entrance-panel__wrap-for-close-button, .registration-panel__wrap-for-close-button{
     height: 20px;
     width: 20px;
     position: relative;
     top: -4px;
 }
 
-/* .entrance-panel__close-button:hover{
-    color:#74c1fc
-} */
+.entrance-panel__close-button, .registration-panel__close-button{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
 
-.entrance-panel__title, .registration-panel__header{
-    font-size: 26px;
+.entrance-panel__close-button:hover, .registration-panel__close-button:hover{
+    fill:#0094DA;
+}
+
+.registration-panel__header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.entrance-panel__title, .registration-panel__title{
+    font-size: 30px;
     font-weight: bold;
 }
 
+.entrance-panel__label-for-section{
+    font-weight: bold;
+}
+
+.entrance-panel__wrap-for-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.entrance-panel__label-for-register{
+    width: 50%;
+    cursor: pointer;
+    color:#0094DA;
+    text-align: center;
+    font-weight: bold;
+}
+
+.entrance-panel__button{
+    width: 50%;
+}
+
 .registration-panel{
-    background-color: #74c1fc;
+    background-color: #94d0fe;
     width: 500px;
     padding: 30px;
     border-radius: 15px;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 30px;
 }
@@ -1895,7 +2014,19 @@ body {
 }
 
 .registration-panel__button{
+    height: 35px;
+    background-color: #FFF;
+    font-weight: bold;
+    width:100%;
+    border: 1px solid #0094DA;
     grid-area: G;
+    color:#0094DA;
+    border-radius: 5px;
+}
+
+.registration-panel__button:hover{
+    background-color: #0094DA;
+    color:#FFF;
 }
 
 .wrap-for-menu-for-user{
@@ -1906,11 +2037,11 @@ body {
     /* padding: 50px 0px 0px 0px; */
     position:absolute;
     top: 50px;
-    z-index: 100;
+    z-index: 80;
     display: none;
     flex-direction: column;
     width: 200px;
-    background-color: #74c1fc;
+    background-color: #94d0fe;
     border-radius: 10px;
     /* margin: 20px  */
 }
@@ -2084,12 +2215,16 @@ body {
 .characteristics-panel__wrap-for-characteristic{
     display: flex;
     flex-direction: column;
-    gap:10px;
 }
 
 .characteristics-panel__characteristic{
     display: flex;
     justify-content: space-between;
+    padding: 15px 15px 0px 15px;
+}
+
+.characteristics-panel__characteristic:not(:last-of-type){
+    border-bottom: 1px solid #0094DA;
     padding: 15px 15px;
 }
 
@@ -2267,10 +2402,11 @@ body {
     font-weight: 700;
     color: #9C9C9C;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .navigation-panel__option:hover {
-    color: #000;
+    color: #0094DA;
 }
 
 .navigation-panel__wrap-for-content {
@@ -2458,6 +2594,11 @@ body {
     .booking-section__passenger-form .mb-3:nth-child(11){
         grid-area:E;
     }
+
+    .booking-page__button{
+        height: 45px;
+        width: 50%;
+    }
 }
 
 @media (max-width: 620px) {
@@ -2486,4 +2627,7 @@ body {
         display: flex;
     }
 
+    .booking-page__button{
+        width: 100%;
+    }
 } 
