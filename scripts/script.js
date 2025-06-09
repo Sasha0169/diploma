@@ -1,4 +1,4 @@
-// const cart = document.getElementsByClassName("cart")[0];
+const cart = document.getElementsByClassName("cart")[0];
 fetch('/checkAuth', {
     method: 'GET',
     credentials: 'include', 
@@ -198,11 +198,15 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
   //   e.preventDefault()
   //   document.getElementsByClassName("wrap-for-entrance-panel")[0].style.display ="flex";
   // })
-
+  const closeCartButton = document.getElementsByClassName("cart__close-button")[0];
+  closeCartButton.addEventListener("click", function(e){
+      cart.style.display = "none";
+  })
 
   function refreshCartForUnauthorizedUser(){
     const body = cart.getElementsByClassName("cart__body")[0];
     const buttonForBook = cart.getElementsByClassName("cart__checkout")[0];
+   
     body.innerHTML = `<span class="cart__empty-cart-message">
         Войдите в аккаунт
     </span>`;
@@ -228,6 +232,10 @@ document.getElementsByClassName("entrance-panel__button")[0].addEventListener("c
             checkCabinsExist();
             return;
         }
+        const buttonForBook = cart.getElementsByClassName("cart__checkout")[0];
+        buttonForBook.addEventListener("click", function(e){
+          window.open(`http://localhost:3000/booking-form`, "_blank")
+        })
         const cartBody = cart.getElementsByClassName("cart__body")[0];
         const stringRoutePoints = data.routePoints.join(" &mdash; ");
         let stringTickets = "";
@@ -415,7 +423,7 @@ function deleteTicketFromCart(ticketId){
 
 const buttonForCart = document.getElementsByClassName("lower-head__wrap-for-right-element")[0];
 buttonForCart.addEventListener("click", function (e){
-    const cart = document.getElementsByClassName("cart")[0];
+    // const cart = document.getElementsByClassName("cart")[0];
     cart.style.display = "flex";
 })
 
@@ -440,5 +448,37 @@ arrayButtonsOfMenuForUser[2].addEventListener("click", ()=>{fetch("http://localh
     // e.preventDefault();
     entrancePanel.style.display = "none";
     registrationPanel.style.display = "flex";
+    const closeButton = registrationPanel.getElementsByClassName("registration-panel__close-button")[0];
+    closeButton.addEventListener("click",function(){
+      registrationPanel.style.display = "none";
+    })
   })
+  let codeForRegistration = '';
+  const buttonForRegistration = document.getElementsByClassName("registration-panel__button")[0];
+  buttonForRegistration.addEventListener("click", function(e){
+    
+    const firstName = registrationPanel.getElementsByClassName("form-control")[0].value;
+    const lastName = registrationPanel.getElementsByClassName("form-control")[1].value;
+    const middleName = registrationPanel.getElementsByClassName("form-control")[2].value;
+    const birthDate = registrationPanel.getElementsByClassName("form-control")[3].value;
+    const citizenship = registrationPanel.getElementsByClassName("form-select")[0].value;
+    const phoneNumber = registrationPanel.getElementsByClassName("form-control")[4].value;
+    const email = registrationPanel.getElementsByClassName("form-control")[5].value;
+    const password = registrationPanel.getElementsByClassName("form-control")[6].value;
+    const gender = registrationPanel.getElementsByClassName("form-check-input")[0].checked == true? "man": "woman";
+
+    fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json" 
+        },
+      body: JSON.stringify({firstName: firstName, lastName: lastName, middleName: middleName, citizenship: citizenship, phoneNumber:phoneNumber, email:email, password: password, gender: gender, birthDate: birthDate})
+  }).then(response => response.json()) // Парсим JSON
+  .then((data) => {
+        console.log(data);
+    codeForRegistration = data.code;
+
+  })   
+  .catch(error => console.error("Ошибка:", error));});
+
  

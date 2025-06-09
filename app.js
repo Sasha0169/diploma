@@ -59,7 +59,12 @@ app.get("/contact", (req, res) => {
   res.render("contact")
 });
 
-
+app.post("/booked", (req, res)=>{
+  const token = req.cookies.token;
+  const dataForBooking = req.body;
+  dataForBooking.userId = getUserIdByToken(token);
+  createNewOrder(req.body);
+})
 
 app.post('/logout', (req, res) => {
   res.clearCookie('token', {
@@ -79,7 +84,7 @@ app.get("/orders", (req, res) => {
 });
 
 app.get("/ship/:id", (req, res) => {
-  getShip(req.params.id).then((ship)=>{console.log(ship); res.render("ship", {ship: ship})})
+  getShip(req.params.id).then((ship)=>{res.render("ship", {ship: ship})})
 });
 
 app.get("/personal", (req, res) => {
@@ -175,6 +180,7 @@ app.delete("/cart/:ticketId", authMiddleware, (req, res) => {
 
 
 function getUserIdByToken(token){
+  
   return jwt.verify(token, SECRET).user_id;
 }
 
@@ -190,7 +196,19 @@ function authMiddleware(req, res, next) {
 }
 
 app.get("/booking-form", (req, res) => {
-  getInfoAboutUser(2).then((user)=>{res.render("booking form", user);})
+  const token = req.cookies.token;
+  const userId = getUserIdByToken(token);
+  getInfoAboutUser(userId).then((user)=>{res.render("booking form", user);})
+});
+
+app.get("/order-records", (req, res) => {
+  const token = req.cookies.token;
+  const userId = getUserIdByToken(token);
+  getUserOrders(userId).then((result) => {
+    console.log(result)
+    res.json(result)
+  });
+
 });
 
 
@@ -218,13 +236,14 @@ app.get('/protected', (req, res) => {
 
 app.post('/register', async (req, res) => {
   const { email, password } = req.body;
-  const code = generateAccessCode();
-
-  // Здесь сохранить пользователя с кодом в БД или временно в памяти
-
+  
   try {
-    await sendVerificationEmail(email, code);
-    res.json({ message: 'Код отправлен на почту' });
+    const code = generateAccessCode();
+    registerUser(req.body); 
+    
+    await sendVerificationEmail(email, code); 
+    res.json({ code });
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Ошибка отправки письма' });
@@ -284,8 +303,8 @@ app.post('/send', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'info.mortur@gmail.com',        // замените на ваш email
-      pass: 'fjcp dguh ijev rsdp'            // замените на ваш app password
+      user: 'info.mortur@gmail.com', 
+      pass: 'fjcp dguh ijev rsdp'         
     }
   });
 
@@ -497,14 +516,14 @@ async function registerUser(personalData) {
   if (checkingEmailAndPhone(personalData.email, personalData.phoneNumber)) {
     let result = await argon2.hash(personalData.password);
     let query1 = `
-    INSERT INTO public.customers( last_name, first_name, middle_name, birth_date, phone_number, email, gender, citizenship, document_data)
+    INSERT INTO public.customers( last_name, first_name, middle_name, birth_date, phone_number, email, gender, citizenship)
     VALUES ('${personalData.lastName}', '${personalData.firstName}', '${
       personalData.middleName
     }', '${personalData.birthDate}', '${personalData.phoneNumber}', '${
       personalData.email
     }', '${personalData.gender}', '${
       personalData.citizenship
-    }', '${JSON.stringify(personalData.documentData)}')
+    }')
     RETURNING customer_id;`;
     let result1 = await pool.query(query1);
     result1 = result1.rows[0].customer_id;
@@ -516,13 +535,65 @@ async function registerUser(personalData) {
   } else return false;
 }
 
-async function getUserOrders(userId) {
+async function createNewOrder(dataForBooking){
+  const peopleCount = dataForBooking.tourists.length;
+  const cart = await getCart(dataForBooking.userId);
+  console.log(cart);
+  const now = toPostgresTimestamp();
   let query1 = `
-    SELECT order_id, user_id, people_count, payment_amount, booking_date, payment_status, additional_services
-	  FROM public.orders
-	  WHERE user_id=${userId};`;
+  INSERT INTO public.orders (user_id, people_count, payment_amount, booking_date, payment_status)
+  VALUES ('${dataForBooking.userId}', '${peopleCount}', '${cart.total}', '${now}', 'Забронирован')`;
+  console.log(query1);
   let result1 = await pool.query(query1);
   return result1.rows;
+}
+
+function toPostgresTimestamp(date = new Date()) {
+  // Получаем компоненты даты
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
+
+  // Форматируем в строку для PostgreSQL
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+}
+
+async function getUserOrders(userId) {
+  let query1 = `
+    SELECT order_id, people_count, payment_amount, booking_date, payment_status, additional_services, cruise_id
+	  FROM public.orders
+	  WHERE user_id=${userId};`;
+  let result = await pool.query(query1);
+  result = result.rows;
+
+  result.forEach((order)=>{
+    order.time = formatDateTime(order.booking_date);
+  })
+  return result;
+}
+
+function formatDateTime(isoString) {
+  const date = new Date(isoString);
+  
+  // Форматируем дату (дд.мм.гггг)
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  const formattedDate = `${day}.${month}.${year}`;
+  
+  // Форматируем время (чч:мм)
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const formattedTime = `${hours}:${minutes}`;
+  
+  return {
+    date: formattedDate,
+    time: formattedTime
+  };
 }
 
 async function getInfoAboutUser(userId) {
@@ -558,11 +629,8 @@ async function getInfoAboutUser(userId) {
         tariff.tariffName = "Тариф Детский"
       if(tariff.tariff == "pensioner")
         tariff.tariffName = "Тариф Пенсионный"
-      console.log(tariff)
     }
   }
-  console.log(user.cart.tickets[0].selectedTariffsWithPrice[0])
-  console.log(user.cart.tickets[0].selectedTariffsWithPrice[1])
   return user;
 }
 

@@ -142,7 +142,6 @@ buttonForSearch.addEventListener("click", function(e){
           let buttonCruiseCard = cruiseCard.getElementsByClassName("cruise-card__button")[0];
           let name = cruiseCard.getElementsByClassName("cruise-card__name")[0];
           let image = cruiseCard.getElementsByClassName("cruise-card__image")[0];
-          // buttonCruiseCard.value = "3";
         buttonCruiseCard.addEventListener("click", addLinkToCruise);
         name.addEventListener("click", addLinkToCruise);
         image.addEventListener("click", addLinkToCruise);
@@ -232,6 +231,7 @@ function createCruiseCard(cruise) {
   
   function renderCruises(cruises) {
     const container = document.querySelector('.wrap-for-cruise-cards'); // Где будем добавлять карточки
+    container.innerHTML = "";
     cruises.forEach(cruise => {
       let cruiseCard = createCruiseCard(cruise);
       container.appendChild(cruiseCard); // Добавляем карточку в контейнер
@@ -241,11 +241,7 @@ function createCruiseCard(cruise) {
     });
   }
 
-  const cart = document.getElementsByClassName("cart")[0];
-  const closeCartButton = document.getElementsByClassName("cart__close-button")[0];
-  closeCartButton.addEventListener("click", function(e){
-      cart.style.display = "none";
-  })
+
 
 
   function checkCabinsExist(){
