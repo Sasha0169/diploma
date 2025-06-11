@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>МорТур</title>
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="shortcut icon" href="/icon.png" type="image/png">
     <link rel="stylesheet" href="/datepicker.material.css">
     <script src="/datepicker.rus.js"></script>
     <link rel="stylesheet" href="/custom.css">
 </head>
+
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <div class="header page__head">
         <div class="header__upper-head upper-head">
             <div class="upper-head__wrap">
@@ -140,7 +145,8 @@
                 <div class="orders">
                     <div class="orders__wrap-for-radiobuttons">
                         <div class="orders__wrap-radiobutton">
-                            <input type="radio" checked name="sortForOrders" id="sortForOrders1" class="orders__radiobutton">
+                            <input type="radio" checked name="sortForOrders" id="sortForOrders1"
+                                class="orders__radiobutton">
                             <label for="sortForOrders1" class="orders__label-after-radiobutton">Активные</label>
                         </div>
                         <div class="orders__wrap-radiobutton">
@@ -152,28 +158,19 @@
                             <label for="sortForOrders3" class="orders__label-after-radiobutton">Все заказы</label>
                         </div>
                     </div>
-                    <table class="orders__table">
-                        <thead class="orders__header">
-                        <tr class="orders__row orders__row_header">
-                            <th class="orders__cell orders__cell_header">Номер заказа</th>
-                            <th class="orders__cell orders__cell_header">Дата и время</th>
-                            <th class="orders__cell orders__cell_header">Количество туристов</th>
-                            <th class="orders__cell orders__cell_header">ID Круиза</th>
-                            <th class="orders__cell orders__cell_header">Начало круиза</th>
-                            <th class="orders__cell orders__cell_header">Статус</th>
-                            <th class="orders__cell orders__cell_header">Сумма к оплате</th>
-                        </tr>
+                    <table class="orders-table">
+                        <thead class="orders-table__header">
+                            <tr class="orders-table__row orders-table__row_header orders__row_header">
+                                <th class="orders-table__cell orders-table__cell_header">Номер заказа</th>
+                                <th class="orders-table__cell orders-table__cell_header">Дата и время</th>
+                                <th class="orders-table__cell orders-table__cell_header">Количество туристов</th>
+                                <th class="orders-table__cell orders-table__cell_header">ID Круиза</th>
+                                <th class="orders-table__cell orders-table__cell_header">Начало круиза</th>
+                                <th class="orders-table__cell orders-table__cell_header">Статус</th>
+                                <th class="orders-table__cell orders-table__cell_header">Сумма к оплате</th>
+                            </tr>
                         </thead>
-                        <tbody class="orders__body">
-                        <tr class="orders__row">
-                            <td class="orders__cell">#123456</td>
-                            <td class="orders__cell">16.05.2025 14:30</td>
-                            <td class="orders__cell">2</td>
-                            <td class="orders__cell">0000011</td>
-                            <td class="orders__cell">27.06.2025</td>
-                            <td class="orders__cell orders__cell_status orders__cell_status_unpaid">Не оплачено</td>
-                            <td class="orders__cell">98 000 ₽</td>
-                        </tr>
+                        <tbody class="orders-table__body">
                         </tbody>
                     </table>
                 </div>
@@ -386,7 +383,7 @@
                     <button type="submit" class="entrance-panel__button">Отправить</button>
                     <a class="entrance-panel__label-for-register">Регистрация</a>
                 </div>
-                
+
             </form>
         </div>
     </div>
@@ -455,7 +452,8 @@
                 </div>
                 <div class="mb-3 registration-panel__section">
                     <label for="exampleFormControlInput1" class="form-label">Номер телефона</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="+ 7 (999) 999-9999 ">
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="+ 7 (999) 999-9999 ">
                 </div>
                 <div class="mb-3 registration-panel__section">
                     <label for="exampleFormControlInput1" class="form-label">Email</label>
@@ -468,7 +466,8 @@
                         id="exampleInputPassword1">
                 </div>
                 <div class="mb-3 registration-panel__section">
-                    <label for="exampleInputPassword1" class="form-label registration-panel__label-for-section">Повторите
+                    <label for="exampleInputPassword1"
+                        class="form-label registration-panel__label-for-section">Повторите
                         пароль</label>
                     <input type="password" class="form-control registration-panel__input-for-section"
                         id="exampleInputPassword1">
@@ -480,8 +479,7 @@
     <div class="panel-for-confirm">
         <div class="panel-for-confirm__header">
             <span class="panel-for-confirm__title">Подтверждение почты</span>
-            <svg class="panel-for-confirm__close-button" viewBox="0 0 311 311.09867"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg class="panel-for-confirm__close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg">
                 <path stroke="currentColor"
                     d="m16.042969 311.097656c-4.09375 0-8.191407-1.554687-11.304688-4.691406-6.25-6.25-6.25-16.386719 0-22.636719l279.058594-279.058593c6.253906-6.253907 16.386719-6.253907 22.636719 0 6.25 6.25 6.25 16.382812 0 22.632812l-279.0625 279.0625c-3.136719 3.136719-7.230469 4.691406-11.328125 4.691406zm0 0" />
                 <path stroke="currentColor"
@@ -547,10 +545,11 @@
         </div>
     </div>
     <div class="wrap-for-panel-for-booking">
-        
+
     </div>
-    
-    <script src="/script.js"></script> 
-    <script src="/orders.js"></script> 
+
+    <script src="/script.js"></script>
+    <script src="/orders.js"></script>
 </body>
+
 </html>

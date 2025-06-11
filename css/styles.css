@@ -2170,7 +2170,7 @@ body {
     font-size: 14px;
 }
 
-.orders__table {
+.orders-table {
   width: 100%;
   border-collapse: collapse;
   font-family: sans-serif;
@@ -2179,11 +2179,11 @@ body {
   border-radius: 20px;
 }
 
-.orders__row_header {
+.orders-table__row_header {
   background-color: #f0f0f0;
 }
 
-.orders__cell {
+.orders-table__cell {
   padding: 12px;
   border: 1px solid #7D7D7D;
   text-align: center;
@@ -2191,12 +2191,12 @@ body {
   background-color: #F1F1F1;
 }
 
-.orders__cell_header {
+.orders-table__cell_header {
   font-weight: bold;
   background-color: #74c1fc;
 }
 
-.orders__cell_status {
+.orders-table__cell_status {
   font-weight: bold;
 }
 
@@ -2204,7 +2204,7 @@ body {
   color: green;
 }
 
-.orders__cell_status_unpaid {
+.orders-table__cell_status_unpaid {
   color: red;
 }
 
@@ -2736,6 +2736,11 @@ body {
         height: 45px;
         width: 50%;
     }
+
+    .user-account__button{
+        width: 50%;
+        height: 45px;
+    }
 }
 
 @media (max-width: 620px) {
@@ -2766,5 +2771,10 @@ body {
 
     .booking-page__button{
         width: 100%;
+    }
+
+    .user-account__button{
+        width: 100%;
+        height: 45px;
     }
 } 

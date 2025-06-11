@@ -146,15 +146,14 @@
             <div class="cruise-page__content">
                 <div class="cruise-page__general-information">
                     <div class="block-of-images">
-                        <img src="/photos/cruises/<%= cruise_id %>/main.jpg"
-                            class="block-of-images__main-image">
+                        <img src="/photos/cruises/<%= cruise_id %>/main.jpg" class="block-of-images__main-image">
                         <div class="block-of-images__images">
                             <img src="/left-arrow-for-images.png" class="block-of-images__left-arrow">
                             <div class="block-of-images__wrap-for-images">
                                 <% for(let i=1; i<5; i++){%>
                                     <img class="block-of-images__image"
                                         src="/photos/cruises/<%= cruise_id %>/gallery/<%= i %>.jpg">
-                                <% } %>
+                                    <% } %>
                             </div>
                             <img src="/right-arrow-for-images.png" class="block-of-images__right-arrow">
                         </div>
@@ -799,7 +798,7 @@
                     <button type="submit" class="entrance-panel__button">Отправить</button>
                     <a class="entrance-panel__label-for-register">Регистрация</a>
                 </div>
-                
+
             </form>
         </div>
     </div>
@@ -868,7 +867,8 @@
                 </div>
                 <div class="mb-3 registration-panel__section">
                     <label for="exampleFormControlInput1" class="form-label">Номер телефона</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="+ 7 (999) 999-9999 ">
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="+ 7 (999) 999-9999 ">
                 </div>
                 <div class="mb-3 registration-panel__section">
                     <label for="exampleFormControlInput1" class="form-label">Email</label>
@@ -881,7 +881,8 @@
                         id="exampleInputPassword1">
                 </div>
                 <div class="mb-3 registration-panel__section">
-                    <label for="exampleInputPassword1" class="form-label registration-panel__label-for-section">Повторите
+                    <label for="exampleInputPassword1"
+                        class="form-label registration-panel__label-for-section">Повторите
                         пароль</label>
                     <input type="password" class="form-control registration-panel__input-for-section"
                         id="exampleInputPassword1">
@@ -893,8 +894,7 @@
     <div class="panel-for-confirm">
         <div class="panel-for-confirm__header">
             <span class="panel-for-confirm__title">Подтверждение почты</span>
-            <svg class="panel-for-confirm__close-button" viewBox="0 0 311 311.09867"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg class="panel-for-confirm__close-button" viewBox="0 0 311 311.09867" xmlns="http://www.w3.org/2000/svg">
                 <path stroke="currentColor"
                     d="m16.042969 311.097656c-4.09375 0-8.191407-1.554687-11.304688-4.691406-6.25-6.25-6.25-16.386719 0-22.636719l279.058594-279.058593c6.253906-6.253907 16.386719-6.253907 22.636719 0 6.25 6.25 6.25 16.382812 0 22.632812l-279.0625 279.0625c-3.136719 3.136719-7.230469 4.691406-11.328125 4.691406zm0 0" />
                 <path stroke="currentColor"
